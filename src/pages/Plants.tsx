@@ -1,11 +1,15 @@
 import React, { Fragment } from "react";
+import './Plants.css';
 
 //import components
 import { HeroBanner } from "../components/PlantsPage/HeroBanner";
+import { PageTitle } from "../components/PlantsPage/PageTitle";
+import { ProductsGrid } from "../components/PlantsPage/ProductsGrid";
+
 
 interface PlantsProps {}
 
-export const Plants: React.FC<PlantsProps> = ({}) => {
+export const Plants: React.FC<PlantsProps> = () => {
   return (
     <Fragment>
       <div className="spacer-tag plants" />
@@ -13,13 +17,7 @@ export const Plants: React.FC<PlantsProps> = ({}) => {
         message={"Find the perfect gift from our curated plants collection!"}
       />
       <PageTitle message={"All Plants"} />
-      <ProductGrid />
-      {/* <ProductCard
-        name={"Azalea"}
-        description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
-        price={"22.95$"}
-        imageSrc={"/images/1.png"}
-      /> */}
+      <ProductsGrid />
     </Fragment>
   );
 };

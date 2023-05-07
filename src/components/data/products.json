@@ -1,0 +1,135 @@
+[
+  {
+    "id": 1,
+    "name": "Aloe Vera",
+    "latin_name": "Abies Alba",
+    "description": "Blossoming plants are an excellent gift option because they can add beauty and fragrance to any space, and they can also have positive effects on one's mood and overall well-being. Additionally, they are relatively easy to care for and can provide lasting enjoyment.",
+    "intended_for": [
+      "enjoys gardening or spending time outdoors",
+      "is feeling down or stressed", 
+      "recently moved into a new home or office space", 
+      "appreciates aesthetic beauty and decor"
+    ],
+    "temp": "15-25",
+    "water": "2 / week",
+    "height": "10-22",
+    "sun": "Bright",
+    "sun_description": "Sunlight is the most important environmental factor controlling the growth and health of European silver fir (Abies alba). This species naturally grows in open, sunny habitats and is adapted to full sunlight or partial shade.",
+    "water_description": "Watering European silver fir trees is essential for them to stay healthy. It is important to provide them with regular watering, especially during their first growing season, as they need to establish a good root system.",
+    "price_in_cents": "22.95$",
+    "inventory": 12,
+    "image_draw": "/resources/products/draw/1.png",
+    "image_pic": "/resources/products/pic/1p.png"
+  },
+  {
+    "id": 2,
+    "name": "Bird of paradise",
+    "latin_name": "Abies Alba",
+    "description": "Blossoming plants are an excellent gift option because they can add beauty and fragrance to any space, and they can also have positive effects on one's mood and overall well-being. Additionally, they are relatively easy to care for and can provide lasting enjoyment.",
+    "intended_for": [
+      "enjoys gardening or spending time outdoors",
+      "is feeling down or stressed", 
+      "recently moved into a new home or office space", 
+      "appreciates aesthetic beauty and decor"
+    ],
+    "temp": "15-25",
+    "water": "2 / week",
+    "height": "10-22",
+    "sun": "Bright",
+    "sun_description": "Sunlight is the most important environmental factor controlling the growth and health of European silver fir (Abies alba). This species naturally grows in open, sunny habitats and is adapted to full sunlight or partial shade.",
+    "water_description": "Watering European silver fir trees is essential for them to stay healthy. It is important to provide them with regular watering, especially during their first growing season, as they need to establish a good root system.",
+    "price_in_cents": "22.95$",
+    "inventory": 12,
+    "image_draw": "/images/2.png",
+    "image_pic": "/resources/products/pic/1p.png"
+  },
+  {
+    "id": 3,
+    "name": "Anthurium",
+    "latin_name": "Abies Alba",
+    "description": "Blossoming plants are an excellent gift option because they can add beauty and fragrance to any space, and they can also have positive effects on one's mood and overall well-being. Additionally, they are relatively easy to care for and can provide lasting enjoyment.",
+    "intended_for": [
+      "enjoys gardening or spending time outdoors",
+      "is feeling down or stressed", 
+      "recently moved into a new home or office space", 
+      "appreciates aesthetic beauty and decor"
+    ],
+    "temp": "15-25",
+    "water": "2 / week",
+    "height": "10-22",
+    "sun": "Bright",
+    "sun_description": "Sunlight is the most important environmental factor controlling the growth and health of European silver fir (Abies alba). This species naturally grows in open, sunny habitats and is adapted to full sunlight or partial shade.",
+    "water_description": "Watering European silver fir trees is essential for them to stay healthy. It is important to provide them with regular watering, especially during their first growing season, as they need to establish a good root system.",
+    "price_in_cents": "22.95$",
+    "inventory": 12,
+    "image_draw": "/images/3.png",
+    "image_pic": "/resources/products/pic/1p.png"
+  },
+  {
+    "id": 4,
+    "name": "Money tree",
+    "latin_name": "Abies Alba",
+    "description": "Blossoming plants are an excellent gift option because they can add beauty and fragrance to any space, and they can also have positive effects on one's mood and overall well-being. Additionally, they are relatively easy to care for and can provide lasting enjoyment.",
+    "intended_for": [
+      "enjoys gardening or spending time outdoors",
+      "is feeling down or stressed", 
+      "recently moved into a new home or office space", 
+      "appreciates aesthetic beauty and decor"
+    ],
+    "temp": "15-25",
+    "water": "2 / week",
+    "height": "10-22",
+    "sun": "Bright",
+    "sun_description": "Sunlight is the most important environmental factor controlling the growth and health of European silver fir (Abies alba). This species naturally grows in open, sunny habitats and is adapted to full sunlight or partial shade.",
+    "water_description": "Watering European silver fir trees is essential for them to stay healthy. It is important to provide them with regular watering, especially during their first growing season, as they need to establish a good root system.",
+    "price_in_cents": "22.95$",
+    "inventory": 12,
+    "image_draw": "/images/4.png",
+    "image_pic": "/resources/products/pic/1p.png"
+  },
+  {
+    "id": 5,
+    "name": "Dragon Tree",
+    "latin_name": "Abies Alba",
+    "description": "Blossoming plants are an excellent gift option because they can add beauty and fragrance to any space, and they can also have positive effects on one's mood and overall well-being. Additionally, they are relatively easy to care for and can provide lasting enjoyment.",
+    "intended_for": [
+      "enjoys gardening or spending time outdoors",
+      "is feeling down or stressed", 
+      "recently moved into a new home or office space", 
+      "appreciates aesthetic beauty and decor"
+    ],
+    "temp": "15-25",
+    "water": "2 / week",
+    "height": "10-22",
+    "sun": "Bright",
+    "sun_description": "Sunlight is the most important environmental factor controlling the growth and health of European silver fir (Abies alba). This species naturally grows in open, sunny habitats and is adapted to full sunlight or partial shade.",
+    "water_description": "Watering European silver fir trees is essential for them to stay healthy. It is important to provide them with regular watering, especially during their first growing season, as they need to establish a good root system.",
+    "price_in_cents": "22.95$",
+    "inventory": 12,
+    "image_draw": "/images/5.png",
+    "image_pic": "/resources/products/pic/1p.png"
+  },
+  {
+    "id": 6,
+    "name": "Amaryllis",
+    "latin_name": "Abies Alba",
+    "description": "Blossoming plants are an excellent gift option because they can add beauty and fragrance to any space, and they can also have positive effects on one's mood and overall well-being. Additionally, they are relatively easy to care for and can provide lasting enjoyment.",
+    "intended_for": [
+      "enjoys gardening or spending time outdoors",
+      "is feeling down or stressed", 
+      "recently moved into a new home or office space", 
+      "appreciates aesthetic beauty and decor"
+    ],
+    "temp": "15-25",
+    "water": "2 / week",
+    "height": "10-22",
+    "sun": "Bright",
+    "sun_description": "Sunlight is the most important environmental factor controlling the growth and health of European silver fir (Abies alba). This species naturally grows in open, sunny habitats and is adapted to full sunlight or partial shade.",
+    "water_description": "Watering European silver fir trees is essential for them to stay healthy. It is important to provide them with regular watering, especially during their first growing season, as they need to establish a good root system.",
+    "price_in_cents": "22.95$",
+    "inventory": 12,
+    "image_draw": "/images/6.png",
+    "image_pic": "/resources/products/pic/1p.png"
+  }
+  
+ ] 
