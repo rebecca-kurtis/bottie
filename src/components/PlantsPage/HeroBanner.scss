@@ -1,0 +1,25 @@
+@import '../Variables.scss';
+
+h2 {
+  font-family: $pageHeaderFont;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 58px;
+}
+
+.hero-banner {
+  display: flex;
+  justify-content: center;
+  height: 427px;
+  background: $lightBrown;
+}
+
+.text-banner {
+  display: flex;
+  justify-content: center;
+  max-width: 60%;
+  padding-top: 150px;
+  text-align: center;
+  letter-spacing: 0.15px;
+}

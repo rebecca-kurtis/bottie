@@ -1,0 +1,60 @@
+@import '../Variables.scss';
+
+Header {
+  position: fixed;
+  background-color: $fixedHeaderColour;
+
+  &.scroll {
+    background-color: $scrollHeaderColour;
+    box-shadow: 0 3px 5px 0.3px rgba(0,0,0,0.1);
+    a {color: #000; };
+    a:hover {color: $scrollTextHoverColour}
+  }
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  min-width: 100vw;
+  min-height: 10vh;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  font-family: $pageHeaderFont;
+  font-size: 20px;
+  padding: 1.5em;
+}
+.nav-link {
+  padding-right: 25px;
+  text-decoration: none;
+  color: $navTextColour;
+}
+
+.nav-link:hover{
+  color: $fixedTextHoverColour;
+}
+
+.logo {
+  padding-left: 55px;
+  height: 100px;
+}
+.user-icons {
+  display: flex;
+  align-items: center;
+  padding: 1.5em 55px;
+}
+
+.icon {
+  padding-right: 15px;
+  color: #000;
+  font-size: 20px;
+}
+
+.nav-icon {
+  padding-left: 5px;
+  height: 20px;
+}

@@ -1,0 +1,56 @@
+@import "normalize.css";
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital@0;1&family=Bellefair&family=Courgette&family=Montserrat:wght@600&display=swap');
+
+//Page styling variables
+$pageHeaderFont: 'Montserrat', sans-serif;
+$pageParagraphFont: 'Archivo Narrow', sans-serif;
+$navTextColour: #000;
+
+//Card styling variables
+$cardHeaderFont: 'Bellefair', serif;
+$cardParagraphFont: 'Courgette', cursive;
+
+//Brand colours
+$lightBeige: #F4F1DE;
+$darkBlue: #006D77;
+$lightBlue: #83C5BE;
+$lightPink: #FFDDD2;
+$lightBrown: #E29578;
+
+//Header colours
+$fixedHeaderColour: transparent;
+$fixedTextHoverColour: #fff;
+$scrollHeaderColour: $lightBrown;
+$scrollTextHoverColour: $lightBeige;
+
+//Header Spacer colours
+$homePageSpacer: $lightBlue;
+$plantPageSpacer: $lightBrown;
+
+body {
+  background-color: $lightBeige;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.container::after {
+  content: "";
+  display: block;
+  height: 100px; 
+}
+
+.pages {
+  width: 90%;
+  margin: 0 auto;
+}
+.pages h1, h2, h3{
+  font-family: $pageHeaderFont;
+}
+
+.spacer-tag {
+  height: 130px;
+}
