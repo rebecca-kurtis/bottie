@@ -58,3 +58,15 @@ Header {
   padding-left: 5px;
   height: 20px;
 }
+
+//OffCanva
+--cui-offcanvas-zindex: #{$zindex-offcanvas};
+--cui-offcanvas-width: #{$offcanvas-horizontal-width};
+--cui-offcanvas-height: #{$offcanvas-vertical-height};
+--cui-offcanvas-padding-x: #{$offcanvas-padding-x};
+--cui-offcanvas-padding-y: #{$offcanvas-padding-y};
+--cui-offcanvas-color: #{$offcanvas-color};
+--cui-offcanvas-bg: #{$offcanvas-bg-color};
+--cui-offcanvas-border-width: #{$offcanvas-border-width};
+--cui-offcanvas-border-color: #{$offcanvas-border-color};
+--cui-offcanvas-box-shadow: #{$offcanvas-box-shadow};

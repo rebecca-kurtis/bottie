@@ -10,6 +10,7 @@ export const PlantHeadingInfo: React.FC<PlantHeadingInfoProps> = () => {
       <h1>{products[0].name}</h1>
       <p className="product_info__latin">{products[0].latin_name}</p>
       <p>{products[0].description}</p>
+      <br></br>
       <h4>For someone who</h4>
       <ul className="product_info__intended">
         <li>{products[0].intended_for[0]}</li>

@@ -1,4 +1,9 @@
 import React from "react";
+import { Login } from "./_Login";
+
+//import offcanva
+// import '@coreui/coreui/dist/css/coreui.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 //import photos
 import logo from "./images/BottieLogo.png";
@@ -7,7 +12,6 @@ import plantIcon from "./images/plant_icon.png";
 
 //import icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 import "./Header.css";
@@ -47,9 +51,10 @@ export const Header: React.FC<_HeaderProps> = () => {
           </a>
         </nav>
         <div className="user-icons">
-          <FontAwesomeIcon className="icon" icon={faUser} />
+          <Login/>
           <FontAwesomeIcon className="icon" icon={faCartShopping} />
         </div>
+        
       </div>
     </header>
   );
