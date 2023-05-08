@@ -1,0 +1,20 @@
+@import '../Variables.scss';
+
+// .block {
+//   background-color: #fff;
+// }
+
+.how-it-works-block {
+  background-image: url("./HomePage_Images/Flower-background.png");
+  background-color: #fff;
+  height: 350px;
+  background-repeat: no-repeat;
+  background-size:cover;
+  display: flex;
+  justify-content: center;
+}
+
+
+// .flower-background {
+//   width: 100%;
+// }

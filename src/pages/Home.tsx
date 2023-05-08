@@ -5,6 +5,8 @@ import "./Home.css"
 
 //import components
 import { HomePageBanner } from "../components/HomePage/HomePageBanner";
+import { HowItWorks } from "../components/HomePage/HowItWorks";
+
 
 interface HomeProps {}
 
@@ -14,6 +16,8 @@ export const Home: React.FC<HomeProps> = () => {
       <div className="spacer-tag home" />
       <section >
         <HomePageBanner />
+        <HowItWorks />
+
         <p>
           Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.
           De carne lumbering animata corpora quaeritis. Summus brains sit​​,
