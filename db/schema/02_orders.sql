@@ -1,0 +1,10 @@
+-- DROP and CREATE orders TABLE
+DROP TABLE IF EXISTS orders CASCADE;
+
+CREATE TABLE orders (
+order_id SERIAL PRIMARY KEY NOT NULL,
+user_id INT,
+FOREIGN KEY(user_id) REFERENCES users ON DELETE CASCADE,
+total_in_cents INT,
+completed BOOLEAN DEFAULT FALSE
+);

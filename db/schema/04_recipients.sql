@@ -1,0 +1,14 @@
+-- DROP and CREATE carts TABLE
+DROP TABLE IF EXISTS recipients CASCADE;
+
+CREATE TABLE recipients (
+recipient_id SERIAL PRIMARY KEY NOT NULL,
+first_name VARCHAR(255) NOT NULL,
+last_name VARCHAR(255) NOT NULL,
+relationship VARCHAR(255) NOT NULL,
+address VARCHAR(255) NOT NULL,
+city VARCHAR(255) NOT NULL,
+state VARCHAR(255) NOT NULL,
+country VARCHAR(255) NOT NULL,
+postal_code VARCHAR(255) NOT NULL
+);

@@ -1,0 +1,9 @@
+-- DROP and CREATE carts TABLE
+DROP TABLE IF EXISTS carts CASCADE;
+
+CREATE TABLE carts (
+cart_id SERIAL PRIMARY KEY NOT NULL,
+order_id INT,
+FOREIGN KEY(order_id) REFERENCES orders,
+modified_date TIMESTAMP NOT NULL DEFAULT NOW()
+);
