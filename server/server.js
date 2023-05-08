@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-import promptGPT from "./helpers/promptGPT";
+const { promptGPT } = require("./helpers/promptGPT");
 const app = express();
 const axios = require('axios').default
 const dotenv = require('dotenv')

@@ -1,4 +1,4 @@
-export default function promptGPT(relationship, proseStyle, occasion, themes, mood) {
+const promptGPT = function (relationship, proseStyle, occasion, themes, mood) {
   return `Pretend you are a hallmark card writer and create a card(only the inside) from me for the following:
 
   Relationship: ${relationship}
