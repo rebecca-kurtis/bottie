@@ -1,4 +1,4 @@
-.login .login-form{
+.user .login-form{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -23,5 +23,11 @@
   margin-right: 20px;
   margin-top: 50px;
   border-radius: 8px;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 

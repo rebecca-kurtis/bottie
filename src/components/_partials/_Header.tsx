@@ -1,5 +1,5 @@
 import React from "react";
-import { Login } from "./_Login";
+import { User } from "./_User";
 
 //import offcanva
 // import '@coreui/coreui/dist/css/coreui.min.css'
@@ -51,7 +51,7 @@ export const Header: React.FC<_HeaderProps> = () => {
           </a>
         </nav>
         <div className="user-icons">
-          <Login/>
+          <User/>
           <FontAwesomeIcon className="icon" icon={faCartShopping} />
         </div>
         
