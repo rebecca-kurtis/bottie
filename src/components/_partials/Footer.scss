@@ -1,0 +1,15 @@
+@import '../Variables.scss';
+
+.footer{
+  display: flex;
+  height:100px;
+  position:relative;
+  padding:0 10px;
+  bottom: 0;
+  justify-content: center;
+}
+
+.footer p {
+  color:#000;
+  font-family: $pageParagraphFont;
+}

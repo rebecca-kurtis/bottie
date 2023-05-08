@@ -4,8 +4,9 @@ import './App.css';
 
 
 //import components
-import { Home } from './pages/Home';
 import { Header } from './components/_partials/_Header';
+import { Footer } from './components/_partials/_Footer';
+import { Home } from './pages/Home';
 import { Plants } from './pages/Plants';
 import { PlantDetail } from './pages/PlantDetail';
 
@@ -22,7 +23,7 @@ function App() {
       {/* <Route path="/card/cardconfigure" element={<CardConfigure />} /> */}
     </Routes>
   </BrowserRouter>
-  {/* <Footer></Footer> */}
+  <Footer></Footer>
     </>
   );
 }
