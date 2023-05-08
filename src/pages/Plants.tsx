@@ -3,7 +3,7 @@ import './Plants.css';
 
 //import components
 import { HeroBanner } from "../components/PlantsPage/HeroBanner";
-import { PageTitle } from "../components/PlantsPage/PageTitle";
+import { PageTitle } from "../components/_partials/_PageTitle";
 import { ProductsGrid } from "../components/PlantsPage/ProductsGrid";
 
 

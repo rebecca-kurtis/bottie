@@ -7,6 +7,8 @@ import './App.css';
 import { Home } from './pages/Home';
 import { Header } from './components/_partials/_Header';
 import { Plants } from './pages/Plants';
+import { PlantDetail } from './pages/PlantDetail';
+
 
 function App() {
   return (
@@ -16,7 +18,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<Plants />} /> 
-      {/* <Route path="/products/id" element={<PlantDetail />} /> */}
+      <Route path="/products/id" element={<PlantDetail />} />
       {/* <Route path="/card/cardconfigure" element={<CardConfigure />} /> */}
     </Routes>
   </BrowserRouter>
