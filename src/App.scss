@@ -30,7 +30,7 @@ $homePageSpacer: $lightBlue;
 $plantPageSpacer: $lightBrown;
 
 body {
-  background-color: $white;
+  // background-color: $white;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -78,6 +78,10 @@ p {
   color: rgba(20, 19, 19, 0.6);
 }
 
+.white-text{
+  color: #ffffff;
+}
+
 li {
   line-height: 24px;
   color: rgba(20, 19, 19, 0.6);
@@ -112,6 +116,7 @@ li {
   touch-action: manipulation;
   vertical-align: baseline;
   width: fit-content;
+  // z-index: -1;
 }
 
 .main_button:hover,
@@ -130,6 +135,35 @@ li {
   transform: translateY(0);
 }
 
+.secondary-button{
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-decoration-line: underline;
+  text-transform: uppercase;
+  // color: #ffffff;
+}
+
 .spacer-tag {
   height: 130px;
+}
+
+//Form CSS
+.form-label {
+  font-size: 18px;
+  line-height: 22px;
+
+}
+
+.input-text {
+  height: 40px;
+  margin-bottom: 22px;
+
 }

@@ -1,7 +1,6 @@
 @import "normalize.css";
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital@0;1&family=Bellefair&family=Courgette&family=Montserrat:wght@600&display=swap");
 body {
-  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -50,6 +49,10 @@ p {
   color: rgba(20, 19, 19, 0.6);
 }
 
+.white-text {
+  color: #ffffff;
+}
+
 li {
   line-height: 24px;
   color: rgba(20, 19, 19, 0.6);
@@ -78,10 +81,12 @@ li {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
+   -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
+  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -102,6 +107,31 @@ li {
   transform: translateY(0);
 }
 
+.secondary-button {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  text-transform: uppercase;
+}
+
 .spacer-tag {
   height: 130px;
+}
+
+.form-label {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.input-text {
+  height: 40px;
+  margin-bottom: 22px;
 }/*# sourceMappingURL=App.css.map */

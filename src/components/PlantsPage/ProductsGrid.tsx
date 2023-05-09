@@ -7,8 +7,6 @@ import { ProductCard } from "./ProductCard";
 interface ProductsGridProps {}
 
 export const ProductsGrid: React.FC<ProductsGridProps> = () => {
-  
-  console.log(products);
 
 
   const mappedProduct = products.map((product) => {

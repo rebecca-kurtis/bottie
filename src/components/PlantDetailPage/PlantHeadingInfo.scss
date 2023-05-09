@@ -1,21 +1,22 @@
+$lightBeige: #F4F1DE;
+
 .product_info {
   display: flex;
   flex-direction: column;
-  width:50%;
+  // width:50%;
   padding-left: 50px;
   padding-right: 100px;
-  padding-top: 50px;
+  padding-top: 100px;
+  background-color: $lightBeige;
 }
 .product_info__latin {
   font-weight: 600;
   font-size: 22px;
   font-style: italic;
-  margin-top: -25px;
   color: #000;
 }
 
 .product_info__intended{
-  margin-top: -5px;
-  margin-left: -25px;
+  margin-left: -20px;
   margin-bottom: 45px;
 }
