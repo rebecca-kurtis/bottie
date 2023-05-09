@@ -6,7 +6,7 @@ import "./Home.css"
 //import components
 import { HomePageBanner } from "../components/HomePage/HomePageBanner";
 import { HowItWorks } from "../components/HomePage/HowItWorks";
-
+import { FavouriteProducts } from "../components/HomePage/FavouriteProducts";
 
 interface HomeProps {}
 
@@ -17,24 +17,7 @@ export const Home: React.FC<HomeProps> = () => {
       <section >
         <HomePageBanner />
         <HowItWorks />
-
-        <p>
-          Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.
-          De carne lumbering animata corpora quaeritis. Summus brains sit​​,
-          morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum
-          mauris. Hi mindless mortuis soulless creaturas, imo evil stalking
-          monstra adventus resi dentevil vultus comedat cerebella viventium.
-          Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.
-          De carne lumbering animata corpora quaeritis. Summus brains sit​​,
-          morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum
-          mauris. Hi mindless mortuis soulless creaturas, imo evil stalking
-          monstra adventus resi dentevil vultus comedat cerebella viventium.
-          Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.
-          De carne lumbering animata corpora quaeritis. Summus brains sit​​,
-          morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum
-          mauris. Hi mindless mortuis soulless creaturas, imo evil stalking
-          monstra adventus resi dentevil vultus comedat cerebella viventium.
-        </p>
+        <FavouriteProducts />
       </section>
     </main>
   );
