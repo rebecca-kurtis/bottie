@@ -20,7 +20,7 @@ export const HomePageBanner: React.FC<HomePageBannerProps> = () => {
           <div className='home-banner-center'>
             <h1> Hello, I am Bottie. I will help you to find the perfect leafy gift. </h1>
             <p>In order to begin, tell me more about that person you want to offer a special gift.</p>
-            <button className="main_button">Let's get started!</button>
+            <a href="/card/cardconfigure" className="main_button">Let's get started!</a>
           </div>
           <div className='bottie-icon'>
             <img className="bottie-img" src={bottieImage} alt="Bottie"></img>
