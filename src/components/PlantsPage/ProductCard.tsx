@@ -13,8 +13,9 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({key, name, description, price, imageSrc}) => {
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `/products/id`;
-    navigate(path);
+  let path = `/products/id`;
+  navigate(path);
+  window.scrollTo(0, 0);
   };
 
   return (

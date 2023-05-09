@@ -1,9 +1,5 @@
 @import '../Variables.scss';
 
-li{
-  list-style-type: none;
-  cursor: pointer;
-}
 
 .card {
   display: flex;
@@ -17,12 +13,17 @@ li{
   padding-right: 20px;
   background: #FFFFFF;
   box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.25);
+  border: none;
   border-radius: 9px;
+  list-style-type: none;
+  cursor: pointer;
+
 }
 
 .card__info {
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
 }
 
 .card__name {
@@ -42,7 +43,6 @@ li{
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  margin-top: -15px;
   letter-spacing: 0.25px;
   color: rgba(20, 19, 19, 0.6);
 }
