@@ -1,7 +1,7 @@
 @import '../Variables.scss';
 
 .home-page-banner {
-  height: 510px;
+  height: 570px;
   background-color: $lightBlue;
   display: flex;
   justify-content: center;
@@ -40,8 +40,8 @@
 .red-begonia-img {
   height: 323px;
   position: relative;
-  top: 140px;
-  left: 10px;
+  top: 165px;
+  left: 15px;
 }
 
 .bottie-icon {
@@ -49,9 +49,10 @@
 }
 
 .bottie-img {
-  height: 500px;
+  height: 505px;
+  width: 481px;
   position: relative;
-  top: 42px;
+  top: 70px;
   left: 65px;
 }
 
