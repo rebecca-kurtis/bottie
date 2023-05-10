@@ -2,11 +2,13 @@
 @import "normalize.css";
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital@0;1&family=Bellefair&family=Courgette&family=Montserrat:wght@600&display=swap");
 body {
+  background-color: #F4F1DE;
   display: flex;
   justify-content: center;
   align-content: center;
   height: 100%;
   width: 100%;
+  background-color: #F4F1DE;
 }
 
 .container::after {
