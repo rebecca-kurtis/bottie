@@ -3,13 +3,14 @@ import './Card.css';
 import { PageTitle } from "../_partials/_PageTitle";
 
 
-interface Step1Props {}
 
-export const Step1: React.FC<Step1Props> = () => {
+interface Step3Props {}
+
+export const Step3: React.FC<Step3Props> = () => {
   return (
     <div>
-        <PageTitle message ="1 / 5" />
-        <PageTitle message ="Select a plant from my personal recommendations" />
+        <PageTitle message ="3 / 5" />
+        <PageTitle message ="Tell me about you the person you want to offer a gift" />
         <br></br>
         <br></br>
         <div className="container">

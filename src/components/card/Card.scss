@@ -8,3 +8,11 @@ $lightBeige: #F4F1DE;
   border-radius: 8px;
   margin-bottom: 50px;
 }
+
+.index-nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: space-between;
+  margin-bottom: 50px;
+}

@@ -99,7 +99,6 @@ li {
   color: #fff;
   cursor: pointer;
   display: inline-flex;
-  // font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
@@ -116,7 +115,9 @@ li {
   touch-action: manipulation;
   vertical-align: baseline;
   width: fit-content;
-  // z-index: -1;
+
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .main_button:hover,
@@ -148,7 +149,9 @@ li {
   text-align: center;
   text-decoration-line: underline;
   text-transform: uppercase;
-  // color: #ffffff;
+  
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .spacer-tag {
