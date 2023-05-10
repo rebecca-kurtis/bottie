@@ -1,0 +1,10 @@
+$lightBeige: #F4F1DE;
+
+.container{
+  display: flex;
+  flex-direction: row;
+  background-color: $lightBeige;
+  padding: 50px;
+  border-radius: 8px;
+  margin-bottom: 50px;
+}
