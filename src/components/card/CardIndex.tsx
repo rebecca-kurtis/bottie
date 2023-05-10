@@ -48,7 +48,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
               <Step2 />
             </div>
             <div className="index-nav">
-              <SecondaryButton onChange={() => transition(STEP1)} name="Previous" />
+              <SecondaryButton class="secondary-button" onChange={() => transition(STEP1)} name="Previous" />
               <MainButton onChange={() => transition(STEP3)} name="Next step"/>   
             </div>
           </Fragment>
@@ -60,7 +60,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
               <Step3 />
             </div>
             <div className="index-nav">
-              <SecondaryButton onChange={() => transition(STEP2)} name="Previous" />
+              <SecondaryButton class="secondary-button" onChange={() => transition(STEP2)} name="Previous" />
               <MainButton onChange={() => transition(STEP4)} name="Next step"/>   
             </div>
           </Fragment>
@@ -72,7 +72,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
               <Step4 />
             </div>
             <div className="index-nav">
-              <SecondaryButton onChange={() => transition(STEP3)} name="Previous" />
+              <SecondaryButton class="secondary-button" onChange={() => transition(STEP3)} name="Previous" />
               <MainButton onChange={() => transition(STEP5)} name="Next step"/>   
             </div>
           </Fragment>
@@ -84,7 +84,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
               <Step5 />
             </div>
             <div className="index-nav">
-              <SecondaryButton onChange={() => transition(STEP4)} name="Previous" />
+              <SecondaryButton class="secondary-button" onChange={() => transition(STEP4)} name="Previous" />
               <MainButton onChange={() => transition(STEP6)} name="Add to cart"/>   
             </div>
           </Fragment>
@@ -96,7 +96,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
               <Step6 />
             </div>
             <div className="index-nav">
-              <SecondaryButton onChange={() => transition(STEP5)} name="Previous" />
+              <SecondaryButton class="secondary-button" onChange={() => transition(STEP5)} name="Previous" />
               
               {/* Will need to be updated with a link to the cart */}
               <MainButton onChange={() => transition(STEP6)} name="Go to my cart"/>   
