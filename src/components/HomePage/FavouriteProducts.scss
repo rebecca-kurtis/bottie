@@ -1,0 +1,21 @@
+@import '../Variables.scss';
+
+.favourite-products-section {
+  background-color: $lightBeige;
+  height: 670px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.favourite-products-title h3 {
+  font-size: 40px;
+}
+
+.home-page-grid {
+  display: flex;
+  flex-direction: row;
+  padding-top: 25px;
+  padding-bottom: 15px;
+}

@@ -1,0 +1,58 @@
+@import '../Variables.scss';
+
+.home-page-banner {
+  height: 560px;
+  background-color: $lightBlue;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+.home-page-banner-content {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.home-banner-center {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 50%;
+}
+
+.home-banner-center h1 {
+  font-size: 52px;
+}
+
+.home-banner-center p {
+  font-size: 20px;
+  color: #000;
+}
+
+.home-banner-center a {
+  margin-top: 10px;
+}
+
+.red-begonia-icon {
+  width: 30%;
+}
+.red-begonia-img {
+  height: 323px;
+  position: relative;
+  top: 165px;
+  left: 15px;
+}
+
+.bottie-icon {
+  width: 30%;
+}
+
+.bottie-img {
+  height: 505px;
+  width: 481px;
+  position: relative;
+  top: 70px;
+  left: 65px;
+}
+
