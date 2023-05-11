@@ -1,13 +1,13 @@
 @import "normalize.css";
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital@0;1&family=Bellefair&family=Courgette&family=Montserrat:wght@600&display=swap");
 body {
-  background-color: #F4F1DE;
+  background-color: #f4f1de;
   display: flex;
   justify-content: center;
   align-content: center;
   height: 100%;
   width: 100%;
-  background-color: #F4F1DE;
+  background-color: #f4f1de;
 }
 
 .container::after {
@@ -21,7 +21,9 @@ body {
   margin: 0 auto;
 }
 
-.pages h1, h2, h3 {
+.pages h1,
+h2,
+h3 {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -63,7 +65,7 @@ li {
 .main_button {
   align-items: center;
   background-clip: padding-box;
-  background-color: #D56D46;
+  background-color: #d56d46;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -83,7 +85,7 @@ li {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
-       user-select: none;
+  user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
@@ -95,7 +97,7 @@ li {
 
 .main_button:hover,
 .main_button:focus {
-  background-color: #D56D46;
+  background-color: #d56d46;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
@@ -104,7 +106,7 @@ li {
 }
 
 .main_button:active {
-  background-color: #D56D46;
+  background-color: #d56d46;
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }
@@ -152,7 +154,7 @@ li {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
-       user-select: none;
+  user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
@@ -184,4 +186,4 @@ li {
 .input-text {
   height: 40px;
   margin-bottom: 22px;
-}/*# sourceMappingURL=App.css.map */
+} /*# sourceMappingURL=App.css.map */
