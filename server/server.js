@@ -9,6 +9,12 @@ dotenv.config()
 app.use(cors());
 app.use(express.json());
 
+app.get('/products', (req, res) => {
+  console.log("get: products");
+  //res.status(200).json("You've hit the route");
+  res.status(200).send("You've hit the route")
+});
+
 app.post('/chatGPT', (req, res) => {
   const relationship = req.body.relationship;
   const proseStyle = req.body.proseStyle;
@@ -26,7 +32,7 @@ app.post('/chatGPT', (req, res) => {
       "model": "gpt-3.5-turbo",
       "messages": [{ "role": "user", "content": promptGPT(relationship, proseStyle, occasion, theme, mood) }],
       temperature: 1,
-      max_tokens: 256
+      max_tokens: 256,
     }
   }).then(function (response) {
     const message = response.data.choices[0].message.content

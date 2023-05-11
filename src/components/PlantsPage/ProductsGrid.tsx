@@ -4,15 +4,18 @@ import products from "../data/products.json";
 import { ProductCard } from "./ProductCard";
 
 
-interface ProductsGridProps {}
+interface ProductsGridProps {
+  labelname: string;
+}
 
-export const ProductsGrid: React.FC<ProductsGridProps> = () => {
+export const ProductsGrid: React.FC<ProductsGridProps> = ({labelname}) => {
 
 
   const mappedProduct = products.map((product) => {
     return <ProductCard
       key={product.id} 
-      name={product.name} 
+      name={labelname}
+      //name={product.name} 
       description={product.description} 
       price={product.price_in_cents}
       imageSrc={product.image_draw}
