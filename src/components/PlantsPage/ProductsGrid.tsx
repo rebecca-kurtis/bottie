@@ -1,21 +1,22 @@
 import React from "react";
 import './ProductsGrid.css';
-import products from "../data/products.json";
 import { ProductCard } from "./ProductCard";
 
 
-interface ProductsGridProps {}
+interface ProductsGridProps {
+  products?:any[];
+}
 
-export const ProductsGrid: React.FC<ProductsGridProps> = () => {
-
-
-  const mappedProduct = products.map((product) => {
+export const ProductsGrid: React.FC<ProductsGridProps> = ({products}) => {
+  
+  const mappedProduct = products?.map((product) => {
+    const price = (product.price_in_cents/100).toString();
     return <ProductCard
       key={product.id} 
       name={product.name} 
       description={product.description} 
-      price={product.price_in_cents}
-      imageSrc={product.image_draw}
+      price={price}
+      imageSrc={product.drawing_url}
     /> 
   });
   

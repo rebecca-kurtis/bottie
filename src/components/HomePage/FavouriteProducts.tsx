@@ -1,24 +1,24 @@
 import React from 'react';
 import "./FavouriteProducts.css"
-import products from "../data/products.json";
 
 import { ProductCard } from "../PlantsPage/ProductCard"
 
 interface FavouriteProductsProps {
-
+products?:any[];
 }
 
 
 
-export const FavouriteProducts: React.FC<FavouriteProductsProps> = () => {
+export const FavouriteProducts: React.FC<FavouriteProductsProps> = ({products}) => {
 
-  const mappedProduct = products.filter((item, idx) => idx < 3).map((product) => {
+  const mappedProduct = products?.filter((item, idx) => idx < 3).map((product) => {
+    const price = (product.price_in_cents/100).toString();
     return <ProductCard
       key={product.id} 
       name={product.name} 
       description={product.description} 
-      price={product.price_in_cents}
-      imageSrc={product.image_draw}
+      price={price}
+      imageSrc={product.drawing_url}
     /> 
   });
     return (
