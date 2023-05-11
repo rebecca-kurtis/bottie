@@ -13,7 +13,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({key, name, description, price, imageSrc}) => {
   let navigate = useNavigate();
   const routeChange = () => {
-  let path = `/products/id`;
+  let path = `/products/${name}`;
   navigate(path);
   window.scrollTo(0, 0);
   };
@@ -28,7 +28,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({key, name, description,
             ? `${description.substring(0, 65)}...`
             : description}
         </p>
-        <p className="card__price">{price}</p>
+        <p className="card__price">${price}</p>
       </div>
     </li>
   );

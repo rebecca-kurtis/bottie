@@ -3,11 +3,12 @@ DROP TABLE IF EXISTS products CASCADE;
 
 CREATE TABLE products (
 product_id SERIAL PRIMARY KEY NOT NULL,
+drawing_url VARCHAR(255) NOT NULL,
 image_url VARCHAR(255) NOT NULL,
 name VARCHAR(255) NOT NULL,
 latin_name VARCHAR(255),
 description TEXT,
-intended_for TEXT,
+intended_for TEXT[],
 temp VARCHAR(255),
 water VARCHAR(255),
 height VARCHAR(255),
