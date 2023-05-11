@@ -41,9 +41,11 @@ export const User: React.FC<_UserProps> = () => {
       </COffcanvasHeader>
       <COffcanvasBody>
   
-        {mode === LOGIN && <Login onCreate={() => transition(ACCOUNT)}/>} 
+        {mode === LOGIN && <Login onChange={() => transition(ACCOUNT)} name="Register"/>} 
 
-        {mode === ACCOUNT && <CreateAccount onCancel={() => transition(LOGIN)}/>} 
+        {mode === ACCOUNT && (
+          <CreateAccount onCancel={() => transition(LOGIN)} onChange={() => transition(LOGIN)}/>
+        )} 
       
       </COffcanvasBody>
     </COffcanvas>

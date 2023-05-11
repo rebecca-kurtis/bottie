@@ -12,8 +12,14 @@ export const ProductBody: React.FC<ProductBodyProps> = () => {
     <Fragment>
       <div className="product_body">
         <PageTitle message={"Sunlight"} />
+        <br></br>
+        <br></br>
         <p>{products[0].sun_description}</p>
+        <br></br>
+        <br></br>
         <PageTitle message={"Watering"} />
+        <br></br>
+        <br></br>
         <p>{products[0].water_description}</p>
       </div>
     </Fragment>
