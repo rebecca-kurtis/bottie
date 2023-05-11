@@ -27,7 +27,6 @@ export const Login: React.FC<_LoginProps> = ({onChange, name}) => {
             name="password"
             placeholder="Enter your password"></input>
         <MainButton onChange={onChange} name="Login"/>
-        {/* <button className="main_button" type="submit">Login</button> */}
       </form>
 
       <div className="register-container">

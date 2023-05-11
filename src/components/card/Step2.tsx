@@ -3,7 +3,6 @@ import './Card.css';
 import { PageTitle } from "../_partials/_PageTitle";
 
 
-
 interface Step2Props {}
 
 export const Step2: React.FC<Step2Props> = () => {
