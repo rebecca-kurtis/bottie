@@ -20,11 +20,6 @@ app.get('/products', (req, res) => {
     }
     res.status(200).send(results.rows);
   })
-
-
-  //res.status(200).json("You've hit the route");
-
-
 });
 
 app.post('/chatGPT', (req, res) => {
