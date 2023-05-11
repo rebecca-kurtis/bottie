@@ -7,8 +7,6 @@ interface PlantHeadingInfoProps {
 
 export const PlantHeadingInfo: React.FC<PlantHeadingInfoProps> = ({product}) => {
   
-  console.log('PlantHeadingInfo:', product);
-  
   return (
     <div className="product_info">
       <h1>{product?.name}</h1>

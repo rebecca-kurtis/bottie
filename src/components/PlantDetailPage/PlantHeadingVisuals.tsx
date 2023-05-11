@@ -6,7 +6,7 @@ interface PlantHeadingVisualsProps {
 }
 
 export const PlantHeadingVisuals: React.FC<PlantHeadingVisualsProps> = ({product}) => {
-  console.log("productheadingVis:", product);
+
   return (
      <div className="product_visuals">
        <img

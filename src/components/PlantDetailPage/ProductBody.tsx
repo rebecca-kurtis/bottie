@@ -9,7 +9,7 @@ interface ProductBodyProps {
 }
 
 export const ProductBody: React.FC<ProductBodyProps> = ({product}) => {
-  console.log("productbody:", product);
+
   return (
     <Fragment>
       <div className="product_body">

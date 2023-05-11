@@ -11,7 +11,6 @@ interface ProductHeaderProps {
 }
 
 export const ProductHeader: React.FC<ProductHeaderProps> = ({product}) => {
-  console.log("productHeader:", product);
   return (
     <Fragment>
       <div className="product_header">
