@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import './Step1.css';
+import './Card.css';
 
 interface Step1CardProps {
   name: string;
@@ -10,12 +10,12 @@ interface Step1CardProps {
 }
 
 export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, imageSrc}) => {
-  let navigate = useNavigate();
-  const routeChange = () => {
-  let path = `/products/id`;
-  navigate(path);
-  window.scrollTo(0, 0);
-  };
+  // let navigate = useNavigate();
+  // const routeChange = () => {
+  // let path = `/products/id`;
+  // navigate(path);
+  // window.scrollTo(0, 0);
+  // };
 
   const [checked, setChecked] = React.useState(false);
 

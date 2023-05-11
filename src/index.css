@@ -195,13 +195,8 @@ li {
 }
 
 .checkbox {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 18px;
-}
-
-.checkbox__input {
-  padding-right: 20px;
-  background-color: #D56D46;
 }
 
 .layout {

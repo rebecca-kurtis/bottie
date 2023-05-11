@@ -1,6 +1,6 @@
 import React from "react";
 import './Card.css';
-import './Step2.css';
+// import './Step2.css';
 import { PageTitle } from "../_partials/_PageTitle";
 import { FormSelect } from "react-bootstrap";
 

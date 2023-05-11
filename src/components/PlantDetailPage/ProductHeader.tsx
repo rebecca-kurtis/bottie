@@ -6,14 +6,16 @@ import { PlantHeadingVisuals } from "./PlantHeadingVisuals";
 import { PlantHeadingInfo } from "./PlantHeadingInfo";
 
 
-interface ProductHeaderProps {}
+interface ProductHeaderProps {
+  product?:any[]
+}
 
-export const ProductHeader: React.FC<ProductHeaderProps> = () => {
+export const ProductHeader: React.FC<ProductHeaderProps> = ({product}) => {
   return (
     <Fragment>
       <div className="product_header">
-        <PlantHeadingVisuals></PlantHeadingVisuals>
-        <PlantHeadingInfo></PlantHeadingInfo>
+        <PlantHeadingVisuals product={product} />
+        <PlantHeadingInfo product={product} />
       </div>
     </Fragment>
   );

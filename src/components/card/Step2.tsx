@@ -1,7 +1,8 @@
 import React from "react";
 import './Card.css';
-import './Step2.css';
+// import './Step2.css';
 import { PageTitle } from "../_partials/_PageTitle";
+import { FormSelect } from "react-bootstrap";
 
 
 interface Step2Props {}
@@ -61,11 +62,24 @@ export const Step2: React.FC<Step2Props> = () => {
 
               <div className="double">
                 <div>
-                  <label className="form-label">Province</label>
-                  <input type="text"
-                        name="province"
-                        placeholder="Select a Province"
-                        className="input-text province"></input>
+                <label className="form-label">Province</label>
+                    <FormSelect className="input-text province">
+                      <option>Select a Province</option>
+                      <option value="1">Alberta</option>
+                      <option value="2">Manitoba</option>
+                      <option value="3">New Brunswick</option>
+                      <option value="4">Alberta</option>
+                      <option value="5">Manitoba</option>
+                      <option value="6">Newfoundland and Labrador</option>
+                      <option value="7">Northwest Territories</option>
+                      <option value="8">Nova Scotia</option>
+                      <option value="9">Nunavut</option>
+                      <option value="10">Ontario</option>
+                      <option value="11">Prince Edward Island</option>
+                      <option value="12">Quebec</option>
+                      <option value="13">Saskatchewan</option>
+                      <option value="14">Yukon</option>
+                    </FormSelect>
                 </div>
                 <div className="postcode">
                   <label className="form-label">Postal Code</label>
