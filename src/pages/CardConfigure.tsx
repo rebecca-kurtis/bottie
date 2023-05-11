@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { PageTitle } from "../components/_partials/_PageTitle";
-import { FormTextBox } from "../components/cardConfigure/FormTextbox";
-import { FormSelection } from "../components/cardConfigure/FormSelection";
-import { FormCheckBoxes } from "../components/cardConfigure/FormCheckboxes";
-import { CardMessage } from "../components/cardConfigure/CardMessage";
 import axios from "axios";
+import "./CardConfigure.css";
+
+
+//import components
+import { PageTitle } from "../components/_partials/_PageTitle";
+import { FormTextBox } from "../components/CardConfigure/FormTextbox";
+import { FormSelection } from "../components/CardConfigure/FormSelection";
+import { FormCheckBoxes } from "../components/CardConfigure/FormCheckboxes";
+import { CardMessage } from "../components/CardConfigure/CardMessage";
 
 interface CardConfigureProps {}
 
@@ -52,13 +56,15 @@ export const CardConfigure: React.FC<CardConfigureProps> = () => {
     }
 };
 //the page render
-  return (
-    <main>    
-      <div className="spacer-tag home" />
-      <section className="pages">
-      <PageTitle
+  return ( <div className="card-root">
+     <div > {/* className="card-configure-page" */}     
+      <div className="spacer-tag card-configure" />  
+      
+     <PageTitle
         message={"Let Aunt Bottie Create a Custom Message for You."}
       />
+      <div >
+        {/* className="card-configure-options" */}
         <form onSubmit={handleGPTSubmit}>
             <FormTextBox
             labelText="Who is the Gift for?"
@@ -143,7 +149,9 @@ export const CardConfigure: React.FC<CardConfigureProps> = () => {
           */
           }
 
-      </section>
-    </main>
+
+    </div> 
+</div>
+</div>
   );
 };

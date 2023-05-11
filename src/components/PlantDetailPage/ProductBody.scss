@@ -1,9 +1,15 @@
+@import '../Variables.scss';
+
 .product_body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 20%;
   padding-right: 20%;
-  margin-bottom: 100px;
-  
+  padding-bottom: 100px;
+  background-color: $white;
+}
+
+.product_body p {
+  font-size: 18px;
 }

@@ -1,13 +1,17 @@
 .product_visuals {
   display: flex;
   flex-direction: column;
-  // width:50%;
+  width: 37%;
 }
 
 .product_visuals__img {
   display: block;
-  width: 720px;
-  height: 676px;
+  // width: 720px;
+  width: 100%;
+  // height: 676px;
+  height: 670px;
+  object-fit:cover;
+  
 }
 
 .product_visuals__info{

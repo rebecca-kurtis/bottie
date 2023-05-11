@@ -4,6 +4,7 @@ Header {
   position: fixed;
   background-color: $fixedHeaderColour;
   z-index: 1;
+  width: 100vw;
 
   &.scroll {
     background-color: $scrollHeaderColour;
