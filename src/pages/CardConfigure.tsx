@@ -70,6 +70,7 @@ export const CardConfigure: React.FC<CardConfigureProps> = () => {
             labelText="Who is the Gift for?"
             name="recipientsFName"
             value={recipientFName || "Add a name"}
+            placeholder="add a name"
             onChange={name => setRecipientFName(name.target.value)}
             />
 
@@ -116,6 +117,7 @@ export const CardConfigure: React.FC<CardConfigureProps> = () => {
             labelText="Would you like it to be from a different name?"
             name="from"
             value={from}
+            placeholder={from}
             onChange={from => setFrom(from.target.value)}
             />
           <div>

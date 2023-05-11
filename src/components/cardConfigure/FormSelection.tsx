@@ -1,4 +1,5 @@
 import React from "react";
+import "./FormSelection.css";
 
 interface FormSelectionProps {
   labelText:string;
@@ -16,11 +17,11 @@ export const FormSelection: React.FC<FormSelectionProps> = ({labelText, name, va
   });
 
   return (
-    <div>
+    <div className="form-selection-div">
       <label>
       
-        <p>{labelText}</p>
-        <select 
+        <h4>{labelText}</h4>
+        <select className="card-form-select" 
           name={name}
           value={value}
           onChange={onChange}
