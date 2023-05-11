@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
@@ -28,16 +28,20 @@ const ACCOUNT = "ACCOUNT";
 export const User: React.FC<_UserProps> = () => {
   
   const { mode, transition, back } = useVisualMode(LOGIN);
-
+//
   const [visible, setVisible] = useState(false)
 
+  const openSide = useCallback(() => setVisible(true), [])
+  const closeSide = useCallback(() => setVisible(false), [])
+  const toggleSide = useCallback(() => setVisible(!visible), [visible])
+//
   return (
     <div>
-    <FontAwesomeIcon className="icon" icon={faUser} onClick={() => setVisible(true)} />
-    <COffcanvas placement="end" visible={visible} onHide={() => setVisible(false)}>
+    <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
+    <COffcanvas placement="end" visible={visible} onHide={closeSide}>
       <COffcanvasHeader>
         <COffcanvasTitle className="title"></COffcanvasTitle>
-        <CCloseButton className="text-reset" onClick={() => setVisible(false)} />
+        <CCloseButton className="text-reset" onClick={closeSide} />
       </COffcanvasHeader>
       <COffcanvasBody>
   

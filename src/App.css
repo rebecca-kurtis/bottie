@@ -1,13 +1,13 @@
 @import "normalize.css";
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital@0;1&family=Bellefair&family=Courgette&family=Montserrat:wght@600&display=swap");
 body {
-  background-color: #f4f1de;
+  background-color: #F4F1DE;
   display: flex;
   justify-content: center;
   align-content: center;
   height: 100%;
   width: 100%;
-  background-color: #f4f1de;
+  background-color: #F4F1DE;
 }
 
 .container::after {
@@ -21,9 +21,7 @@ body {
   margin: 0 auto;
 }
 
-.pages h1,
-h2,
-h3 {
+.pages h1, h2, h3 {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -65,7 +63,7 @@ li {
 .main_button {
   align-items: center;
   background-clip: padding-box;
-  background-color: #d56d46;
+  background-color: #D56D46;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -85,10 +83,12 @@ li {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
-  user-select: none;
+   -ms-user-select: none;
+       user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
+  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin-left: 20px;
@@ -97,7 +97,7 @@ li {
 
 .main_button:hover,
 .main_button:focus {
-  background-color: #d56d46;
+  background-color: #D56D46;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
@@ -106,7 +106,7 @@ li {
 }
 
 .main_button:active {
-  background-color: #d56d46;
+  background-color: #D56D46;
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }
@@ -121,7 +121,8 @@ li {
   display: flex;
   align-items: center;
   text-align: center;
-  text-decoration-line: underline;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
   text-transform: uppercase;
   margin-left: 20px;
   margin-right: 20px;
@@ -154,12 +155,16 @@ li {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
-  user-select: none;
+   -ms-user-select: none;
+       user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
+  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .secondary_button:hover,
@@ -186,4 +191,9 @@ li {
 .input-text {
   height: 40px;
   margin-bottom: 22px;
-} /*# sourceMappingURL=App.css.map */
+}
+
+.checkbox {
+  font-weight: 400;
+  font-size: 18px;
+}/*# sourceMappingURL=App.css.map */
