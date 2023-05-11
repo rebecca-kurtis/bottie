@@ -1,13 +1,13 @@
-$lightBeige: #F4F1DE;
+@import '../Variables.scss';
 
 .product_info {
   display: flex;
   flex-direction: column;
-  // width:50%;
-  padding-left: 50px;
+  padding-left: 100px;
   padding-right: 100px;
   padding-top: 100px;
   background-color: $lightBeige;
+  width: 50%;
 }
 .product_info__latin {
   font-weight: 600;

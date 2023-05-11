@@ -28,14 +28,16 @@ $scrollTextHoverColour: $lightBeige;
 //Header Spacer colours
 $homePageSpacer: $lightBlue;
 $plantPageSpacer: $lightBrown;
+$cardConfigureSpacer: $lightBlue;
 
 body {
-  // background-color: $white;
+  background-color: $lightBeige;
   display: flex;
   justify-content: center;
   align-content: center;
   height: 100%;
   width: 100%;
+  background-color: $lightBeige;
 }
 
 .container::after {
