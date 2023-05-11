@@ -1,11 +1,14 @@
 import React from "react";
+import { MainButton } from "../MainButton";
+import { SecondaryButton } from "../SecondaryButton";
 import "./User.css";
 
 interface _LoginProps {
-  onCreate: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  name: string;
 }
 
-export const Login: React.FC<_LoginProps> = (props) => {
+export const Login: React.FC<_LoginProps> = ({onChange, name}) => {
 
   return (
     <div className="user">
@@ -23,12 +26,12 @@ export const Login: React.FC<_LoginProps> = (props) => {
             type="password"
             name="password"
             placeholder="Enter your password"></input>
-        <button className="main_button" type="submit">Login</button>
+        <MainButton onChange={onChange} name="Login"/>
       </form>
 
       <div className="register-container">
         <h4 className="white-text">Don't have an account?</h4>
-        <button className="secondary-button white-text" id="register-btn" type="button" onClick={props.onCreate}>Register</button> 
+        <SecondaryButton class="secondary-button white-text" onChange={onChange} name="Register"/>
       </div>
   </div>
   );

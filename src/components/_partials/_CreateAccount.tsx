@@ -2,10 +2,13 @@ import React from "react";
 import '@coreui/coreui/dist/css/coreui.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./User.css";
+import { SecondaryButton } from "../SecondaryButton";
+import { MainButton } from "../MainButton";
 
 
 interface _CreateAccountProps {
   onCancel : React.MouseEventHandler<HTMLButtonElement> | undefined;
+  onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export const CreateAccount: React.FC<_CreateAccountProps> = (props) => {
@@ -48,16 +51,12 @@ export const CreateAccount: React.FC<_CreateAccountProps> = (props) => {
               className="input-text"></input>
         <br></br>
         <div className="button-container">
-          <button type="button"
-          id="login-btn" className="secondary-button" onClick={props.onCancel}>Back to login </button>
-          <button type="submit" className="main_button">Register</button>
+          <SecondaryButton class="secondary-button" onChange={props.onCancel} name="Back to login"/>
+          <MainButton onChange={props.onChange} name="Register"/>
+          {/* <button type="submit" className="main_button">Register</button> */}
         </div>
       </form> 
   </div>
   );
 };
 
-// city 
-// state 
-// country 
-// postal_code 

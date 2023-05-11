@@ -41,7 +41,7 @@ export const Header: React.FC<_HeaderProps> = () => {
           <img src={logo} alt="Bottie Logo" className="logo" />
         </a>
         <nav className="nav">
-          <a className="nav-link" aria-current="page" href="/card/cardconfigure">
+          <a className="nav-link" aria-current="page" href="/card">
             Get Started with Bottie
             <img src={commentIcon} alt="Comment Icon" className="nav-icon" />
           </a>
