@@ -48,7 +48,7 @@ inventory )
 VALUES (
 '/images/products/draw/2.png',
 '/images/products/pics/2p.png',
-'Bird of Paradise Flower',
+'Bird of Paradise',
 'Strelitzia reginae',
 'The Bird of Paradise flower is a striking tropical plant known for its bright orange and blue blooms that resemble a bird''s head. It''s a great gift choice for plant lovers who appreciate exotic and resilient plants that can bloom for months at a time. The plant symbolizes joy, freedom, and paradise, making it a thoughtful and heartfelt gift for any occasion.',
 ARRAY['loves tropical plants and wants to add a unique and eye-catching flower to their collection', 'recently moved into a new home and wants to add a touch of tropical beauty to their space', 'is celebrating a special occasion, such as a birthday or anniversary', 's recovering from an illness or injury and would benefit from a colorful and uplifting bouquet of flowers', 'has a passion for gardening and enjoys caring for plants, as the Bird of Paradise flower is a resilient plant that can bloom for months with proper care'],

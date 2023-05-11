@@ -1,18 +1,30 @@
 const express = require('express');
+const bodyParser = require("body-parser");
+const router = require("express").Router();
 const cors = require('cors');
 const { promptGPT } = require("./helpers/promptGPT");
 const app = express();
 const axios = require('axios').default
 const dotenv = require('dotenv')
+const db = require('../db/connection');
+
 dotenv.config()
 
 app.use(cors());
 app.use(express.json());
 
 app.get('/products', (req, res) => {
-  console.log("get: products");
+  db.query('SELECT * FROM products', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(200).send(results.rows);
+  })
+
+
   //res.status(200).json("You've hit the route");
-  res.status(200).send("You've hit the route")
+
+
 });
 
 app.post('/chatGPT', (req, res) => {
