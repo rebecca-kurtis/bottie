@@ -31,3 +31,4 @@ export const FavouriteProducts: React.FC<FavouriteProductsProps> = () => {
       </div>
     );
 }
+

@@ -5,10 +5,10 @@ import "./CardConfigure.css";
 
 //import components
 import { PageTitle } from "../components/_partials/_PageTitle";
-import { FormTextBox } from "../components/cardConfigure/FormTextbox";
-import { FormSelection } from "../components/cardConfigure/FormSelection";
-import { FormCheckBoxes } from "../components/cardConfigure/FormCheckboxes";
-import { CardMessage } from "../components/cardConfigure/CardMessage";
+import { FormTextBox } from "../components/CardConfigure/FormTextbox";
+import { FormSelection } from "../components/CardConfigure/FormSelection";
+import { FormCheckBoxes } from "../components/CardConfigure/FormCheckboxes";
+import { CardMessage } from "../components/CardConfigure/CardMessage";
 
 interface CardConfigureProps {}
 
