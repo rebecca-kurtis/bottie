@@ -1,13 +1,14 @@
 import React from "react";
 import "./PlantHeadingInfo.css";
-//import products from "../data/products.json";
 
 interface PlantHeadingInfoProps {
   product?:any;
 }
 
 export const PlantHeadingInfo: React.FC<PlantHeadingInfoProps> = ({product}) => {
+  
   console.log('PlantHeadingInfo:', product);
+  
   return (
     <div className="product_info">
       <h1>{product?.name}</h1>

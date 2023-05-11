@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-import products from "../data/products.json";
-import './ProductBody.css';
+import './ProductBody.css'
 
 //import components
 import { PageTitle } from "../_partials/_PageTitle";

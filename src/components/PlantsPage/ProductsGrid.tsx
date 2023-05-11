@@ -1,6 +1,5 @@
 import React from "react";
 import './ProductsGrid.css';
-//import products from "../data/products.json";
 import { ProductCard } from "./ProductCard";
 
 

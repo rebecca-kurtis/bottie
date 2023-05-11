@@ -1,6 +1,5 @@
 import React from "react";
 import "./PlantHeadingVisuals.css";
-//import products from "../data/products.json";
 
 interface PlantHeadingVisualsProps {
   product?:any;
