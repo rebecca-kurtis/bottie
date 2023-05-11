@@ -18,22 +18,23 @@ export const FormCheckBoxes: React.FC<FormCheckBoxesProps> = ({
 }) => {
   const mappedOptions = selectOptions.map((option: string) => {
     return (
-      <li key={option}>
+      <div className="configure-li-component" key={option}>
         <input
+          className="checkbox-input"
           type="checkbox"
           name={option}
           value={option}
           onChange={onChange}
         />
-        <label>{option}</label>
-      </li>
+        <label className="checkbox-label">{option}</label>
+      </div>
     );
   });
 
   return (
     <div>
       <h4> {groupText}</h4>
-      <ul>{mappedOptions}</ul>
+      <ul className="checkbox-list">{mappedOptions}</ul>
     </div>
   );
 };
