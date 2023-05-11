@@ -10,7 +10,9 @@ import { Footer } from './components/_partials/_Footer';
 import { Home } from './pages/Home';
 import { Plants } from './pages/Plants';
 import { PlantDetail } from './pages/PlantDetail';
-import { CardIndex } from './components/card/CardIndex';
+import { CardIndex } from './pages/CardIndex';
+import { CardConfigure } from './pages/CardConfigure';
+
 
 
 // type productsType = [{
@@ -37,7 +39,7 @@ function App() {
 
   
   const route = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/products"
-
+  // http://localhost:8000/products
   useEffect(() => {
       axios.get(route)
      .then((response) => {
@@ -57,6 +59,7 @@ function App() {
       <Route path="/products" element={<Plants products={products} />} /> 
       <Route path="/products/:name" element={<PlantDetail products={products} />} />
       <Route path="/card" element={<CardIndex />} />
+      <Route path="/card/configure" element={<CardConfigure />} />
     </Routes>
   </BrowserRouter>
   <Footer></Footer>

@@ -163,6 +163,8 @@ li {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .secondary_button:hover,
@@ -189,4 +191,9 @@ li {
 .input-text {
   height: 40px;
   margin-bottom: 22px;
+}
+
+.checkbox {
+  font-weight: 400;
+  font-size: 18px;
 }/*# sourceMappingURL=App.css.map */

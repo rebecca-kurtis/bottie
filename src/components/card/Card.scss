@@ -3,10 +3,14 @@ $lightBeige: #F4F1DE;
 .container{
   display: flex;
   flex-direction: row;
-  background-color: $lightBeige;
+  background-color:white;
   padding: 50px;
   border-radius: 8px;
   margin-bottom: 50px;
+}
+
+.container-confirm{
+
 }
 
 .index-nav{
@@ -15,4 +19,67 @@ $lightBeige: #F4F1DE;
   justify-content: flex-end;
   align-content: space-between;
   margin-bottom: 50px;
+  width: 88%;
+}
+
+//Step 1
+
+.step-card{
+  display: flex;
+  flex-direction: row;
+  // background-color: aqua;
+  margin-bottom: 30px;
+  padding-right: 50px;
+}
+
+.step-card__image{
+  width: 20%;
+  height: 20%;
+}
+
+.step-card__info{
+  padding-top: 50px;
+}
+
+.step-card__header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 30px;
+}
+
+//Step 2
+
+.double{
+  display: flex;
+  flex-direction: row;
+}
+
+.colonne{
+  display: flex;
+  flex-direction: column;
+  width: 365px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.province {
+  width: 188px;
+  margin-right: 10px;
+}
+
+.postcode {
+  width: 160px;
+}
+
+// Step 6
+
+.confirmation-image{
+  width: 30%;
+  height: 30%;
+}
+
+.confirm {
+  background-color: $lightBeige;
+  padding: 0px;
 }
