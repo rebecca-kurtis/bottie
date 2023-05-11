@@ -9,7 +9,6 @@ interface ProductsGridProps {
 }
 
 export const ProductsGrid: React.FC<ProductsGridProps> = ({products}) => {
-  console.log("grid",products);
   
   const mappedProduct = products?.map((product) => {
     const price = (product.price_in_cents/100).toString();

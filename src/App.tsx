@@ -36,18 +36,14 @@ function App() {
   const [products, setProducts] = useState([] as any[]);
   
   const route = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/products"
-  console.log(route);
 
   useEffect(() => {
       axios.get(route)
      .then((response) => {
-      console.log("response:\n",response.data);
       const productList = [...response.data];
     setProducts(productList);
     })
   },[]);
-
-  console.log("products", products[0]);
 
   return (
     <>
@@ -58,7 +54,7 @@ function App() {
       products={products}
       />} />
       <Route path="/products" element={<Plants products={products} />} /> 
-      <Route path="/products/:id" element={<PlantDetail />} />
+      <Route path="/products/:name" element={<PlantDetail products={products} />} />
       <Route path="/card" element={<CardIndex />} />
     </Routes>
   </BrowserRouter>

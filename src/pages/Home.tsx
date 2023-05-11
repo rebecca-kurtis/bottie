@@ -34,7 +34,7 @@ interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({products}) => {
-  console.log("home products:", products);
+
   return (
     <main>
       <div className="spacer-tag home" />
