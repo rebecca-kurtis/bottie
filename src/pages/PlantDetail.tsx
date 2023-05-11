@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 //import components
 import { ProductHeader} from "../components/PlantDetailPage/ProductHeader";
 import { ProductBody} from "../components/PlantDetailPage/ProductBody";
-import { resolve } from "path";
+// import { resolve } from "path";
 
 interface PlantDetailProps {
   products?:any[];

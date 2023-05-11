@@ -34,6 +34,7 @@ import { CardIndex } from './components/card/CardIndex';
 
 function App() {
   const [products, setProducts] = useState([] as any[]);
+
   
   const route = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/products"
 
@@ -43,7 +44,7 @@ function App() {
       const productList = [...response.data];
     setProducts(productList);
     })
-  },[]);
+  }, []);
 
   return (
     <>
