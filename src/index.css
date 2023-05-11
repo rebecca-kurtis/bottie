@@ -84,14 +84,14 @@ li {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
-   -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .main_button:hover,
@@ -120,9 +120,10 @@ li {
   display: flex;
   align-items: center;
   text-align: center;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+  text-decoration-line: underline;
   text-transform: uppercase;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .spacer-tag {
@@ -152,12 +153,10 @@ li {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
-   -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
