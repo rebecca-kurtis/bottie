@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { useParams } from "react-router-dom";
 
 //import components
@@ -11,7 +11,6 @@ interface PlantDetailProps {
 }
 
 export const PlantDetail: React.FC<PlantDetailProps> = ({products}) => {
-  const [plants, setPlants] = useState({});
   const name = useParams().name;
   console.log(name)
   console.log("productDetails:", products);
