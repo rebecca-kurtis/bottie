@@ -1,0 +1,12 @@
+.double{
+  display: flex;
+  flex-direction: row;
+}
+
+.colonne{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-left: 40px;
+  margin-right: 40px;
+}

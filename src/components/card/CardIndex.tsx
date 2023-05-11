@@ -1,15 +1,16 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
 import { HeroBanner } from "../PlantsPage/HeroBanner";
-import { Step1 } from "./Step1"
 import useVisualMode from "../../hooks/useVisualMode";
 import { MainButton } from "../MainButton";
 import { SecondaryButton } from "../SecondaryButton";
+import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
 import { Step4 } from "./Step4";
 import { Step5 } from "./Step5";
 import { Step6 } from "./Step6";
+import './Card.css';
 
 
 interface CardIndexProps {}

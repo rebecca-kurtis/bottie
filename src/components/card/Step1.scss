@@ -1,0 +1,24 @@
+
+.step-card{
+  display: flex;
+  flex-direction: row;
+  // background-color: aqua;
+  margin-bottom: 10px;
+  padding-right: 30px;
+}
+
+.step-card__image{
+  width: 25%;
+  height: 25%;
+}
+
+.step-card__info{
+  padding-top: 50px;
+}
+
+.step-card__header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 30px;
+}
