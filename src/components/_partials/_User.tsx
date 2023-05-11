@@ -28,13 +28,13 @@ const ACCOUNT = "ACCOUNT";
 export const User: React.FC<_UserProps> = () => {
   
   const { mode, transition, back } = useVisualMode(LOGIN);
-
+//
   const [visible, setVisible] = useState(false)
 
   const openSide = useCallback(() => setVisible(true), [])
   const closeSide = useCallback(() => setVisible(false), [])
   const toggleSide = useCallback(() => setVisible(!visible), [visible])
-
+//
   return (
     <div>
     <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
