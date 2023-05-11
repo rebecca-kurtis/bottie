@@ -6,7 +6,16 @@
 .colonne{
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 365px;
   margin-left: 40px;
   margin-right: 40px;
+}
+
+.province {
+  width: 188px;
+  margin-right: 10px;
+}
+
+.postcode {
+  width: 160px;
 }

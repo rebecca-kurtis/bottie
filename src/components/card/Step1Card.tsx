@@ -29,23 +29,16 @@ export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, i
       <div className="step-card__info">
         <div className="step-card__header">
           <h4 className="header__name">{name}</h4>
-          <p className="header__price">{price}</p>
+          <h4>{price}</h4>
         </div>
         <p>
           {description.length > 250
             ? `${description.substring(0, 250)}...`
             : description}
         </p>
-        <label>
-          <input
-            className="input"
-            type="checkbox"
-            checked={checked}
-            onChange={handleChange}
-          />
-          Select this plant
-        </label>
-        
+        <div className="checkbox">
+          <input type="radio" value="Select this plant" name="plant" /> Select this plant
+        </div>      
       </div>
     </li>
   );

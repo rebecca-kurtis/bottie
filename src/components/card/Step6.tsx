@@ -1,5 +1,6 @@
 import React from "react";
 import './Card.css';
+import confirmation from "./images/confirmation.png";
 import { PageTitle } from "../_partials/_PageTitle";
 
 
@@ -13,7 +14,7 @@ export const Step6: React.FC<Step6Props> = () => {
         <br></br>
         <br></br>
         <div className="container">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi risus metus, egestas tempus dui eu, accumsan egestas lacus. Nunc a leo ut velit porttitor mattis et eget nibh. Nunc eget congue sem. Aenean laoreet ultricies hendrerit. Morbi venenatis molestie sagittis. Nullam fringilla rutrum hendrerit. Sed a leo a turpis commodo viverra quis id quam. Nam libero nibh, malesuada non pharetra sit amet, vulputate ut leo. Phasellus nec dolor sem.</p>
+          <img src={confirmation} alt="Confirmation" className="confirmation-image" />       
         </div>
     </div>
   );

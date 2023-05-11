@@ -55,22 +55,28 @@ export const Step2: React.FC<Step2Props> = () => {
 
               <label className="form-label">City</label>
               <input type="text"
-                    name="last_name"
+                    name="city"
                     placeholder="Enter your last name"
                     className="input-text"></input>
 
-              <div className="content-row">
-                <label className="form-label">City</label>
-                <input type="text"
-                      name="last_name"
-                      placeholder="Enter your last name"
-                      className="input-text"></input>
-              </div>
+              <div className="double">
+                <div>
+                  <label className="form-label">Province</label>
+                  <input type="text"
+                        name="province"
+                        placeholder="Select a Province"
+                        className="input-text province"></input>
+                </div>
+                <div className="postcode">
+                  <label className="form-label">Postal Code</label>
+                    <input type="text"
+                          name="post_code"
+                          placeholder="XXX XXX"
+                          className="input-text postcode"></input>
+                  </div>
+                </div>
             </div>
         
-
-
-      
           </form> 
         </div>  
     </div>

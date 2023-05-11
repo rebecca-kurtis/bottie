@@ -10,7 +10,6 @@ import { Step3 } from "./Step3";
 import { Step4 } from "./Step4";
 import { Step5 } from "./Step5";
 import { Step6 } from "./Step6";
-import './Card.css';
 
 
 interface CardIndexProps {}
@@ -97,7 +96,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
               <Step6 />
             </div>
             <div className="index-nav">
-              <SecondaryButton class="secondary-button" onChange={() => transition(STEP5)} name="Previous" />
+              <SecondaryButton class="secondary-button" onChange={() => transition(STEP1)} name="Create another order" />
               
               {/* Will need to be updated with a link to the cart */}
               <MainButton onChange={() => transition(STEP6)} name="Go to my cart"/>   
