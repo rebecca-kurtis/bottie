@@ -4,9 +4,11 @@ import { PageTitle } from "../_partials/_PageTitle";
 import { Step1CardList } from "./Step1CardList";
 
 
-interface Step1Props {}
+interface Step1Props {
+  products?:any[];
+}
 
-export const Step1: React.FC<Step1Props> = () => {
+export const Step1: React.FC<Step1Props> = ({products}) => {
   return (
     <div>
         <PageTitle message ="1 / 5" />
@@ -14,8 +16,7 @@ export const Step1: React.FC<Step1Props> = () => {
         <br></br>
         <br></br>
         <div className="container">
-          <Step1CardList></Step1CardList>
-          
+          <Step1CardList products={products} />
         </div>
     </div>
   );
