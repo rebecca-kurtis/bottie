@@ -7,7 +7,9 @@ import { CreateAccount } from "./_CreateAccount";
 import '@coreui/coreui/dist/css/coreui.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+// import hooks
 import useVisualMode from "../../hooks/useVisualMode";
+import useLoginToggle from "../../hooks/useLoginToggle";
 
 
 //import COffcanvas
@@ -19,7 +21,7 @@ import { CCloseButton } from "@coreui/react";
 
 
 interface _UserProps {
-  
+  // onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 const LOGIN = "LOGIN";
@@ -35,6 +37,7 @@ export const User: React.FC<_UserProps> = () => {
   const closeSide = useCallback(() => setVisible(false), [])
   const toggleSide = useCallback(() => setVisible(!visible), [visible])
 //
+
   return (
     <div>
     <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
@@ -45,11 +48,11 @@ export const User: React.FC<_UserProps> = () => {
       </COffcanvasHeader>
       <COffcanvasBody>
   
-        {mode === LOGIN && <Login onChange={() => transition(ACCOUNT)} name="Register"/>} 
+        {mode === LOGIN && <Login/>} 
 
-        {mode === ACCOUNT && (
-          <CreateAccount onCancel={() => transition(LOGIN)} onChange={() => transition(LOGIN)}/>
-        )} 
+        {/* {mode === ACCOUNT && (
+          <CreateAccount  name="Register" />
+        )}  */}
       
       </COffcanvasBody>
     </COffcanvas>

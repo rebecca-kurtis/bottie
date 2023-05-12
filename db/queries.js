@@ -19,12 +19,11 @@ const getUser = function(email) {
 //takes a user object { name, email, password } and adds it to the users table
 const addUser = function(user) {
   return db
-    .query('INSERT INTO users (first_name, last_name, email, password, phone, address, city, state, country, postal_code) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *',[
+    .query('INSERT INTO users (first_name, last_name, email, password, address, city, state, country, postal_code) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *',[
       user.first_name, 
       user.last_name, 
       user.email, 
       user.password,
-      user.phone, 
       user.address, 
       user.city, 
       user.state,

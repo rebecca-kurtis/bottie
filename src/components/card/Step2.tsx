@@ -101,4 +101,3 @@ export const Step2: React.FC<Step2Props> = () => {
   );
 };
 
-// INSERT INTO users (first_name, last_name, email, password, phone, address, city, state, country, postal_code

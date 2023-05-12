@@ -3,7 +3,6 @@ import axios from 'axios';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
-
 //import components
 import { Header } from './components/_partials/_Header';
 import { Footer } from './components/_partials/_Footer';
@@ -12,7 +11,7 @@ import { Plants } from './pages/Plants';
 import { PlantDetail } from './pages/PlantDetail';
 import { CardIndex } from './pages/CardIndex';
 import { CardConfigure } from './pages/CardConfigure';
-
+import { User } from './components/_partials/_User';
 
 
 // type productsType = [{
@@ -35,13 +34,13 @@ import { CardConfigure } from './pages/CardConfigure';
 // }]
 
 function App() {
+
   const [products, setProducts] = useState([] as any[]);
 
-  
-  const route = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/products"
+  const productsRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/products"
   
   useEffect(() => {
-      axios.get(route)
+      axios.get(productsRoute)
      .then((response) => {
       const productList = [...response.data];
     setProducts(productList);
@@ -60,6 +59,7 @@ function App() {
       <Route path="/products/:name" element={<PlantDetail products={products} />} />
       <Route path="/card" element={<CardIndex products={products} />} />
       <Route path="/card/configure" element={<CardConfigure />} />
+      <Route path="/login" element={<User />} />
     </Routes>
   </BrowserRouter>
   <Footer></Footer>
