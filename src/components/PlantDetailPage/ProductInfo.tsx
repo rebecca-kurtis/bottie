@@ -27,6 +27,11 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
         <br></br>
         <br></br>
         <p>{product?.water_description}</p>
+        <br></br>
+        <br></br>
+      </div>
+      <div className="button-plantdetail">
+      <a href="/products" className="main_button">View All Products</a>
       </div>
     </Fragment>
   );
