@@ -29,11 +29,8 @@ export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, i
       <img className="step-card__image" src={imageSrc} alt="Products"></img>
       <div className="step-card__info">
         <div className="step-card__header">
-
-          {/* <a href={routeChange} className="header__name">{name}</a> */}
-
           <h4 className="header__name link" onClick={routeChange}>{name}</h4>
-          <h4>{price} $</h4>
+          <h4>${price}</h4>
         </div>
         <p>
           {description.length > 250

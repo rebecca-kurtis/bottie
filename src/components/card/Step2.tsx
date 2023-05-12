@@ -62,8 +62,8 @@ export const Step2: React.FC<Step2Props> = () => {
 
               <div className="double">
                 <div>
-                <label className="form-label">Province</label>
-                    <FormSelect className="input-text province">
+                <label className="form-label">Province/State</label>
+                    <FormSelect className="input-text province" name="state">
                       <option>Select a Province</option>
                       <option value="1">Alberta</option>
                       <option value="2">Manitoba</option>
@@ -84,15 +84,21 @@ export const Step2: React.FC<Step2Props> = () => {
                 <div className="postcode">
                   <label className="form-label">Postal Code</label>
                     <input type="text"
-                          name="post_code"
+                          name="postal_code"
                           placeholder="XXX XXX"
                           className="input-text postcode"></input>
                   </div>
                 </div>
+                <label className="form-label">Country</label>
+                <input type="text"
+                    name="country"
+                    placeholder="Enter your country"
+                    className="input-text"></input>
             </div>
-        
           </form> 
         </div>  
     </div>
   );
 };
+
+// INSERT INTO users (first_name, last_name, email, password, phone, address, city, state, country, postal_code

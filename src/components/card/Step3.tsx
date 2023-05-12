@@ -12,7 +12,7 @@ export const Step3: React.FC<Step3Props> = () => {
   return (
     <div>
         <PageTitle message ="3 / 5" />
-        <PageTitle message ="Tell me about you the person you want to offer a gift" />
+        <PageTitle message ="Tell me about the person you want to offer a gift" />
         <br></br>
         <br></br>
         <div className="container">
@@ -46,7 +46,7 @@ export const Step3: React.FC<Step3Props> = () => {
 
               </div>
               <div className="colonne">
-                 <h3>Where does she lives</h3>
+                 <h3>Where do they live</h3>
                 <br></br>
                 <br></br>
                 <label className="form-label">Address</label>
@@ -63,7 +63,7 @@ export const Step3: React.FC<Step3Props> = () => {
 
                 <div className="double">
                   <div>
-                    <label className="form-label">Province</label>
+                    <label className="form-label">Province/State</label>
                     <FormSelect className="input-text province">
                       <option>Select a Province</option>
                       <option value="1">Alberta</option>
@@ -85,11 +85,16 @@ export const Step3: React.FC<Step3Props> = () => {
                   <div className="postcode">
                     <label className="form-label">Postal Code</label>
                       <input type="text"
-                            name="post_code"
+                            name="postal_code"
                             placeholder="XXX XXX"
                             className="input-text postcode"></input>
                     </div>
                   </div>
+                  <label className="form-label">Country</label>
+                  <input type="text"
+                    name="country"
+                    placeholder="Enter your country"
+                    className="input-text"></input>
             </div>
           </form> 
         </div>
