@@ -2,8 +2,7 @@ import React, { Fragment } from "react";
 import { useParams } from "react-router-dom";
 
 //import components
-import { ProductHeader} from "../components/PlantDetailPage/ProductHeader";
-import { ProductBody} from "../components/PlantDetailPage/ProductBody";
+import {ProductInfo} from "../components/PlantDetailPage/ProductInfo";
 // import { resolve } from "path";
 
 interface PlantDetailProps {
@@ -20,8 +19,7 @@ export const PlantDetail: React.FC<PlantDetailProps> = ({products}) => {
 
     <Fragment>
       <div className="spacer-tag"></div>
-      <ProductHeader product={product} />
-      <ProductBody  product={product} />
+      <ProductInfo product={product} />
     </Fragment>
   );
 };

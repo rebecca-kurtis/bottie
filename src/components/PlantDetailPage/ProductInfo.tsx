@@ -1,17 +1,21 @@
 import React, { Fragment } from "react";
-import './ProductBody.css'
+
+import "./ProductInfo.css";
 
 //import components
+import { PlantHeadingContainer } from "./PlantHeadingContainer";
 import { PageTitle } from "../_partials/_PageTitle";
 
-interface ProductBodyProps {
-  product?:any
+interface ProductInfoProps {
+  product?: any;
 }
 
-export const ProductBody: React.FC<ProductBodyProps> = ({product}) => {
-
+export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   return (
     <Fragment>
+      <div className="product_header">
+        <PlantHeadingContainer product={product} />
+      </div>
       <div className="product_body">
         <PageTitle message={"Sunlight"} />
         <br></br>
