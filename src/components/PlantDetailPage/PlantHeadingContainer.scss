@@ -1,3 +1,10 @@
+@import '../Variables.scss';
+
+.plant-heading-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .product_visuals {
   display: flex;
   flex-direction: column;
@@ -31,4 +38,25 @@
   font-weight: 800;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.product_info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 100px;
+  background-color: $lightBeige;
+  width: 50%;
+}
+.product_info__latin {
+  font-weight: 600;
+  font-size: 22px;
+  font-style: italic;
+  color: #000;
+}
+
+.product_info__intended{
+  margin-left: -20px;
+  margin-bottom: 45px;
 }
