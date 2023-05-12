@@ -36,16 +36,17 @@ import { CardConfigure } from './pages/CardConfigure';
 
 function App() {
   const [products, setProducts] = useState([] as any[]);
+
   
   const route = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/products"
-  // http://localhost:8000/products
+  
   useEffect(() => {
       axios.get(route)
      .then((response) => {
       const productList = [...response.data];
     setProducts(productList);
     })
-  },[]);
+  }, []);
 
   return (
     <>

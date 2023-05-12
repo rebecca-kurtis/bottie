@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
-import { HeroBanner } from "../components/PlantsPage/HeroBanner";
+import "./CardIndex.css";
+
+//import hooks
 import useVisualMode from "../hooks/useVisualMode";
+
+//import components
+import { HeroBanner } from "../components/PlantsPage/HeroBanner";
 import { MainButton } from "../components/MainButton";
 import { SecondaryButton } from "../components/SecondaryButton";
 import { Step1 } from "../components/card/Step1";
@@ -26,7 +31,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
   const { mode, transition, back } = useVisualMode(STEP1);
 
   return (
-    <main>
+    <main className="card-index">
       <div className="spacer-tag plants" />
       <section >
         <HeroBanner message="Hello! I will help you to find the perfect gift for a special someone. Follow the steps below."/>

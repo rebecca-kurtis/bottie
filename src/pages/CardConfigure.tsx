@@ -5,10 +5,10 @@ import "./CardConfigure.css";
 
 //import components
 import { PageTitle } from "../components/_partials/_PageTitle";
-import { FormTextBox } from "../components/cardConfigure/FormTextbox";
-import { FormSelection } from "../components/cardConfigure/FormSelection";
-import { FormCheckBoxes } from "../components/cardConfigure/FormCheckboxes";
-import { CardMessage } from "../components/cardConfigure/CardMessage";
+import { FormTextBox } from "../components/CardConfigure/FormTextbox";
+import { FormSelection } from "../components/CardConfigure/FormSelection";
+import { FormCheckBoxes } from "../components/CardConfigure/FormCheckboxes";
+import { CardMessage } from "../components/CardConfigure/CardMessage";
 
 interface CardConfigureProps {}
 
@@ -70,6 +70,7 @@ export const CardConfigure: React.FC<CardConfigureProps> = () => {
             labelText="Who is the Gift for?"
             name="recipientsFName"
             value={recipientFName || "Add a name"}
+            placeholder="add a name"
             onChange={name => setRecipientFName(name.target.value)}
             />
 
@@ -116,6 +117,7 @@ export const CardConfigure: React.FC<CardConfigureProps> = () => {
             labelText="Would you like it to be from a different name?"
             name="from"
             value={from}
+            placeholder={from}
             onChange={from => setFrom(from.target.value)}
             />
           <div>
