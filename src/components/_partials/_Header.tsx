@@ -1,16 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { User } from "./_User";
 import { useCallback, useState } from "react";
 import { Login } from "./_Login";
 
-
-
 // import hooks
 import useVisualMode from "../../hooks/useVisualMode";
-import useLoginToggle from "../../hooks/useLoginToggle";
-import AuthService from "../../services/authservice";
-
 
 //import photos
 import logo from "./images/BottieLogo.png";
@@ -34,22 +27,15 @@ import { Account } from "./_Account";
 import { Register } from "./Register";
 
 interface _HeaderProps {
-  // onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  // user?: any;
+  user?: any;
+  updateStorage: any;
+  clearStorage: any;
 }
 
-function getCurrentUser() {
-  const userStr = localStorage.getItem("user");
-  if (userStr) return JSON.parse(userStr);
 
-  return null;
-}
-
-export const Header: React.FC<_HeaderProps> = () => {
+export const Header: React.FC<_HeaderProps> = (props) => {
   const className = "scroll";
   const scrollTrigger = 60;
-
-  const currentUser = getCurrentUser()
 
   window.onscroll = function () {
     // We add pageYOffset for compatibility with IE.
@@ -75,7 +61,6 @@ export const Header: React.FC<_HeaderProps> = () => {
   const closeSide = useCallback(() => setVisible(false), [])
   const toggleSide = useCallback(() => setVisible(!visible), [visible])
 
-
   return (
     
     <header>
@@ -94,7 +79,7 @@ export const Header: React.FC<_HeaderProps> = () => {
           </a>
         </nav>
         <div className="nav user-icons">
-          {currentUser === null &&
+          {props.user === null &&
             <div>
                     <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
                     <COffcanvas placement="end" visible={visible} onHide={closeSide}>
@@ -104,7 +89,7 @@ export const Header: React.FC<_HeaderProps> = () => {
                       </COffcanvasHeader>
                       <COffcanvasBody>
                         {mode === LOGIN && (
-                          <Login closeSide={closeSide} onChange={() =>transition(REGISTER)}/>
+                          <Login closeSide={closeSide} onChange={() =>transition(REGISTER)} updateStorage={props.updateStorage}/>
                         )}   
                         {mode === REGISTER && (
                           <Register onChange={() => transition(LOGIN)} />
@@ -113,10 +98,10 @@ export const Header: React.FC<_HeaderProps> = () => {
                     </COffcanvas>
             </div>
           } 
-          {currentUser !== null &&
+          {props.user !== null &&
             <div>
               <div className="nav-link">
-                <p className="userName">Hello {currentUser[0].first_name} </p>
+                <p className="userName">Hello {props.user.first_name} </p>
                 <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
                 <FontAwesomeIcon className="icon" icon={faCartShopping} />
               </div>
@@ -126,9 +111,7 @@ export const Header: React.FC<_HeaderProps> = () => {
                         <CCloseButton className="text-reset" onClick={closeSide} />
                       </COffcanvasHeader>
                       <COffcanvasBody>
-                        {/* {mode === ACCOUNT && ( */}
-                            <Account closeSide={closeSide}/>
-                         {/* )}  */}
+                          <Account closeSide={closeSide} updateStorage={props.updateStorage} clearStorage={props.clearStorage} user={props.user} />
                       </COffcanvasBody>
                     </COffcanvas>
 

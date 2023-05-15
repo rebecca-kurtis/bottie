@@ -5,36 +5,27 @@ import "./User.css";
 import { useNavigate } from "react-router-dom";
 import userImage from "./images/user.png";
 
-// import useLoginToggle from "../../hooks/useLoginToggle";
-
 
 interface _AccountProps {
-  // onCancel : React.MouseEventHandler<HTMLButtonElement> | undefined;
-  // onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
   closeSide: () => void;
+  updateStorage: any;
+  clearStorage: any;
+  user?: any;
 }
 
-export const Account: React.FC<_AccountProps> = ({closeSide}) => {
+export const Account: React.FC<_AccountProps> = (props) => {
 
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.clear();
+    props.clearStorage();
     navigate('/');
-    closeSide()
+    props.closeSide();
 }
-
-function getCurrentUser() {
-  const userStr = localStorage.getItem("user");
-  if (userStr) return JSON.parse(userStr);
-
-  return null;
-}
-const currentUser = getCurrentUser()
 
   return (
     <div className="user">
-        <h2>Welcome {currentUser[0].first_name}!</h2>
+        <h2>Welcome {props.user.first_name}!</h2>
         <br></br>
         <br></br>
         <div className="canva-body">
@@ -47,8 +38,8 @@ const currentUser = getCurrentUser()
           </div>
           <br></br>
           <br></br>
-          <button className="secondary-button" type="submit" onClick={logout}>Logout</button>
-        </div>   
+          <button className="secondary-button" type="submit" onClick={logout}>Logout</button> 
+       </div>   
   </div>
   );
 };

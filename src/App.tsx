@@ -49,10 +49,38 @@ function App() {
     })
   }, []);
 
+  // Get current user information
+
+  function getCurrentUser() {
+    const userStr = localStorage.getItem("user");
+    if (userStr) return JSON.parse(userStr);
+
+    return null;
+  }
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const currentUser = getCurrentUser()
+    setUser(currentUser);
+
+  }, []);
+
+  function updateStorage(currentUser: React.SetStateAction<null>) {
+    setUser(currentUser);
+    localStorage.clear();
+    localStorage.setItem("user", JSON.stringify(currentUser));
+  }
+
+  function clearStorage() {
+    localStorage.clear();
+    setUser(null);
+  }
+
   return (
     <>
      <BrowserRouter>
-    <Header></Header>
+    <Header user={user} updateStorage={updateStorage} clearStorage={clearStorage}/>
     <Routes>
       <Route path="/" element={<Home products={products}/>} />
       <Route path="/products" element={<Plants products={products} />} /> 
@@ -62,7 +90,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
     </Routes>
   </BrowserRouter>
-  <Footer></Footer>
+  <Footer />
     </>
   );
 }
