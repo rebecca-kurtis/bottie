@@ -18,7 +18,9 @@ import { Step5 } from "../components/card/Step5";
 import { Step6 } from "../components/card/Step6";
 import { Step7 } from "../components/card/Step7";
 
-interface CardIndexProps {}
+interface CardIndexProps {
+  products?:any[];
+}
 
 const STEP1 = "STEP1";
 const STEP2 = "STEP2";
@@ -29,7 +31,7 @@ const STEP6 = "STEP6";
 const STEP7 = "STEP7";
 
 
-export const CardIndex: React.FC<CardIndexProps> = () => {
+export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
   const { mode, transition} = useVisualMode(STEP1);
   const [plant, setPlant] = useState("");
   const [buyer, setBuyer] = useState({
@@ -215,7 +217,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
         {mode === STEP1 && (
           <Fragment>
             <div className="index-body">
-              <Step1 plant={plant} setPlant={setPlant}/>
+              <Step1 products={products} plant={plant} setPlant={setPlant}/>
             </div>
             <div className="index-nav">
               <MainButton onChange={() => transition(STEP2)} name="Next step" />

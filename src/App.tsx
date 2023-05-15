@@ -58,7 +58,7 @@ function App() {
       />} />
       <Route path="/products" element={<Plants products={products} />} /> 
       <Route path="/products/:name" element={<PlantDetail products={products} />} />
-      <Route path="/card" element={<CardIndex />} />
+      <Route path="/card" element={<CardIndex products={products}/>} />
       {/* <Route path="/card/configure" element={<CardConfigure />} /> */}
     </Routes>
   </BrowserRouter>

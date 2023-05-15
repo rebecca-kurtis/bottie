@@ -7,9 +7,10 @@ import { Step1CardList } from "./Step1CardList";
 interface Step1Props {
   plant: string;
   setPlant: any;
+  products?:any[];
 }
 
-export const Step1: React.FC<Step1Props> = ({plant, setPlant}) => {
+export const Step1: React.FC<Step1Props> = ({plant, setPlant, products}) => {
   return (
     <div>
         <PageTitle message ="1 / 5" />
@@ -17,7 +18,7 @@ export const Step1: React.FC<Step1Props> = ({plant, setPlant}) => {
         <br></br>
         <br></br>
         <div className="container">
-          <Step1CardList plant={plant} setPlant={setPlant}></Step1CardList>
+          <Step1CardList products={products} plant={plant} setPlant={setPlant}></Step1CardList>
         </div>
     </div>
   );
