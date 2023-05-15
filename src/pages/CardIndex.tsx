@@ -86,7 +86,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
         {mode === STEP5 && (
           <Fragment>
             <div className="index-body">
-              <Step5 />
+              <Step5 chatGPTMessage="" recipientFName="" from=""  />
             </div>
             <div className="index-nav">
               <SecondaryButton class="secondary-button" onChange={() => transition(STEP4)} name="Previous" />

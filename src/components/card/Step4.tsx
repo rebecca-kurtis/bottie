@@ -46,7 +46,7 @@ export const Step4: React.FC<Step4Props> = () => {
     "Get Well",
     "Sorry For Your Loss",
     "Welcome Home",
-    "Mothes Day",
+    "Mothers Day",
     "Fathers Day",
     "New Baby",
     "Condolences",
@@ -251,10 +251,10 @@ export const Step4: React.FC<Step4Props> = () => {
           <div className="card-message">
             <CardMessage
               message={chatGPTMessage}
-              recipiant={recipientFName}
+              recipient={recipientFName}
               from={from}
             />
-          </div>
+           </div>
         </div>
       </div>
     </div>

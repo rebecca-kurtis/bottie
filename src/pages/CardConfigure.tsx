@@ -127,7 +127,7 @@ export const CardConfigure: React.FC<CardConfigureProps> = () => {
         <div>
             <CardMessage
               message={chatGPTMessage}
-              recipiant={recipientFName}
+              recipient={recipientFName}
               from={from}
             />
           </div>
