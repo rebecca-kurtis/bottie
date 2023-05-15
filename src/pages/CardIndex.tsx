@@ -45,6 +45,17 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
     postal_code: ""
 
   });
+  const [recipient, setRecipient] = useState({
+    first_name: "",
+    last_name: "",
+    relationship: "",
+    phone: "",
+    address: "",
+    city: "",
+    province: "",
+    country: "",
+    postal_code: ""
+  })
   const [recipientFName, setRecipientFName] = useState("");
   const [relationship, setRelationship] = useState("Friend");
   const [occasion, setOccasion] = useState("Birthday");
@@ -231,7 +242,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
         {mode === STEP3 && (
           <Fragment>
             <div className="index-body">
-              <Step3 />
+              <Step3 relationship={relationship} setRelationship={setRelationship} relationshipOptions={relationshipOptions} recipient={recipient} setRecipient={setRecipient} />
             </div>
             <div className="index-nav">
               <SecondaryButton

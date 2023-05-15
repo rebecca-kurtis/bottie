@@ -78,7 +78,7 @@ export const Step4: React.FC<Step4Props> = ({
                 </div>
 
                 <div className="step4-row-element">
-                  <FormSelection
+                  {/* <FormSelection
                     labelText="Their Relationship to You?"
                     name="relationship"
                     value={relationship}
@@ -86,7 +86,7 @@ export const Step4: React.FC<Step4Props> = ({
                       setRelationship(relationship.target.value)
                     }
                     selectOptions={relationshipOptions}
-                  />
+                  /> */}
                 </div>
               </div>
               <div className="step4-row">
