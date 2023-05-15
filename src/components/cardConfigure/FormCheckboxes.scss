@@ -1,11 +1,18 @@
 @import '../Variables.scss';
 
+.checkbox-div {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+
 .configure-li-component {
   display: flex;
-  
   list-style-type: none;
-  flex: 0 0 30%;
-  // flex-flow: row wrap;
+  flex: 0 0 25%;
 }
 
 .checkbox-label{
