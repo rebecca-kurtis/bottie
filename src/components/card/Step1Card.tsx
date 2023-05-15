@@ -7,9 +7,11 @@ interface Step1CardProps {
   description: string;
   price: string;
   imageSrc: string;
+  plant: string;
+  setPlant: any;
 }
 
-export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, imageSrc}) => {
+export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, imageSrc, setPlant}) => {
   
   let navigate = useNavigate();
 
@@ -19,19 +21,11 @@ export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, i
   window.scrollTo(0, 0);
   };
 
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = () => {
-    setChecked(!checked);
-  };
   return (
     <li className="step-card">
       <img className="step-card__image" src={imageSrc} alt="Products"></img>
       <div className="step-card__info">
         <div className="step-card__header">
-
-          {/* <a href={routeChange} className="header__name">{name}</a> */}
-
           <h4 className="header__name link" onClick={routeChange}>{name}</h4>
           <h4>{price} $</h4>
         </div>
@@ -41,7 +35,7 @@ export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, i
             : description}
         </p>
         <div className="checkbox">
-          <input type="radio" value="Select this plant" name="plant" /> Select this plant
+          <input type="radio" value={name} name="plant" onClick={(plant) => setPlant((plant.target as HTMLInputElement).value)}/> Select this plant
         </div>      
       </div>
     </li>
