@@ -7,9 +7,10 @@ import { FormSelect } from "react-bootstrap";
 interface Step2Props {
   buyer: any;
   setBuyer: any;
+  setFrom: any;
 }
 
-export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer }) => {
+export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer, setFrom }) => {
 
   return (
     <div>
@@ -34,6 +35,7 @@ export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer }) => {
                   ...buyer,
                   first_name: event.target.value,
                 });
+                setFrom(event.target.value);
               }}
             ></input>
 

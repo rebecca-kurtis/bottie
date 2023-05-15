@@ -14,10 +14,7 @@ import { CardMessage } from "../CardConfigure/CardMessage";
 interface Step4Props {
   handleGPTSubmit: any;
   recipientFName: string;
-  setRecipientFName: any;
   relationship: string;
-  setRelationship: any;
-  relationshipOptions: any;
   occasion: string;
   setOccasion: any;
   occasionOptions: any;
@@ -36,11 +33,6 @@ interface Step4Props {
 
 export const Step4: React.FC<Step4Props> = ({
   handleGPTSubmit,
-  recipientFName,
-  setRecipientFName,
-  relationship,
-  setRelationship,
-  relationshipOptions,
   occasion,
   setOccasion,
   occasionOptions,
@@ -68,13 +60,13 @@ export const Step4: React.FC<Step4Props> = ({
             <form id='card-form-id' onSubmit={handleGPTSubmit} className="card-configure-form">
               <div className="step4-row">
                 <div className="step4-row-element">
-                  <FormTextBox
+                  {/* <FormTextBox
                     labelText="Who is the Gift for?"
                     name="recipientsFName"
                     value={recipientFName || ""}
                     placeholder="Add a Name"
                     onChange={(name) => setRecipientFName(name.target.value)}
-                  />
+                  /> */}
                 </div>
 
                 <div className="step4-row-element">

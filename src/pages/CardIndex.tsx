@@ -56,13 +56,13 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
     country: "",
     postal_code: ""
   })
-  const [recipientFName, setRecipientFName] = useState("");
+  // const [recipientFName, setRecipientFName] = useState("");
   const [relationship, setRelationship] = useState("Friend");
   const [occasion, setOccasion] = useState("Birthday");
   const [mood, setMood] = useState("Happy");
   const [proseStyle, setProseStyle] = useState("Ode");
   const [themes, setThemes] = useState([] as string[]);
-  const [from, setFrom] = useState("username");
+  const [from, setFrom] = useState(buyer.first_name);
   const [chatGPTMessage, setChatGPTMessage] = useState("");
 
   const relationshipOptions = [
@@ -226,7 +226,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
         {mode === STEP2 && (
           <Fragment>
             <div className="index-body">
-              <Step2 buyer={buyer} setBuyer={setBuyer} />
+              <Step2 buyer={buyer} setBuyer={setBuyer} setFrom={setFrom} />
             </div>
             <div className="index-nav">
               <SecondaryButton
@@ -260,11 +260,8 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
             <div className="index-body">
               <Step4
                 handleGPTSubmit={handleGPTSubmit}
-                recipientFName={recipientFName}
-                setRecipientFName={setRecipientFName}
+                recipientFName={recipient.first_name}
                 relationship={relationship}
-                setRelationship={setRelationship}
-                relationshipOptions={relationshipOptions}
                 occasion={occasion}
                 setOccasion={setOccasion}
                 occasionOptions={occasionOptions}
@@ -287,7 +284,6 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
                 onChange={() => transition(STEP3)}
                 name="Previous"
               />
-              {/* <MainButton onChange={() => transition(STEP5)} name="Next step" /> */}
               <button
                 form="card-form-id"
                 className="main_button"
@@ -308,7 +304,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
             <div className="index-body">
               <Step5
                 chatGPTMessage={chatGPTMessage}
-                recipientFName={recipientFName}
+                recipientFName={recipient.first_name}
                 from={from}
               />
             </div>
