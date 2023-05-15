@@ -226,7 +226,13 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
               <Step1 products={products} plant={plant} setPlant={setPlant} />
             </div>
             <div className="index-nav">
-              <MainButton onChange={() => transition(STEP2)} name="Next step" />
+              <MainButton 
+              onChange={() => {
+                if (plant.plant_name.length < 1) {
+                  alert("Please choose a plant!")
+                  return
+                }
+                transition(STEP2)}} name="Next step" />
             </div>
           </Fragment>
         )}

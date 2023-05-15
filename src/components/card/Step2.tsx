@@ -30,6 +30,7 @@ export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer, setFrom }) => {
               name="first_name"
               placeholder="Enter your first name"
               className="input-text"
+              value={buyer.first_name || ""}
               onChange={(event) => {
                 setBuyer({
                   ...buyer,
@@ -45,6 +46,7 @@ export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer, setFrom }) => {
               name="last_name"
               placeholder="Enter your last name"
               className="input-text"
+              value={buyer.last_name || ""}
               onChange={(event) => {
                 setBuyer({
                   ...buyer,
@@ -59,6 +61,7 @@ export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer, setFrom }) => {
               name="email"
               placeholder="Enter your email"
               className="input-text"
+              value={buyer.email || ""}
               onChange={(event) => {
                 setBuyer({
                   ...buyer,
@@ -73,6 +76,7 @@ export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer, setFrom }) => {
               name="password"
               placeholder="Enter a password"
               className="input-text"
+              value={buyer.password || ""}
               onChange={(event) => {
                 setBuyer({
                   ...buyer,
@@ -91,6 +95,7 @@ export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer, setFrom }) => {
               name="address"
               placeholder="Enter your address"
               className="input-text"
+              value={buyer.address || ""}
               onChange={(event) => {
                 setBuyer({
                   ...buyer,
@@ -105,6 +110,7 @@ export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer, setFrom }) => {
               name="city"
               placeholder="Enter your last name"
               className="input-text"
+              value={buyer.city || ""}
               onChange={(event) => {
                 setBuyer({
                   ...buyer,
@@ -116,7 +122,9 @@ export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer, setFrom }) => {
             <div className="double">
               <div>
                 <label className="form-label">Province</label>
-                <FormSelect className="input-text province" onChange={(event) => {
+                <FormSelect className="input-text province" 
+                 value={buyer.province || ""}
+                onChange={(event) => {
                 setBuyer({
                   ...buyer,
                   province: event.target.value,
@@ -145,6 +153,7 @@ export const Step2: React.FC<Step2Props> = ({ buyer, setBuyer, setFrom }) => {
                   name="post_code"
                   placeholder="XXX XXX"
                   className="input-text postcode"
+                  value={buyer.postal_code || ""}
                   onChange={(event) => {
                     setBuyer({
                       ...buyer,
