@@ -30,7 +30,8 @@ const STEP7 = "STEP7";
 
 
 export const CardIndex: React.FC<CardIndexProps> = () => {
-  const { mode, transition, back } = useVisualMode(STEP1);
+  const { mode, transition} = useVisualMode(STEP1);
+  const [plant, setPlant] = useState("");
   const [recipientFName, setRecipientFName] = useState("");
   const [relationship, setRelationship] = useState("Friend");
   const [occasion, setOccasion] = useState("Birthday");
@@ -190,7 +191,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
         {mode === STEP1 && (
           <Fragment>
             <div className="index-body">
-              <Step1 />
+              <Step1 plant={plant} setPlant={setPlant}/>
             </div>
             <div className="index-nav">
               <MainButton onChange={() => transition(STEP2)} name="Next step" />
@@ -325,7 +326,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
         {mode === STEP7 && (
           <Fragment>
             <div className="index-body">
-              <Step6 />
+              <Step7 />
             </div>
             <div className="index-nav">
               <SecondaryButton

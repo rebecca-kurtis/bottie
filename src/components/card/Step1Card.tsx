@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import './Card.css';
 
 interface Step1CardProps {
@@ -7,21 +7,17 @@ interface Step1CardProps {
   description: string;
   price: string;
   imageSrc: string;
+  plant: string;
+  setPlant: any;
 }
 
-export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, imageSrc}) => {
+export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, imageSrc, setPlant}) => {
   // let navigate = useNavigate();
   // const routeChange = () => {
   // let path = `/products/id`;
   // navigate(path);
   // window.scrollTo(0, 0);
   // };
-
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = () => {
-    setChecked(!checked);
-  };
 
   return (
     <li className="step-card">
@@ -37,7 +33,7 @@ export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, i
             : description}
         </p>
         <div className="checkbox">
-          <input type="radio" value="Select this plant" name="plant" /> Select this plant
+          <input type="radio" value={name} name="plant" onClick={(plant) => setPlant((plant.target as HTMLInputElement).value)}/> Select this plant
         </div>      
       </div>
     </li>
