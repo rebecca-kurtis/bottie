@@ -32,6 +32,19 @@ const STEP7 = "STEP7";
 export const CardIndex: React.FC<CardIndexProps> = () => {
   const { mode, transition} = useVisualMode(STEP1);
   const [plant, setPlant] = useState("");
+  const [buyer, setBuyer] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    phone: "",
+    address: "",
+    city: "",
+    province: "",
+    country: "",
+    postal_code: ""
+
+  });
   const [recipientFName, setRecipientFName] = useState("");
   const [relationship, setRelationship] = useState("Friend");
   const [occasion, setOccasion] = useState("Birthday");
@@ -202,7 +215,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
         {mode === STEP2 && (
           <Fragment>
             <div className="index-body">
-              <Step2 />
+              <Step2 buyer={buyer} setBuyer={setBuyer} />
             </div>
             <div className="index-nav">
               <SecondaryButton

@@ -10,7 +10,6 @@ interface Step1Props {
 }
 
 export const Step1: React.FC<Step1Props> = ({plant, setPlant}) => {
-  console.log("plant",plant);
   return (
     <div>
         <PageTitle message ="1 / 5" />
