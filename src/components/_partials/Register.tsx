@@ -6,12 +6,12 @@ import { SecondaryButton } from "../SecondaryButton";
 import { MainButton } from "../MainButton";
 
 
-interface _CreateAccountProps {
-  onCancel : React.MouseEventHandler<HTMLButtonElement> | undefined;
+interface _RegisterProps {
+  // onCancel : React.MouseEventHandler<HTMLButtonElement> | undefined;
   onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-export const CreateAccount: React.FC<_CreateAccountProps> = (props) => {
+export const Register: React.FC<_RegisterProps> = (props) => {
 
   return (
     <div className="user">
@@ -51,8 +51,8 @@ export const CreateAccount: React.FC<_CreateAccountProps> = (props) => {
               className="input-text"></input>
         <br></br>
         <div className="button-container">
-          <SecondaryButton class="secondary-button" onChange={props.onCancel} name="Back to login"/>
-          <MainButton onChange={props.onChange} name="Register"/>
+          <SecondaryButton class="secondary-button" onChange={props.onChange} name="Back to login"/>
+          {/* <MainButton  name="Register"/> */}
           {/* <button type="submit" className="main_button">Register</button> */}
         </div>
       </form> 

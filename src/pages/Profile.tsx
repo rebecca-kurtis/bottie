@@ -13,10 +13,21 @@ interface ProfileProps {
   user?: any;
 }
 
-export const Profile: React.FC<ProfileProps> = ({user}) => {
-  console.log("user:", user)
+function getCurrentUser() {
+  const userStr = localStorage.getItem("user");
+  if (userStr) return JSON.parse(userStr);
 
-  const [token, setToken] = useState()
+  return null;
+}
+
+
+export const Profile: React.FC<ProfileProps> = ({user}) => {
+  // console.log("user:", user)
+
+const currentUser = getCurrentUser()
+console.log("currentUser Name:", currentUser[0].first_name)
+
+  // const [token, setToken] = useState()
 
   // if(!token){
   //     {return <Login setToken={setToken}/>}
@@ -30,7 +41,8 @@ export const Profile: React.FC<ProfileProps> = ({user}) => {
       />
       <PageTitle message={"Profile"} />
       <p>Name:</p>
-      <p>{user.first_name}</p>
+      <p>{currentUser[0].first_name}</p>
+      <p>{currentUser[0].last_name}</p>
     
 
     </Fragment>

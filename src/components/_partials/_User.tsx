@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { Login } from "./_Login";
-import { CreateAccount } from "./_CreateAccount";
+// import { Register } from "./Register";
 import '@coreui/coreui/dist/css/coreui.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -40,7 +40,7 @@ export const User: React.FC<_UserProps> = () => {
 
   return (
     <div>
-    <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
+    {/* <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
     <COffcanvas placement="end" visible={visible} onHide={closeSide}>
       <COffcanvasHeader>
         <COffcanvasTitle className="title"></COffcanvasTitle>
@@ -52,10 +52,10 @@ export const User: React.FC<_UserProps> = () => {
 
         {/* {mode === ACCOUNT && (
           <CreateAccount  name="Register" />
-        )}  */}
+        )}  
       
       </COffcanvasBody>
-    </COffcanvas>
+    </COffcanvas> */}
   </div>
   );
 };

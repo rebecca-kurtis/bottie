@@ -4,19 +4,16 @@ const API_URL = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVE
 ;
 
 class AuthService {
-  login(email: string, password: string) {
-    return axios
+  async login(email: string, password: string) {
+    const response = await axios
       .post(API_URL + "/login", {
         email,
         password
-      })
-      .then(response => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
-
-        return response.data;
       });
+    if (response.data.accessToken) {
+      localStorage.setItem("user", JSON.stringify(response.data));
+    }
+    return response.data;
   }
 
   logout() {

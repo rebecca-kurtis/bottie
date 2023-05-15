@@ -30,7 +30,10 @@ Header {
   font-size: 20px;
   padding: 1.5em;
 }
-.nav-link {
+.nav-link{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   padding-right: 25px;
   text-decoration: none;
   color: $navTextColour;
@@ -46,12 +49,15 @@ Header {
 }
 .user-icons {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  // align-items: center;
   padding: 1.5em 55px;
+  padding-top: 60px;
 }
 
 .icon {
   padding-right: 15px;
+  padding-left: 15px;
   color: #000;
   font-size: 20px;
 }
@@ -61,4 +67,11 @@ Header {
   height: 20px;
 }
 
-//OffCanva
+.userName{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  text-decoration: none;
+  color: $navTextColour;
+}
+

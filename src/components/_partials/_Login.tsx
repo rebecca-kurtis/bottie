@@ -2,29 +2,21 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { MainButton } from "../MainButton";
 import { SecondaryButton } from "../SecondaryButton";
 import "./User.css";
-import PropTypes from 'prop-types'
-
-
 
 // import hooks
-import useVisualMode from "../../hooks/useVisualMode";
-import useLoginToggle from "../../hooks/useLoginToggle";
+// import useLoginToggle from "../../hooks/useLoginToggle";
 
 
 interface _LoginProps {
-  // name: string;
-  // onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  // setToken: PropTypes.func.isRequired
-  // setToken: typeof PropTypes.func.isRequired;
-
+  onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  closeSide: () => void;
 }
 
 
 
-export const Login: React.FC<_LoginProps> = () => {
+export const Login: React.FC<_LoginProps> = ({onChange, closeSide}) => {
 
   const [user, setUser] = useState({
     first_name: "",
@@ -38,10 +30,10 @@ export const Login: React.FC<_LoginProps> = () => {
     postal_code: ""
   });
 
-  const [token, setToken] = useState({
-    email: "",
-    password: "",
-  })
+  // const [token, setToken] = useState({
+  //   email: "",
+  //   password: "",
+  // })
 
 
   // Set the value of a single element of the object
@@ -50,7 +42,7 @@ export const Login: React.FC<_LoginProps> = () => {
   }
 
 
-  const canva = useLoginToggle()
+  // const canva = useLoginToggle()
 
   let navigate = useNavigate();
 
@@ -67,28 +59,30 @@ export const Login: React.FC<_LoginProps> = () => {
 
 
   const handleUserSubmit = (e: { preventDefault: () => void; }) => {
-    
     e.preventDefault();
     setUser(user)
-     
+
+  
     axios.post(usersRoute, user)
     .then((response) => {
       const data = response.data;
-      const token = "patate";
-      console.log("Data ici:", data);
-      console.log("Token ici:", token);
+      // const token = "patate";
+      // console.log("Data ici:", data);
+      // console.log("Token ici:", token);
       // if (!token) {
       //     alert('Unable to login. Please try after some time.');
       //     return;
       // }
       localStorage.clear();
-      localStorage.setItem('user-token', token);
+      localStorage.setItem("user", JSON.stringify(response.data));
+      // localStorage.setItem('user-token', token);
       console.log("local storage: ",localStorage)
 
-      setUser(response.data[0]);
+      setUser(data[0]);
       console.log(user.first_name)
 
       setTimeout(() => {
+          closeSide();
           navigate('/');
       }, 500);
 
@@ -96,10 +90,11 @@ export const Login: React.FC<_LoginProps> = () => {
       //    localStorage.setItem("user", JSON.stringify(response.data));
       // }
 
-      routeChange();
-      canva.closeCanva();
-      console.log("user final", user.first_name)
-      return user;
+      // routeChange();
+      // canva.closeCanva();
+      // console.log("user final", user.first_name)
+      // return user;
+      return response.data
     })
     .catch((error) => {
       if (error.response) {
@@ -116,7 +111,7 @@ export const Login: React.FC<_LoginProps> = () => {
 
   return (
     <div className="user">
-        <form onSubmit={handleUserSubmit} className="login-form">
+        <form onSubmit={handleUserSubmit} className="canva-body">
         <h2>Login</h2>
         <br></br>
         <br></br>
@@ -126,7 +121,8 @@ export const Login: React.FC<_LoginProps> = () => {
             name="email"
             value={user.email}
             placeholder="Enter your email"
-            onChange={e => setValue("email", e.target.value)}>
+            onChange={e => setValue("email", e.target.value)}
+            required>
             </input>
 
         <label className="form-label">Password</label>
@@ -135,21 +131,17 @@ export const Login: React.FC<_LoginProps> = () => {
             name="password"
             value={user.password}
             placeholder="Enter your password"
-            onChange={e => setValue("password", e.target.value)}>
+            onChange={e => setValue("password", e.target.value)}
+            required>
             </input>
 
         <button type="submit" className="main_button">Login</button>
-        {/* <MainButton type="submit" name="Login"/> */}
       </form>
 
       <div className="register-container">
-        <h4 className="white-text">Don't have an account?</h4>
-        {/* <SecondaryButton class="secondary-button white-text" onChange={onChange} name="Register"/> */}
+        <p className="white-text">Don't have an account?</p>
+        <SecondaryButton class="secondary-button white-text" onChange={onChange} name="Register"/>
       </div>
   </div>
   );
 };
-
-// Login.propTypes = {
-//   setToken: PropTypes.func.isRequired
-// }

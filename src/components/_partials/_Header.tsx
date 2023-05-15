@@ -30,21 +30,26 @@ import { COffcanvasBody } from '@coreui/react'
 import { COffcanvasHeader } from '@coreui/react'
 import { COffcanvasTitle } from '@coreui/react'
 import { CCloseButton } from "@coreui/react";
+import { Account } from "./_Account";
+import { Register } from "./Register";
 
 interface _HeaderProps {
   // onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  user?: any;
+  // user?: any;
 }
 
-// type State = {
-//   currentUser: IUser | undefined
+function getCurrentUser() {
+  const userStr = localStorage.getItem("user");
+  if (userStr) return JSON.parse(userStr);
 
-// }
+  return null;
+}
 
-export const Header: React.FC<_HeaderProps> = ({user}) => {
+export const Header: React.FC<_HeaderProps> = () => {
   const className = "scroll";
   const scrollTrigger = 60;
 
+  const currentUser = getCurrentUser()
 
   window.onscroll = function () {
     // We add pageYOffset for compatibility with IE.
@@ -59,37 +64,17 @@ export const Header: React.FC<_HeaderProps> = ({user}) => {
   };
 
   const LOGIN = "LOGIN";
+  const REGISTER = "REGISTER";
   const ACCOUNT = "ACCOUNT";
 
-  const { mode, transition, back } = useVisualMode(LOGIN);
-  //
+  const { mode, transition, back } = useVisualMode(LOGIN)
+
   const [visible, setVisible] = useState(false)
   
   const openSide = useCallback(() => setVisible(true), [])
   const closeSide = useCallback(() => setVisible(false), [])
   const toggleSide = useCallback(() => setVisible(!visible), [visible])
 
-  // const [user, setUser] = useState(undefined)
-
-  // const checkUser = () => {
-  //   const user = AuthService.getCurrentUser();
-  //   if (user) {
-  //     setUser(user);
-  //   }
-  // }
-
-  // checkUser()
-
-  const navigate = useNavigate();
-
-  const logout = () => {
-    localStorage.clear();
-    console.log("local storage:", localStorage)
-
-
-    // localStorage.setItem('user-token', "");
-    navigate('/');
-}
 
   return (
     
@@ -108,34 +93,49 @@ export const Header: React.FC<_HeaderProps> = ({user}) => {
             <img src={plantIcon} alt="Plant Icon" className="nav-icon" />
           </a>
         </nav>
-        <div className="user-icons">
-        {!user &&
-                  <div>
-                  <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
-                  <COffcanvas placement="end" visible={visible} onHide={closeSide}>
-                    <COffcanvasHeader>
-                      <COffcanvasTitle className="title"></COffcanvasTitle>
-                      <CCloseButton className="text-reset" onClick={closeSide} />
-                    </COffcanvasHeader>
-                    <COffcanvasBody>
-                      <Login />
-                      {/* {mode === ACCOUNT && (
-                        <CreateAccount  name="Register" />
-                      )}  */}             
-                    </COffcanvasBody>
-                  </COffcanvas>
+        <div className="nav user-icons">
+          {currentUser === null &&
+            <div>
+                    <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
+                    <COffcanvas placement="end" visible={visible} onHide={closeSide}>
+                      <COffcanvasHeader>
+                        <COffcanvasTitle className="title"></COffcanvasTitle>
+                        <CCloseButton className="text-reset" onClick={closeSide} />
+                      </COffcanvasHeader>
+                      <COffcanvasBody>
+                        {mode === LOGIN && (
+                          <Login closeSide={closeSide} onChange={() =>transition(REGISTER)}/>
+                        )}   
+                        {mode === REGISTER && (
+                          <Register onChange={() => transition(LOGIN)} />
+                        )}    
+                      </COffcanvasBody>
+                    </COffcanvas>
+            </div>
+          } 
+          {currentUser !== null &&
+            <div>
+              <div className="nav-link">
+                <p className="userName">Hello {currentUser[0].first_name} </p>
+                <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
+                <FontAwesomeIcon className="icon" icon={faCartShopping} />
               </div>
-        } 
-        {user &&
-          <div>
-            <p>"Hello" user.first_name</p>
-            <button type="submit" onClick={logout}>Logout</button>
-            <FontAwesomeIcon className="icon" icon={faCartShopping} />
-          </div>
-        }
+                    <COffcanvas placement="end" visible={visible} onHide={closeSide}>
+                      <COffcanvasHeader>
+                        <COffcanvasTitle className="title"></COffcanvasTitle>
+                        <CCloseButton className="text-reset" onClick={closeSide} />
+                      </COffcanvasHeader>
+                      <COffcanvasBody>
+                        {/* {mode === ACCOUNT && ( */}
+                            <Account closeSide={closeSide}/>
+                         {/* )}  */}
+                      </COffcanvasBody>
+                    </COffcanvas>
+
+            </div>
+          }
         </div>
          
-        
       </div>
     </header>
   );
