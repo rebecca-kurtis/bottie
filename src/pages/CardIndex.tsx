@@ -33,7 +33,10 @@ const STEP7 = "STEP7";
 
 export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
   const { mode, transition} = useVisualMode(STEP1);
-  const [plant, setPlant] = useState("");
+  const [plant, setPlant] = useState({
+    plant_name: "",
+    image_url: ""
+  });
   const [buyer, setBuyer] = useState({
     first_name: "",
     last_name: "",
@@ -308,6 +311,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
                 chatGPTMessage={chatGPTMessage}
                 recipientFName={recipient.first_name}
                 from={from}
+                plant={plant}
               />
             </div>
             <div className="index-nav">

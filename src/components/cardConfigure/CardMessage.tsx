@@ -26,7 +26,7 @@ export const CardMessage: React.FC<CardMessageProps> = ({recipient, message, fro
   });
 
   return (
-    <div>
+    <div className="card-message-para">
       <h4>Dear {recipient},</h4>
       {finalMessage}
       <h4>From {from} </h4>
