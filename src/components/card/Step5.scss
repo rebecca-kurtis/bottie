@@ -17,8 +17,10 @@
   flex-direction: column;
   width: 50%;
   background-color: $lightYellow;
+  padding-top: 20px;
   padding-left: 30px;
   padding-right: 15px;
+  padding-bottom: 15px;
   justify-content: center;
 }
 
@@ -40,4 +42,11 @@
 
 .card-message-para h4 {
   line-height: 60px;
+}
+
+.card-logo{
+  display: flex;
+  height: 60px;
+  width:fit-content;
+  margin-top: 0px;
 }

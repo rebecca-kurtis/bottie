@@ -10,6 +10,8 @@ import useVisualMode from "../hooks/useVisualMode";
 import { HeroBanner } from "../components/PlantsPage/HeroBanner";
 import { MainButton } from "../components/MainButton";
 import { SecondaryButton } from "../components/SecondaryButton";
+import { Loading } from "../components/card/Loading";
+
 import { Step1 } from "../components/card/Step1";
 import { Step2 } from "../components/card/Step2";
 import { Step3 } from "../components/card/Step3";
@@ -18,8 +20,9 @@ import { Step5 } from "../components/card/Step5";
 import { Step6 } from "../components/card/Step6";
 import { Step7 } from "../components/card/Step7";
 
+
 interface CardIndexProps {
-  products?:any[];
+  products?: any[];
 }
 
 const STEP1 = "STEP1";
@@ -29,13 +32,13 @@ const STEP4 = "STEP4";
 const STEP5 = "STEP5";
 const STEP6 = "STEP6";
 const STEP7 = "STEP7";
+const LOADING = "LOADING";
 
-
-export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
-  const { mode, transition} = useVisualMode(STEP1);
+export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
+  const { mode, transition } = useVisualMode(STEP1);
   const [plant, setPlant] = useState({
     plant_name: "",
-    image_url: ""
+    image_url: "",
   });
   const [buyer, setBuyer] = useState({
     first_name: "",
@@ -47,8 +50,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
     city: "",
     province: "",
     country: "",
-    postal_code: ""
-
+    postal_code: "",
   });
   const [recipient, setRecipient] = useState({
     first_name: "",
@@ -59,8 +61,8 @@ export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
     city: "",
     province: "",
     country: "",
-    postal_code: ""
-  })
+    postal_code: "",
+  });
   // const [recipientFName, setRecipientFName] = useState("");
   const [relationship, setRelationship] = useState("Friend");
   const [occasion, setOccasion] = useState("Birthday");
@@ -205,7 +207,8 @@ export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
     };
     try {
       const response = await axios.post(route, prompt);
-      setChatGPTMessage(response.data.message);
+      setChatGPTMessage(response.data.message)
+      transition(STEP5);
     } catch (error) {
       console.error(error);
     }
@@ -220,7 +223,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
         {mode === STEP1 && (
           <Fragment>
             <div className="index-body">
-              <Step1 products={products} plant={plant} setPlant={setPlant}/>
+              <Step1 products={products} plant={plant} setPlant={setPlant} />
             </div>
             <div className="index-nav">
               <MainButton onChange={() => transition(STEP2)} name="Next step" />
@@ -247,7 +250,13 @@ export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
         {mode === STEP3 && (
           <Fragment>
             <div className="index-body">
-              <Step3 relationship={relationship} setRelationship={setRelationship} relationshipOptions={relationshipOptions} recipient={recipient} setRecipient={setRecipient} />
+              <Step3
+                relationship={relationship}
+                setRelationship={setRelationship}
+                relationshipOptions={relationshipOptions}
+                recipient={recipient}
+                setRecipient={setRecipient}
+              />
             </div>
             <div className="index-nav">
               <SecondaryButton
@@ -294,12 +303,20 @@ export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
                 className="main_button"
                 type="submit"
                 onClick={(event) => {
+                  transition(LOADING);
                   handleGPTSubmit(event);
-                  transition(STEP5);
                 }}
               >
                 Generate Message
               </button>
+            </div>
+          </Fragment>
+        )}
+
+        {mode === LOADING && (
+          <Fragment>
+            <div className="index-body">
+              <Loading />
             </div>
           </Fragment>
         )}
@@ -320,33 +337,28 @@ export const CardIndex: React.FC<CardIndexProps> = ({products}) => {
                 onChange={() => transition(STEP4)}
                 name="Previous"
               />
-              <MainButton
-                onChange={() => transition(STEP6)}
-                name="Next Step"
-              />
+              <MainButton onChange={() => transition(STEP6)} name="Next Step" />
             </div>
           </Fragment>
         )}
 
         {mode === STEP6 && (
           <Fragment>
-          <div className="index-body">
-            <Step6
-
-            />
-          </div>
-          <div className="index-nav">
-            <SecondaryButton
-              class="secondary-button"
-              onChange={() => transition(STEP5)}
-              name="Previous"
-            />
-            <MainButton
-              onChange={() => transition(STEP7)}
-              name="Add to cart"
-            />
-          </div>
-        </Fragment>
+            <div className="index-body">
+              <Step6 />
+            </div>
+            <div className="index-nav">
+              <SecondaryButton
+                class="secondary-button"
+                onChange={() => transition(STEP5)}
+                name="Previous"
+              />
+              <MainButton
+                onChange={() => transition(STEP7)}
+                name="Add to cart"
+              />
+            </div>
+          </Fragment>
         )}
 
         {mode === STEP7 && (

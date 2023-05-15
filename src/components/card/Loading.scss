@@ -1,0 +1,18 @@
+@import '../Variables.scss';
+
+.loading-container{
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+.loading-container h2 {
+  padding-bottom: 50px;
+}
+
+.spinner {
+  height: 70px;
+  width: 70px;
+}

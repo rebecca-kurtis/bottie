@@ -1,6 +1,7 @@
 import React from "react";
 import "./Card.css";
 import "./Step5.css";
+import logo from "../_partials/images/BottieLogo.png";
 import { PageTitle } from "../_partials/_PageTitle";
 import { CardMessage } from "../CardConfigure/CardMessage";
 
@@ -29,6 +30,7 @@ export const Step5: React.FC<Step5Props> = ({
       <div className="container">
         <div className="card-preview-container">
           <div className="card-image-portion">
+            <img src={logo} alt="Bottie Logo" className="card-logo" />
             <img className="card-image" src={imageURL} alt={plantName}></img>
             <h3>Here is a {plantName}</h3>
             <h3>from {from}</h3>
