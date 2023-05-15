@@ -12,7 +12,7 @@ import { Plants } from './pages/Plants';
 import { PlantDetail } from './pages/PlantDetail';
 import { CardIndex } from './pages/CardIndex';
 import { CardConfigure } from './pages/CardConfigure';
-
+import { Cart } from './pages/Cart';
 
 
 // type productsType = [{
@@ -60,6 +60,7 @@ function App() {
       <Route path="/products/:name" element={<PlantDetail products={products} />} />
       <Route path="/card" element={<CardIndex products={products} />} />
       <Route path="/card/configure" element={<CardConfigure />} />
+      <Route path="/cart" element = {<Cart />} />
     </Routes>
   </BrowserRouter>
   <Footer></Footer>
