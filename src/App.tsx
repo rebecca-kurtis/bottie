@@ -10,8 +10,9 @@ import { Home } from './pages/Home';
 import { Plants } from './pages/Plants';
 import { PlantDetail } from './pages/PlantDetail';
 import { CardIndex } from './pages/CardIndex';
-import { CardConfigure } from './pages/CardConfigure';
 import { User } from './components/_partials/_User';
+import { CardConfigure } from './pages/CardConfigure';
+import { Profile } from './pages/Profile';
 
 
 // type productsType = [{
@@ -35,6 +36,8 @@ import { User } from './components/_partials/_User';
 
 function App() {
 
+  // Product API call
+
   const [products, setProducts] = useState([] as any[]);
 
   const productsRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/products"
@@ -47,19 +50,63 @@ function App() {
     })
   }, []);
 
+// User APi call
+
+const [user, setUser] = useState({
+  first_name: "",
+  last_name: "",
+  email: "",
+  password: "",
+  address: "", 
+  city: "", 
+  state: "",
+  country: "",
+  postal_code: ""
+});
+
+
+const usersRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/login"
+
+const handleUserSubmit = (e: { preventDefault: () => void; }) => {
+  e.preventDefault();
+  setUser(user)
+  
+  axios.post(usersRoute, user)
+  .then((response) => {
+    if (response.data.accessToken) {
+       localStorage.setItem("user", JSON.stringify(response.data));
+    }
+    setUser(response.data[0]);
+    console.log(user.first_name)
+    // routeChange();
+    // canva.closeCanva();
+    return user;
+  })
+  .catch((error) => {
+    if (error.response) {
+      alert(`Error! ${error.message}`);
+      // console.log(error.response);
+      // console.log("server responded");
+    } else if (error.request) {
+      console.log("network error");
+    } else {
+      console.log(error);
+    }
+  });
+};
+
   return (
     <>
      <BrowserRouter>
     <Header></Header>
     <Routes>
-      <Route path="/" element={<Home
-      products={products}
-      />} />
+      <Route path="/" element={<Home products={products}/>} />
       <Route path="/products" element={<Plants products={products} />} /> 
       <Route path="/products/:name" element={<PlantDetail products={products} />} />
       <Route path="/card" element={<CardIndex products={products} />} />
       <Route path="/card/configure" element={<CardConfigure />} />
       <Route path="/login" element={<User />} />
+      <Route path="/profile" element={<Profile  user={user}/>} />
     </Routes>
   </BrowserRouter>
   <Footer></Footer>

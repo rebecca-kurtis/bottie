@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { User } from "./_User";
-import useApplicationData from "../../hooks/useApplicationData";
 import { useCallback, useState } from "react";
 import { Login } from "./_Login";
+
+
 
 // import hooks
 import useVisualMode from "../../hooks/useVisualMode";
@@ -31,6 +33,7 @@ import { CCloseButton } from "@coreui/react";
 
 interface _HeaderProps {
   // onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  user?: any;
 }
 
 // type State = {
@@ -38,7 +41,7 @@ interface _HeaderProps {
 
 // }
 
-export const Header: React.FC<_HeaderProps> = () => {
+export const Header: React.FC<_HeaderProps> = ({user}) => {
   const className = "scroll";
   const scrollTrigger = 60;
 
@@ -66,17 +69,27 @@ export const Header: React.FC<_HeaderProps> = () => {
   const closeSide = useCallback(() => setVisible(false), [])
   const toggleSide = useCallback(() => setVisible(!visible), [visible])
 
-  const [user, setUser] = useState(undefined)
+  // const [user, setUser] = useState(undefined)
 
-  const checkUser = () => {
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      setUser(user);
-    }
-  }
+  // const checkUser = () => {
+  //   const user = AuthService.getCurrentUser();
+  //   if (user) {
+  //     setUser(user);
+  //   }
+  // }
 
-  checkUser()
+  // checkUser()
 
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear();
+    console.log("local storage:", localStorage)
+
+
+    // localStorage.setItem('user-token', "");
+    navigate('/');
+}
 
   return (
     
@@ -105,7 +118,7 @@ export const Header: React.FC<_HeaderProps> = () => {
                       <CCloseButton className="text-reset" onClick={closeSide} />
                     </COffcanvasHeader>
                     <COffcanvasBody>
-                      <Login/>
+                      <Login />
                       {/* {mode === ACCOUNT && (
                         <CreateAccount  name="Register" />
                       )}  */}             
@@ -115,7 +128,8 @@ export const Header: React.FC<_HeaderProps> = () => {
         } 
         {user &&
           <div>
-            <p>"Hello" ${user}</p>
+            <p>"Hello" user.first_name</p>
+            <button type="submit" onClick={logout}>Logout</button>
             <FontAwesomeIcon className="icon" icon={faCartShopping} />
           </div>
         }

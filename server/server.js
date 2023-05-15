@@ -36,12 +36,12 @@ app.get('/users', (req, res) => {
 // Login API
 app.post('/login', (req, res) => {
   const email = req.body.email;
-  console.log("request:",req);
+  // console.log("request:",req);
   // const password = req.body.password;
 
   // if ((!email) || (!password)) {
   //   //no name and/or email and/or password provided
-  //   return res.status(400).send(`<p>Please enter an email and password!</p><button onclick="history.back()">Go Back</button>`);
+  //   return res.status(400).send(`<p>Please enter an email and password!</p>`);
   // }
     db.query('SELECT * FROM users WHERE email = $1',[email], (error, result) => {
       if (error) {
@@ -54,34 +54,32 @@ app.post('/login', (req, res) => {
       // res.cookie('first_name', result.user.first_name);
     })
   });
-  //   .then(user => {
-  //     console.log("returned user", user);
-  //     if (user) {
-  //       res.cookie('user_id', user.id);
-  //       res.cookie('first_name', user.first_name);
-  //     } else {
-  //       console.log("user doesn't exist");
-  //       // res.redirect('/users/login');
-  //       return res.status(400).send(`<p>User does not exist!</p><button onclick="history.back()">Go Back</button>`);
-  //     }
-  //   })
-  // .catch(e => res.send(e));
-  // db.getUser(email)
-  //   .then(user => {
-  //     console.log("returned user", user);
-  //     if (user) {
-  //       res.cookie('user_id', user.id);
-  //       res.cookie('first_name', user.first_name);
-  //     } else {
-  //       console.log("user doesn't exist");
-  //       // res.redirect('/users/login');
-  //       return res.status(400).send(`<p>User does not exist!</p><button onclick="history.back()">Go Back</button>`);
-  //     }
-  //   })
-  //   .catch(e => res.send(e));
-
-  //haven't checked password
-// });
+  // router.post('/login', (req, res) => {
+  //   const email = req.body.email;
+  //   const password = req.body.password;
+  
+  //   if ((!email) || (!password)) {
+  //     //no name and/or email and/or password provided
+  //     return res.status(400).send(`<p>Please enter an email and password!</p><button onclick="history.back()">Go Back</button>`);
+  //   }
+  
+  //   db.getUser(email)
+  //     .then(user => {
+  //       console.log("returned user", user);
+  //       if (user) {
+  //         res.cookie('user_id', user.id);
+  //         res.cookie('first_name', user.name);
+  //       } else {
+  //         console.log("user doesn't exist");
+  //         // res.redirect('/users/login');
+  //         return res.status(400).send(`<p>User does not exist!</p><button onclick="history.back()">Go Back</button>`);
+  //       }
+  //     })
+  //     .catch(e => res.send(e));
+  
+  // //   //haven't checked password
+  // });
+  
 
 
 // Chat GPT API
