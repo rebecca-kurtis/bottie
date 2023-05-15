@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import "./Card.css";
 import "./Step4.css";
 import { PageTitle } from "../_partials/_PageTitle";
 
 //import components
-
 import { FormTextBox } from "../CardConfigure/FormTextbox";
 import { FormSelection } from "../CardConfigure/FormSelection";
 import { FormCheckBoxes } from "../CardConfigure/FormCheckboxes";
-import { CardMessage } from "../CardConfigure/CardMessage";
 
 interface Step4Props {
   handleGPTSubmit: any;
@@ -58,29 +55,6 @@ export const Step4: React.FC<Step4Props> = ({
       <div className="container">
         <div className="card-configure-view">
             <form id='card-form-id' onSubmit={handleGPTSubmit} className="card-configure-form">
-              <div className="step4-row">
-                <div className="step4-row-element">
-                  {/* <FormTextBox
-                    labelText="Who is the Gift for?"
-                    name="recipientsFName"
-                    value={recipientFName || ""}
-                    placeholder="Add a Name"
-                    onChange={(name) => setRecipientFName(name.target.value)}
-                  /> */}
-                </div>
-
-                <div className="step4-row-element">
-                  {/* <FormSelection
-                    labelText="Their Relationship to You?"
-                    name="relationship"
-                    value={relationship}
-                    onChange={(relationship) =>
-                      setRelationship(relationship.target.value)
-                    }
-                    selectOptions={relationshipOptions}
-                  /> */}
-                </div>
-              </div>
               <div className="step4-row">
                 <div className="step4-row-element">
                   <FormSelection

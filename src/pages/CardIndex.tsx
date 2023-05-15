@@ -316,7 +316,7 @@ export const CardIndex: React.FC<CardIndexProps> = () => {
               />
               <MainButton
                 onChange={() => transition(STEP6)}
-                name="Add to cart"
+                name="Next Step"
               />
             </div>
           </Fragment>

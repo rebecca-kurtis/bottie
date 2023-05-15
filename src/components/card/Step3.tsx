@@ -20,7 +20,6 @@ export const Step3: React.FC<Step3Props> = ({
   recipient,
   setRecipient,
 }) => {
-  console.log("recipient", recipient);
   return (
     <div>
       <PageTitle message="3 / 5" />

@@ -9,7 +9,7 @@ interface Step6Props {
 export const Step6: React.FC<Step6Props> = () => {
     return (
       <div>
-        <PageTitle message ="5 / 5" />
+        <PageTitle message ="5 / 6" />
         <PageTitle message ="Validate your order and add it to your cart" />
         <br></br>
         <br></br>

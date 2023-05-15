@@ -15,8 +15,8 @@ interface Step5Props {
 export const Step5: React.FC<Step5Props> = ({chatGPTMessage, recipientFName, from}) => {
   return (
     <div>
-        <PageTitle message ="5 / 5" />
-        <PageTitle message ="Validate your order and add it to your cart" />
+        <PageTitle message ="5 / 6" />
+        <PageTitle message ="Preview your card" />
         <br></br>
         <br></br>
         <div className="container">
