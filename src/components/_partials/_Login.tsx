@@ -63,7 +63,7 @@ export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage
       setUser(data[0]);
 
       setTimeout(() => {
-          closeSide();
+          // closeSide();
           // navigate('/');
       }, 500);
 

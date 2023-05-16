@@ -41,6 +41,9 @@ Header {
 
 .nav-link:hover{
   color: $fixedTextHoverColour;
+  transform: translateY(-1px);
+  cursor: pointer;
+
 }
 
 .logo {
@@ -61,6 +64,8 @@ Header {
   padding-bottom: 15px;
   color: #000;
   font-size: 20px;
+  cursor: pointer;
+  transform: translateY(-1px);
 }
 
 .nav-icon {
