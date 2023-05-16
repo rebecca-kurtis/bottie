@@ -185,8 +185,8 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
   //TODO - limit this to 5 themes.
   const themeChange = (event: any) => {
     event.target.checked
-      ? setThemes([...themes, event.target.value])
-      : setThemes(themes.filter((theme) => theme !== event.target.value));
+      ? setThemes([...themes, event.target.value]) // counter + 1
+      : setThemes(themes.filter((theme) => theme !== event.target.value)); // counter -1
   };
 
   const route =
