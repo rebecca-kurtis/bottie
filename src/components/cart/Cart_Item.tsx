@@ -3,6 +3,7 @@ import React from 'react';
 interface CartItemProps {
   cartItem: {
     product_name: string;
+    product_drawing: string;
     cart_item: number;
     product_price: number;
     user_name: string;
@@ -19,6 +20,9 @@ export const CartItem: React.FC<CartItemProps> = ({cartItem}) => {
   const price = (cartItem.product_price/100).toString();
   return (
     <div className='cartItem'>
+      <div className='image'>
+        <img src={cartItem.product_drawing} />
+      </div>
       <div className='product_details'>
         <p>{cartItem?.product_name}</p>
         <p>${price}</p>

@@ -46,7 +46,7 @@ function App() {
       const productList = [...response.data];
     setProducts(productList);
     })
-  }, []);
+  },[]);
 
   return (
     <>

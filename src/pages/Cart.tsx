@@ -1,17 +1,20 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, Fragment} from "react";
 import axios from "axios";
-import "./Cart.css";
-import { CartItem } from "../components/cart/Cart_Item";
 
-import { PageTitle } from "../components/_partials/_PageTitle";
+
+
+//import components
+import { CartItem } from "../components/cart/Cart_Item";
+import { HeroBanner } from "../components/PlantsPage/HeroBanner";
+import { Summary } from "../components/cart/Summary";
 
 interface CartProps {}
 
 export const Cart: React.FC<CartProps> = () => { 
   const [userId, setUserId] = useState(3); //This needs to be taken from the props of user once set.
   const [cart, setCart] = useState([] as any[]);
-
-
+  const [total, setTotal] = useState (0);
+  const [tax, setTax] = useState (0);
   const route = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart"
 
   //on page load check to see if the user has any unfinished orders
@@ -26,6 +29,16 @@ export const Cart: React.FC<CartProps> = () => {
     .then(response => {
       const cartItems = [...response.data];
       setCart(cartItems);
+      const totalSum = [];
+      for (let i in cart) {
+        totalSum.push(cart[i].product_price);
+      }
+      // get the total
+      setTotal(totalSum.reduce((a, b) => {
+        return a+b;
+      }))
+      //get the tax
+      setTax((Math.round((total * .5)/100) * 100) / 100);
     }). catch (error => {
       console.log(error);
     });
@@ -33,27 +46,35 @@ export const Cart: React.FC<CartProps> = () => {
 
   return (
   
-  <div className="cart-root">
-
-    <PageTitle
-    message={"Cart"}
-  />
-
-    <div className="spacer-tag card-configure" /> 
-    <div>
-
+  <main className="cart">
+    <div className="spacer-tag cart" /> 
+    <section >
+    <HeroBanner message="Complete Your Order"/>
       <div className="Cart">
         {cart?.map((cartItem) => (
           <div>
              <CartItem
-             key={cartItem.cart_item}
+             key = {cartItem.cart_item}
              cartItem ={cartItem}
              />
           </div>
         ))}
-     
       </div>
-    </div>
-  </div>
+      <div className="Summary">
+        <h4>Order Summary</h4>
+      {cart?.map((cartItem) => (
+          <div>
+             <Summary
+             key = {cartItem.cart_item}
+             cartItem ={cartItem}
+             />
+          </div>
+        ))}
+        <p><span>Taxes</span><span>${tax / 100}</span></p>
+        <h4><span>Estimated Total</span><span>${(total+tax) / 100}</span></h4>
+        <div>STRIPE STUFF</div>
+      </div>
+    </section>
+  </main>
   )
 };
