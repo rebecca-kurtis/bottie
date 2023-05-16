@@ -38,9 +38,12 @@ export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, i
           <input type="radio" value={name} name="plant" onClick={
             (event) => {
               setPlant({
-              ...plant,
+              // ...plant,
               plant_name: (event.target as HTMLInputElement).value,
-              image_url: imageSrc
+              image_url: imageSrc,
+              description: description,
+              price_in_cents: price
+              
             });
             }
             }/> Select this plant
