@@ -10,7 +10,6 @@ import { Home } from './pages/Home';
 import { Plants } from './pages/Plants';
 import { PlantDetail } from './pages/PlantDetail';
 import { CardIndex } from './pages/CardIndex';
-import { CardConfigure } from './pages/CardConfigure';
 import { Profile } from './pages/Profile';
 
 
@@ -85,9 +84,9 @@ function App() {
       <Route path="/" element={<Home products={products}/>} />
       <Route path="/products" element={<Plants products={products} />} /> 
       <Route path="/products/:name" element={<PlantDetail products={products} />} />
-      <Route path="/card" element={<CardIndex products={products} />} />
-      <Route path="/card/configure" element={<CardConfigure />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/card" element={<CardIndex products={products}/>} />
+      {/* <Route path="/card/configure" element={<CardConfigure />} /> */}
     </Routes>
   </BrowserRouter>
   <Footer />
