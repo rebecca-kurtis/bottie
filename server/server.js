@@ -44,13 +44,11 @@ app.get('/cart', (req, res) => {
     JOIN recipients on cart_items.recipient_id = recipients.recipient_id
     WHERE users.user_id = ${userId} AND orders.completed = FALSE
     GROUP BY user_name, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price 
-    ORDER BY cart_item;
-    ;`
+    ORDER BY cart_item;`
     , (error, results) => {
       if (error) {
         throw error;
       }
-      console.log(results.rows);
       res.status(200).send(results.rows);
     })
 })
