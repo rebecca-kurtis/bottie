@@ -248,6 +248,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
                 onChange={() => transition(STEP1)}
                 name="Previous"
               />
+              <div className="spacer"></div>
               <MainButton onChange={() => transition(STEP3)} name="Next step" />
             </div>
           </Fragment>
@@ -270,6 +271,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
                 onChange={() => transition(STEP2)}
                 name="Previous"
               />
+              <div className="spacer"></div>
               <MainButton onChange={() => transition(STEP4)} name="Next step" />
             </div>
           </Fragment>
@@ -304,6 +306,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
                 onChange={() => transition(STEP3)}
                 name="Previous"
               />
+              <div className="spacer"></div>
               <button
                 form="card-form-id"
                 className="main_button"
@@ -343,7 +346,11 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
                 onChange={() => transition(STEP4)}
                 name="Previous"
               />
-              <MainButton onChange={() => transition(STEP6)} name="Next Step" />
+              <div className="spacer"></div>
+              <MainButton
+                onChange={() => transition(STEP6)}
+                name="Next Step"
+              />
             </div>
           </Fragment>
         )}
@@ -359,6 +366,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
                 onChange={() => transition(STEP5)}
                 name="Previous"
               />
+              <div className="spacer"></div>
               <MainButton
                 onChange={() => transition(STEP7)}
                 name="Add to cart"
@@ -378,7 +386,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
                 onChange={() => transition(STEP1)}
                 name="Create another order"
               />
-
+              <div className="spacer"></div>
               {/* Will need to be updated with a link to the cart */}
               <MainButton
                 onChange={() => transition(STEP7)}

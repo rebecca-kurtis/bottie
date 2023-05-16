@@ -13,6 +13,7 @@ dotenv.config()
 app.use(cors());
 app.use(express.json());
 
+// Products API
 app.get('/products', (req, res) => {
   db.query('SELECT * FROM products', (error, results) => {
     if (error) {
@@ -21,6 +22,73 @@ app.get('/products', (req, res) => {
     res.status(200).send(results.rows);
   })
 });
+
+//Users API
+app.get('/users', (req, res) => {
+  db.query('SELECT * FROM users;', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(200).send(results.rows);
+  })
+});
+
+// Login API
+app.post('/login', (req, res) => {
+  const email = req.body.email;
+  // console.log("request:",req);
+  // const password = req.body.password;
+
+  // if ((!email) || (!password)) {
+  //   //no name and/or email and/or password provided
+  //   return res.status(400).send(`<p>Please enter an email and password!</p>`);
+  // }
+    db.query('SELECT * FROM users WHERE email = $1',[email], (error, result) => {
+      if (error) {
+        throw error;
+      }
+      console.log("result:", result);
+      console.log("email:", email)
+      res.status(200).send(result.rows);
+      // res.cookie('user_id', result.user.id);
+      // res.cookie('first_name', result.user.first_name);
+    })
+  });
+  // router.post('/login', (req, res) => {
+  //   const email = req.body.email;
+  //   const password = req.body.password;
+  
+  //   if ((!email) || (!password)) {
+  //     //no name and/or email and/or password provided
+  //     return res.status(400).send(`<p>Please enter an email and password!</p><button onclick="history.back()">Go Back</button>`);
+  //   }
+  
+  //   db.getUser(email)
+  //     .then(user => {
+  //       console.log("returned user", user);
+  //       if (user) {
+  //         res.cookie('user_id', user.id);
+  //         res.cookie('first_name', user.name);
+  //       } else {
+  //         console.log("user doesn't exist");
+  //         // res.redirect('/users/login');
+  //         return res.status(400).send(`<p>User does not exist!</p><button onclick="history.back()">Go Back</button>`);
+  //       }
+  //     })
+  //     .catch(e => res.send(e));
+  
+  // //   //haven't checked password
+  // });
+  
+
+
+// Chat GPT API
+
+
+
+
+
+
 
 app.post('/chatGPT', (req, res) => {
   const relationship = req.body.relationship;

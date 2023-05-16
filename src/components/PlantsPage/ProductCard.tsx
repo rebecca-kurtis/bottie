@@ -28,7 +28,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({key, name, description,
             ? `${description.substring(0, 65)}...`
             : description}
         </p>
-        <p className="card__price">{price} $</p>
+        <p className="card__price">${price}</p>
       </div>
     </li>
   );
