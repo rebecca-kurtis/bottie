@@ -23,6 +23,7 @@ import { Step7 } from "../components/card/Step7";
 
 interface CardIndexProps {
   products?: any[];
+  user?: any;
 }
 
 const STEP1 = "STEP1";
@@ -34,11 +35,13 @@ const STEP6 = "STEP6";
 const STEP7 = "STEP7";
 const LOADING = "LOADING";
 
-export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
+export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
   const { mode, transition } = useVisualMode(STEP1);
   const [plant, setPlant] = useState({
     plant_name: "",
     image_url: "",
+    description: "",
+    price_in_cents: ""
   });
   const [buyer, setBuyer] = useState({
     first_name: "",
@@ -358,7 +361,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products }) => {
         {mode === STEP6 && (
           <Fragment>
             <div className="index-body">
-              <Step6 />
+              <Step6 plant={plant} user={user}/>
             </div>
             <div className="index-nav">
               <SecondaryButton

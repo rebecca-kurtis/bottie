@@ -27,7 +27,7 @@ export const Step5: React.FC<Step5Props> = ({
       <PageTitle message="Preview your card" />
       <br></br>
       <br></br>
-      <div className="container">
+      <div className="container no-bg">
         <div className="card-preview-container">
           <div className="card-image-portion">
             <img src={logo} alt="Bottie Logo" className="card-logo" />
