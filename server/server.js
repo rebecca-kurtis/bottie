@@ -22,8 +22,8 @@ app.get('/products', (req, res) => {
   })
 });
 
-app.get('/cart', (req, res) => {
-  userId = req.query.userId;
+app.get('/cart/:id', (req, res) => {
+  userId = req.params.id;
   db.query(
     `SELECT cart_items.cart_item_id AS cart_item, 
     products.name AS product_name,
@@ -50,7 +50,7 @@ app.get('/cart', (req, res) => {
       }
       res.status(200).send(results.rows);
     })
-})
+});
 
 app.post('/chatGPT', (req, res) => {
   const relationship = req.body.relationship;

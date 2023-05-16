@@ -15,7 +15,7 @@ export const Cart: React.FC<CartProps> = () => {
   const [cart, setCart] = useState([] as any[]);
   const [total, setTotal] = useState (0);
   const [tax, setTax] = useState (0);
-  const route = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart"
+  const route = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart/" + userId;
 
   //on page load check to see if the user has any unfinished orders
   //if unfinished return the cart items
@@ -25,7 +25,7 @@ export const Cart: React.FC<CartProps> = () => {
     const params = {
             userId: userId
           }
-    axios.get(route, { params })
+    axios.get(route)
     .then(response => {
       const cartItems = [...response.data];
       setCart(cartItems);
@@ -46,7 +46,7 @@ export const Cart: React.FC<CartProps> = () => {
 
   return (
   
-  <main className="cart">
+  <main className="cart-index">
     <div className="spacer-tag cart" /> 
     <section >
     <HeroBanner message="Complete Your Order"/>
