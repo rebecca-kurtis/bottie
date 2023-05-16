@@ -1,4 +1,5 @@
 import React from 'react';
+import './Cart_Item.css';
 
 interface CartItemProps {
   cartItem: {
@@ -19,15 +20,19 @@ interface CartItemProps {
 export const CartItem: React.FC<CartItemProps> = ({cartItem}) => {
   const price = (cartItem.product_price/100).toString();
   return (
-    <div className='cartItem'>
-      <div className='image'>
+    <div className='row align-items-start'>
+      <h4>My Cart</h4>
+      <hr />
+      <div className='cart-image col'>
         <img src={cartItem.product_drawing} />
       </div>
-      <div className='product_details'>
+    
+      <div className='product_details col'>
         <p>{cartItem?.product_name}</p>
         <p>${price}</p>
       </div>
-      <div className='recipient_details'>
+
+      <div className='recipient_details col'>
         <h4>Recipient</h4>
         <p>Name: {cartItem?.rname}</p>
         <p>Address:<br />

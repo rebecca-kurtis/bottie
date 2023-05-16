@@ -1,11 +1,14 @@
 import React, {useEffect, useState, Fragment} from "react";
 import axios from "axios";
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+import "./Cart.css";
 
 
 //import components
 import { CartItem } from "../components/cart/Cart_Item";
 import { HeroBanner } from "../components/PlantsPage/HeroBanner";
+import { PageTitle } from "../components/_partials/_PageTitle";
 import { Summary } from "../components/cart/Summary";
 
 interface CartProps {}
@@ -50,7 +53,8 @@ export const Cart: React.FC<CartProps> = () => {
     <div className="spacer-tag cart" /> 
     <section >
     <HeroBanner message="Complete Your Order"/>
-      <div className="Cart">
+      <div className="cart row align-items-start">
+        <div className="cart-items col">
         {cart?.map((cartItem) => (
           <div>
              <CartItem
@@ -60,7 +64,7 @@ export const Cart: React.FC<CartProps> = () => {
           </div>
         ))}
       </div>
-      <div className="Summary">
+      <div className="Summary col">
         <h4>Order Summary</h4>
       {cart?.map((cartItem) => (
           <div>
@@ -73,6 +77,7 @@ export const Cart: React.FC<CartProps> = () => {
         <p><span>Taxes</span><span>${tax / 100}</span></p>
         <h4><span>Estimated Total</span><span>${(total+tax) / 100}</span></h4>
         <div>STRIPE STUFF</div>
+      </div>
       </div>
     </section>
   </main>
