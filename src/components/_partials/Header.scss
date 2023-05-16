@@ -33,7 +33,7 @@ Header {
 .nav-link{
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   padding-right: 25px;
   text-decoration: none;
   color: $navTextColour;
@@ -50,15 +50,15 @@ Header {
 .user-icons {
   display: flex;
   flex-direction: row;
-  // align-items: center;
+  align-items: center;
   padding: 1.5em 55px;
-  padding-top: 60px;
-  // background-color: brown;
+  margin-top: 20px;
 }
 
 .icon {
   padding-right: 15px;
   padding-left: 15px;
+  padding-bottom: 15px;
   color: #000;
   font-size: 20px;
 }
@@ -73,6 +73,7 @@ Header {
   flex-direction: row;
   align-items: flex-start;
   text-decoration: none;
+  margin-right: 15px;
   color: $navTextColour;
 }
 

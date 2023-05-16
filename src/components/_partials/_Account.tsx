@@ -15,11 +15,11 @@ interface _AccountProps {
 
 export const Account: React.FC<_AccountProps> = (props) => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const logout = () => {
     props.clearStorage();
-    navigate('/');
+    // navigate('/');
     props.closeSide();
 }
 
