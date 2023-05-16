@@ -7,11 +7,11 @@ interface Step1CardProps {
   description: string;
   price: string;
   imageSrc: string;
-  plant: string;
+  plant: any;
   setPlant: any;
 }
 
-export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, imageSrc, setPlant}) => {
+export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, imageSrc, plant, setPlant}) => {
   
   let navigate = useNavigate();
 
@@ -35,7 +35,15 @@ export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, i
             : description}
         </p>
         <div className="checkbox">
-          <input type="radio" value={name} name="plant" onClick={(plant) => setPlant((plant.target as HTMLInputElement).value)}/> Select this plant
+          <input type="radio" value={name} name="plant" onClick={
+            (event) => {
+              setPlant({
+              ...plant,
+              plant_name: (event.target as HTMLInputElement).value,
+              image_url: imageSrc
+            });
+            }
+            }/> Select this plant
         </div>      
       </div>
     </li>

@@ -38,6 +38,7 @@ export const Step3: React.FC<Step3Props> = ({
               name="first_name"
               placeholder="Enter your first name"
               className="input-text"
+              value={recipient.first_name || ""}
               onChange={(event) => {
                 setRecipient({
                   ...recipient,
@@ -52,6 +53,7 @@ export const Step3: React.FC<Step3Props> = ({
               name="last_name"
               placeholder="Enter your last name"
               className="input-text"
+              value={recipient.last_name || ""}
               onChange={(event) => {
                 setRecipient({
                   ...recipient,
@@ -80,6 +82,7 @@ export const Step3: React.FC<Step3Props> = ({
               name="address"
               placeholder="Enter your address"
               className="input-text"
+              value={recipient.address || ""}
               onChange={(event) => {
                 setRecipient({
                   ...recipient,
@@ -94,6 +97,7 @@ export const Step3: React.FC<Step3Props> = ({
               name="city"
               placeholder="Enter your city"
               className="input-text"
+              value={recipient.city || ""}
               onChange={(event) => {
                 setRecipient({
                   ...recipient,
@@ -105,7 +109,9 @@ export const Step3: React.FC<Step3Props> = ({
             <div className="double">
               <div>
                 <label className="form-label">Province</label>
-                <FormSelect className="input-text province" onChange={(event) => {
+                <FormSelect className="input-text province" 
+                 value={recipient.province || ""}
+                onChange={(event) => {
                 setRecipient({
                   ...recipient,
                   province: event.target.value,
@@ -134,6 +140,7 @@ export const Step3: React.FC<Step3Props> = ({
                   name="post_code"
                   placeholder="XXX XXX"
                   className="input-text postcode"
+                  value={recipient.postal_code || ""}
                   onChange={(event) => {
                     setRecipient({
                       ...recipient,

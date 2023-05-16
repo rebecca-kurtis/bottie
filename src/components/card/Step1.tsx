@@ -5,7 +5,7 @@ import { Step1CardList } from "./Step1CardList";
 
 
 interface Step1Props {
-  plant: string;
+  plant: any;
   setPlant: any;
   products?:any[];
 }
