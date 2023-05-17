@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Fragment} from "react";
+import React, {useEffect, useState, Fragment, useMemo} from "react";
 import axios from "axios";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -25,27 +25,34 @@ export const Cart: React.FC<CartProps> = () => {
   //else cart items
 
   useEffect(() => {
-    const params = {
-            userId: userId
-          }
-    axios.get(route)
-    .then(response => {
-      const cartItems = [...response.data];
-      setCart(cartItems);
-      const totalSum = [];
-      for (let i in cart) {
-        totalSum.push(cart[i].product_price);
-      }
-      // get the total
-      setTotal(totalSum.reduce((a, b) => {
-        return a+b;
-      }))
-      //get the tax
-      setTax((Math.round((total * .5)/100) * 100) / 100);
-    }). catch (error => {
-      console.log(error);
-    });
+    callData();
   },[]);
+
+const callData = () =>
+  axios.get(route)
+  .then(response => {
+    const cartItems = [...response.data];
+    setCart(cartItems);
+    console.log(cart);
+    const totalSum = [];
+    for (let i in cart) {
+      totalSum.push(cart[i].product_price);
+    }
+    console.log(totalSum);
+    return totalSum
+  })
+  .then (totalSum => { 
+    // get the total
+    setTotal(totalSum.reduce((a, b) => {
+      return (a+b) / 100;
+    })) 
+    console.log(total);
+    //get the tax
+    setTax(Math.round((total * .05/100) * 100) / 100);
+    console.log(tax);
+  }). catch (error => {
+    console.log(error);
+  });
 
   return (
   
@@ -54,28 +61,28 @@ export const Cart: React.FC<CartProps> = () => {
     <section >
     <HeroBanner message="Complete Your Order"/>
       <div className="cart row align-items-start">
+      <h5>My Cart</h5>
         <div className="cart-items col">
         {cart?.map((cartItem) => (
-          <div>
              <CartItem
-             key = {cartItem.cart_item}
              cartItem ={cartItem}
              />
-          </div>
         ))}
       </div>
       <div className="Summary col">
-        <h4>Order Summary</h4>
+        <h5>Order Summary</h5>
+        <ul>
       {cart?.map((cartItem) => (
-          <div>
+        
              <Summary
-             key = {cartItem.cart_item}
              cartItem ={cartItem}
              />
-          </div>
+  
         ))}
-        <p><span>Taxes</span><span>${tax / 100}</span></p>
-        <h4><span>Estimated Total</span><span>${(total+tax) / 100}</span></h4>
+        </ul>
+        <p><span>Taxes</span><span>${tax}</span></p>
+        <hr />
+        <h5><span>Estimated Total $</span><span>{Math.round(total+tax) / 100}</span></h5>
         <div>STRIPE STUFF</div>
       </div>
       </div>

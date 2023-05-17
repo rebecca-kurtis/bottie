@@ -20,27 +20,31 @@ interface CartItemProps {
 export const CartItem: React.FC<CartItemProps> = ({cartItem}) => {
   const price = (cartItem.product_price/100).toString();
   return (
-    <div className='row align-items-start'>
-      <h4>My Cart</h4>
-      <hr />
-      <div className='cart-image col'>
-        <img src={cartItem.product_drawing} />
-      </div>
     
-      <div className='product_details col'>
-        <p>{cartItem?.product_name}</p>
-        <p>${price}</p>
+      <div key={cartItem.cart_item} className='row align-items-start'>
+              <hr />
+      <div className='cart-image col'>
+      <div className='row align-items-start'>
+          <div className='cart-image col'>
+          <img src={cartItem.product_drawing} />
+        </div>
+        </div>
       </div>
+        <div className='product_details col'>
+          <p className='cart-description'>{cartItem?.product_name}<br/>
+         ${price}</p>
+        </div>
 
-      <div className='recipient_details col'>
-        <h4>Recipient</h4>
-        <p>Name: {cartItem?.rname}</p>
-        <p>Address:<br />
-        {cartItem?.raddress}<br />
-        {cartItem?.rcity}, {cartItem?.rstate} <br />
-        {cartItem?.rpostal_code}
-        </p>
+        <div className='recipient_details col'>
+          <h5>Recipient</h5>
+          <p className='cart-description'><b>Name:</b><br/>
+          {cartItem?.rname}</p>
+          <p className='cart-description'><b>Address:</b><br />
+          {cartItem?.raddress}<br />
+          {cartItem?.rcity}, {cartItem?.rstate} <br />
+          {cartItem?.rpostal_code}
+          </p>
+        </div>
       </div>
-    </div>
   )
 }
