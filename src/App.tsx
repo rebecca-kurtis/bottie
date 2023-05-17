@@ -12,7 +12,7 @@ import { PlantDetail } from './pages/PlantDetail';
 import { CardIndex } from './pages/CardIndex';
 import { Profile } from './pages/Profile';
 import { CartConfirm } from './pages/CartConfirm';
-
+import { Cart } from './pages/Cart';
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
       const productList = [...response.data];
     setProducts(productList);
     })
-  }, []);
+  },[]);
 
   // Set current user state
 
@@ -71,6 +71,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/card" element={<CardIndex products={products} user={user}/>} />
       <Route path="/confirmation" element={<CartConfirm/>} />
+      <Route path="/cart" element = {<Cart />} />
       {/* <Route path="/card/configure" element={<CardConfigure />} /> */}
     </Routes>
   </BrowserRouter>
