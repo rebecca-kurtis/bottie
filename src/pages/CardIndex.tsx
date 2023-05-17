@@ -13,7 +13,7 @@ import { SecondaryButton } from "../components/SecondaryButton";
 import { Loading } from "../components/card/Loading";
 
 import { Step1 } from "../components/card/Step1";
-import { Step2 } from "../components/card/Step2";
+// import { Step2 } from "../components/card/Step2";
 import { Step3 } from "../components/card/Step3";
 import { Step4 } from "../components/card/Step4";
 import { Step5 } from "../components/card/Step5";
@@ -27,7 +27,7 @@ interface CardIndexProps {
 }
 
 const STEP1 = "STEP1";
-const STEP2 = "STEP2";
+// const STEP2 = "STEP2";
 const STEP3 = "STEP3";
 const STEP4 = "STEP4";
 const STEP5 = "STEP5";
@@ -43,18 +43,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
     description: "",
     price_in_cents: ""
   });
-  const [buyer, setBuyer] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    phone: "",
-    address: "",
-    city: "",
-    province: "",
-    country: "",
-    postal_code: "",
-  });
+
   const [recipient, setRecipient] = useState({
     first_name: "",
     last_name: "",
@@ -72,8 +61,12 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
   const [mood, setMood] = useState("Happy");
   const [proseStyle, setProseStyle] = useState("Ode");
   const [themes, setThemes] = useState([] as string[]);
-  const [from, setFrom] = useState(buyer.first_name);
+  // const [from, setFrom] = useState("buyer.first_name");
   const [chatGPTMessage, setChatGPTMessage] = useState("");
+
+  // console.log('user', user);
+  // console.log('user.first_name', user.first_name);
+
 
   const relationshipOptions = [
     "Partner",
@@ -188,8 +181,8 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
   //TODO - limit this to 5 themes.
   const themeChange = (event: any) => {
     event.target.checked
-      ? setThemes([...themes, event.target.value])
-      : setThemes(themes.filter((theme) => theme !== event.target.value));
+      ? setThemes([...themes, event.target.value]) // counter + 1
+      : setThemes(themes.filter((theme) => theme !== event.target.value)); // counter -1
   };
 
   const route =
@@ -235,12 +228,12 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
                   alert("Please choose a plant!")
                   return
                 }
-                transition(STEP2)}} name="Next step" />
+                transition(STEP3)}} name="Next step" />
             </div>
           </Fragment>
         )}
 
-        {mode === STEP2 && (
+        {/* {mode === STEP2 && (
           <Fragment>
             <div className="index-body">
               <Step2 buyer={buyer} setBuyer={setBuyer} setFrom={setFrom} />
@@ -255,7 +248,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
               <MainButton onChange={() => transition(STEP3)} name="Next step" />
             </div>
           </Fragment>
-        )}
+        )} */}
 
         {mode === STEP3 && (
           <Fragment>
@@ -271,7 +264,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
             <div className="index-nav">
               <SecondaryButton
                 class="secondary-button"
-                onChange={() => transition(STEP2)}
+                onChange={() => transition(STEP1)}
                 name="Previous"
               />
               <div className="spacer"></div>
@@ -299,8 +292,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
                 proseStyle={proseStyle}
                 setProseStyle={setProseStyle}
                 proseOptions={proseOptions}
-                from={from}
-                setFrom={setFrom}
+                user={user}
               />
             </div>
             <div className="index-nav">
@@ -339,7 +331,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
               <Step5
                 chatGPTMessage={chatGPTMessage}
                 recipientFName={recipient.first_name}
-                from={from}
+                user={user}
                 plant={plant}
               />
             </div>
