@@ -141,10 +141,12 @@ a:active {
   color: inherit;
   transform: translateY(-1px);
 }
-.secondary-button:hover .spacer-tag {
+
+.spacer-tag {
   height: 130px;
 }
-.secondary-button:hover .secondary_button {
+
+.secondary_button {
   align-items: center;
   background-clip: padding-box;
   background-color: #000;
@@ -174,30 +176,40 @@ a:active {
   width: -moz-fit-content;
   width: fit-content;
 }
-.secondary-button:hover .secondary_button:hover,
-.secondary-button:hover .secondary_button:focus {
+
+.secondary_button:hover,
+.secondary_button:focus {
   background-color: #000;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
-.secondary-button:hover .secondary_button:hover {
+
+.secondary_button:hover {
   transform: translateY(-1px);
   text-decoration: none !important;
   color: inherit;
 }
-.secondary-button:hover .secondary_button:active {
+
+.secondary_button:active {
   background-color: #000;
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }
-.secondary-button:hover .form-label {
+
+.form-label {
   font-size: 18px;
   line-height: 22px;
 }
-.secondary-button:hover .input-text {
+
+.input-text {
   height: 40px;
   margin-bottom: 22px;
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(20, 19, 19, 0.6);
+  font-family: "Archivo", sans-serif;
 }
-.secondary-button:hover .checkbox {
+
+.checkbox {
   font-weight: 400;
   font-size: 18px;
 } /*# sourceMappingURL=App.css.map */

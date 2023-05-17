@@ -51,6 +51,7 @@ body {
   width: 80%;
   margin: 0 auto;
 }
+
 h1, h2, h3{
   font-family: $pageHeaderFont;
 }
@@ -167,6 +168,7 @@ a, a:hover, a:focus, a:active {
 .secondary-button:hover{
   color: inherit;
   transform: translateY(-1px);
+}
 
 .spacer-tag {
   height: 130px;
@@ -231,10 +233,14 @@ a, a:hover, a:focus, a:active {
 .input-text {
   height: 40px;
   margin-bottom: 22px;
+
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(20, 19, 19, 0.6);
+  font-family: 'Archivo', sans-serif;
 }
 
 .checkbox {
   font-weight: 400;
   font-size: 18px;
-}
 }

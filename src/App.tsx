@@ -30,7 +30,7 @@ function App() {
     })
   },[]);
 
-  // Get current user information
+  // Set current user state
 
   function getCurrentUser() {
     const userStr = localStorage.getItem("user");
@@ -48,13 +48,14 @@ function App() {
 
   }, []);
 
-  function updateStorage(currentUser: React.SetStateAction<null>) {
+  function updateUserStorage(currentUser: React.SetStateAction<null>) {
     setUser(currentUser);
     localStorage.clear();
     localStorage.setItem("user", JSON.stringify(currentUser));
   }
 
-  function clearStorage() {
+  // Remove current user state
+  function clearUserStorage() {
     localStorage.clear();
     setUser(null);
   }
@@ -62,7 +63,7 @@ function App() {
   return (
     <>
      <BrowserRouter>
-    <Header user={user} updateStorage={updateStorage} clearStorage={clearStorage}/>
+    <Header user={user} updateStorage={updateUserStorage} clearStorage={clearUserStorage} products={products}/>
     <Routes>
       <Route path="/" element={<Home products={products}/>} />
       <Route path="/products" element={<Plants products={products} />} /> 

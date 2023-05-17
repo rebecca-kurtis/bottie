@@ -14,28 +14,28 @@ interface _AccountProps {
   user?: any;
 }
 
-export const Account: React.FC<_AccountProps> = (props) => {
+export const Account: React.FC<_AccountProps> = ({closeSide, updateStorage, clearStorage, user}) => {
 
 
   let navigate = useNavigate();
 
   const routeChange = () => {
   let path = `/card`;
-  props.closeSide();
+  closeSide();
   navigate(path);
   window.scrollTo(0, 0);
   };
 
   const logout = () => {
-    props.clearStorage();
+    clearStorage();
     // navigate('/');
-    props.closeSide();
+    closeSide();
 }
 
   return (
     <div className="user">
         <div className="canva-body">
-          <h2>Welcome {props.user.first_name}!</h2>
+          <h2>Welcome {user.first_name}!</h2>
           <br></br>
           <img src={userImage} alt="Confirmation" className="user-image"/> 
           <br></br>
@@ -44,7 +44,7 @@ export const Account: React.FC<_AccountProps> = (props) => {
           <h4>Orders</h4>    
           <br></br>
           <div className="orders-container">
-            <h5>You have no orders yet.</h5>
+            <h5>You have no order yet.</h5>
             {/* <br></br> */}
             <SecondaryButton type="submit" class="secondary-button" name="Let's get started!" onChange={routeChange}/>
           </div>
