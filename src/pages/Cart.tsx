@@ -50,7 +50,7 @@ const callData = () =>
     //get the tax
     setTax(Math.round((total * .05/100) * 100) / 100);
     console.log(tax);
-  }). catch (error => {
+  }).catch (error => {
     console.log(error);
   });
 
