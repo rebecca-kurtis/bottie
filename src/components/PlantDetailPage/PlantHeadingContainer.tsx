@@ -49,7 +49,7 @@ export const PlantHeadingContainer: React.FC<PlantHeadingContainerProps> = ({
           <li>{product?.intended_for[2]}</li>
           <li>{product?.intended_for[3]}</li>
         </ul>
-        <button className="main_button">Start with Bottie</button>
+        <a href="/card" className="main_button">Start with Bottie</a>
       </div>
     </div>
   );

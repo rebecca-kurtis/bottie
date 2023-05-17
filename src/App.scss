@@ -82,13 +82,21 @@ p {
 }
 
 .white-text{
-  color: #ffffff;
+  color: #ffffff; 
+}
+
+.white-text:hover{
+  color: white;
 }
 
 li {
   line-height: 24px;
   color: rgba(20, 19, 19, 0.6);
+}
 
+a, a:hover, a:focus, a:active {
+  text-decoration: none !important;
+  color: inherit;
 }
 
 .main_button {
@@ -131,6 +139,8 @@ li {
 
 .main_button:hover {
   transform: translateY(-1px);
+  text-decoration: none !important;
+  color: white;
 }
 
 .main_button:active {
@@ -150,12 +160,13 @@ li {
   display: flex;
   align-items: center;
   text-align: center;
-  text-decoration-line: underline;
-  text-transform: uppercase;
-  
-  // margin-left: 20px;
-  // margin-right: 20px;
+  text-decoration: underline;
+  text-transform: uppercase; 
 }
+
+.secondary-button:hover{
+  color: inherit;
+  transform: translateY(-1px);
 
 .spacer-tag {
   height: 130px;
@@ -189,9 +200,6 @@ li {
   touch-action: manipulation;
   vertical-align: baseline;
   width: fit-content;
-  
-  margin-left: 20px;
-  margin-right: 20px;
 }
 
 .secondary_button:hover,
@@ -202,6 +210,9 @@ li {
 
 .secondary_button:hover {
   transform: translateY(-1px);
+  text-decoration: none !important;
+  color: inherit;
+
 }
 
 .secondary_button:active {
@@ -225,4 +236,5 @@ li {
 .checkbox {
   font-weight: 400;
   font-size: 18px;
+}
 }
