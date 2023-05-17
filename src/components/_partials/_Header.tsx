@@ -1,6 +1,9 @@
 import React from "react";
 import { useCallback, useState } from "react";
 import { Login } from "./_Login";
+import { Account } from "./_Account";
+import { Register } from "./Register";
+import { MiniCart } from "./_MiniCart";
 
 // import hooks
 import useVisualMode from "../../hooks/useVisualMode";
@@ -23,17 +26,17 @@ import { COffcanvasBody } from '@coreui/react'
 import { COffcanvasHeader } from '@coreui/react'
 import { COffcanvasTitle } from '@coreui/react'
 import { CCloseButton } from "@coreui/react";
-import { Account } from "./_Account";
-import { Register } from "./Register";
+
 
 interface _HeaderProps {
   user?: any;
   updateStorage: any;
   clearStorage: any;
+  products:any;
 }
 
 
-export const Header: React.FC<_HeaderProps> = (props) => {
+export const Header: React.FC<_HeaderProps> = ({user, updateStorage, clearStorage, products}) => {
   const className = "scroll";
   const scrollTrigger = 60;
 
@@ -52,6 +55,7 @@ export const Header: React.FC<_HeaderProps> = (props) => {
   const LOGIN = "LOGIN";
   const REGISTER = "REGISTER";
   const ACCOUNT = "ACCOUNT";
+  const CART = "CART";
 
   const { mode, transition, back } = useVisualMode(LOGIN)
 
@@ -60,6 +64,16 @@ export const Header: React.FC<_HeaderProps> = (props) => {
   const openSide = useCallback(() => setVisible(true), [])
   const closeSide = useCallback(() => setVisible(false), [])
   const toggleSide = useCallback(() => setVisible(!visible), [visible])
+
+  const toggleAccount = () => {
+    transition(ACCOUNT);
+    setVisible(true);
+  }
+
+  const toggleCart = () => {
+    transition(CART);
+    setVisible(true);
+  }
 
   return (
     
@@ -79,7 +93,7 @@ export const Header: React.FC<_HeaderProps> = (props) => {
           </a>
         </nav>
         <div className="nav user-icons">
-          {props.user === null &&
+          {user === null &&
             <div className="nav">
                     <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
                     <COffcanvas placement="end" visible={visible} onHide={closeSide}>
@@ -89,7 +103,7 @@ export const Header: React.FC<_HeaderProps> = (props) => {
                       </COffcanvasHeader>
                       <COffcanvasBody>
                         {mode === LOGIN && (
-                          <Login closeSide={closeSide} onChange={() =>transition(REGISTER)} updateStorage={props.updateStorage}/>
+                          <Login closeSide={closeSide} onChange={() =>transition(REGISTER)} updateStorage={updateStorage}/>
                         )}   
                         {mode === REGISTER && (
                           <Register onChange={() => transition(LOGIN)} />
@@ -98,22 +112,26 @@ export const Header: React.FC<_HeaderProps> = (props) => {
                     </COffcanvas>
             </div>
           } 
-          {props.user !== null &&
+          {user !== null &&
             <div className="nav">
-                <p className="userName">Hello {props.user.first_name} </p>
-                <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
-                <FontAwesomeIcon className="icon" icon={faCartShopping} />
+                <p className="userName">Hello {user.first_name} </p>
+                <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleAccount} />
+                <FontAwesomeIcon className="icon" icon={faCartShopping} onClick={toggleCart} />
                     <COffcanvas placement="end" visible={visible} onHide={closeSide}>
                       <COffcanvasHeader>
-                        <COffcanvasTitle className="title"></COffcanvasTitle>
                         <CCloseButton className="text-reset" onClick={closeSide} />
                       </COffcanvasHeader>
                       <COffcanvasBody>
-                          <Account closeSide={closeSide} updateStorage={props.updateStorage} clearStorage={props.clearStorage} user={props.user} />
+                        {mode === ACCOUNT && (
+                          <Account closeSide={closeSide} updateStorage={updateStorage} clearStorage={clearStorage} user={user} />
+                        )}
+                        {mode === CART && (
+                          <MiniCart products={products} closeSide={closeSide}/>
+                        )}
                       </COffcanvasBody>
                     </COffcanvas>
-
             </div>
+            
           }
         </div> 
       </div>
