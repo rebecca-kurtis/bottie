@@ -24,8 +24,7 @@ interface Step4Props {
   proseStyle: string;
   setProseStyle: any;
   proseOptions: any;
-  from: string;
-  setFrom: any;
+  user?: any;
 }
 
 export const Step4: React.FC<Step4Props> = ({
@@ -42,8 +41,7 @@ export const Step4: React.FC<Step4Props> = ({
   proseStyle,
   setProseStyle,
   proseOptions,
-  from,
-  setFrom,
+  user
 }) => {
   
   return (
@@ -84,7 +82,7 @@ export const Step4: React.FC<Step4Props> = ({
                 selectOptions={themeOptions}
               />
               <FormSelection
-                labelText="What Style of Poem? (need to build a pop up here to explain)"
+                labelText="What Style of Poem?"
                 name="proseStyle"
                 value={proseStyle}
                 onChange={(proseStyle) =>
@@ -93,13 +91,13 @@ export const Step4: React.FC<Step4Props> = ({
                 selectOptions={proseOptions}
               />
 
-              <FormTextBox
+              {/* <FormTextBox
                 labelText="Would you like it to be from a different name?"
                 name="from"
-                value={from}
-                placeholder={from}
-                onChange={(from) => setFrom(from.target.value)}
-              />
+                value={user.first_name}
+                placeholder={user.first_name}
+                // onChange={(from) => setFrom(from.target.value)}
+              /> */}
             </form>
         </div>
       </div>

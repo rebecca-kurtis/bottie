@@ -8,10 +8,7 @@ interface Step6Props {
   plant?: any;
 }
 
-export const Step6: React.FC<Step6Props> = (props) => {
-
-   const plant = props.plant;
-   const user = props.user;
+export const Step6: React.FC<Step6Props> = ({user, plant}) => {
 
     return (
       <div>
@@ -23,7 +20,7 @@ export const Step6: React.FC<Step6Props> = (props) => {
           <div className="colonne">
             <h3>You</h3>
             <br></br>
-            {props.user !== null &&
+            {user !== null &&
              <div>
                  <p className="form-label">Name: {user.first_name} {user.last_name}</p>
                  <p className="form-label">Email: {user.email}</p>

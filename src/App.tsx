@@ -13,25 +13,6 @@ import { CardIndex } from './pages/CardIndex';
 import { Profile } from './pages/Profile';
 
 
-// type productsType = [{
-//   product_id: number;
-//   drawing_url: string;
-//   image_url:string;
-//   name: string;
-//   latin_name:string;
-//   description:string;
-//   intended_for: string[];
-//   temp:string;
-//   water: string;
-//   height: string;
-//   sun: string;
-//   sun_description:string;
-//   water_description:string;
-//   price_in_cents:number;
-//   invetory:number;
-//   modified_date:Date;
-// }]
-
 function App() {
 
   // Product API call
@@ -52,6 +33,7 @@ function App() {
 
   function getCurrentUser() {
     const userStr = localStorage.getItem("user");
+    console.log(userStr)
     if (userStr) return JSON.parse(userStr);
 
     return null;

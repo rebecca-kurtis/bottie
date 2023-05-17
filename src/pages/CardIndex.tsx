@@ -72,8 +72,12 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
   const [mood, setMood] = useState("Happy");
   const [proseStyle, setProseStyle] = useState("Ode");
   const [themes, setThemes] = useState([] as string[]);
-  const [from, setFrom] = useState(buyer.first_name);
+  const [from, setFrom] = useState("buyer.first_name");
   const [chatGPTMessage, setChatGPTMessage] = useState("");
+
+  // console.log('user', user);
+  // console.log('user.first_name', user.first_name);
+
 
   const relationshipOptions = [
     "Partner",
@@ -235,7 +239,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
                   alert("Please choose a plant!")
                   return
                 }
-                transition(STEP2)}} name="Next step" />
+                transition(STEP3)}} name="Next step" />
             </div>
           </Fragment>
         )}
@@ -271,7 +275,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
             <div className="index-nav">
               <SecondaryButton
                 class="secondary-button"
-                onChange={() => transition(STEP2)}
+                onChange={() => transition(STEP1)}
                 name="Previous"
               />
               <div className="spacer"></div>
@@ -299,8 +303,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
                 proseStyle={proseStyle}
                 setProseStyle={setProseStyle}
                 proseOptions={proseOptions}
-                from={from}
-                setFrom={setFrom}
+                user={user}
               />
             </div>
             <div className="index-nav">
@@ -339,7 +342,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
               <Step5
                 chatGPTMessage={chatGPTMessage}
                 recipientFName={recipient.first_name}
-                from={from}
+                user={user}
                 plant={plant}
               />
             </div>
