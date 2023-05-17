@@ -1,9 +1,9 @@
 import React from "react";
-import { User } from "./_User";
+import { useCallback, useState } from "react";
+import { Login } from "./_Login";
 
-//import offcanva
-// import '@coreui/coreui/dist/css/coreui.min.css'
-// import 'bootstrap/dist/css/bootstrap.min.css'
+// import hooks
+import useVisualMode from "../../hooks/useVisualMode";
 
 //import photos
 import logo from "./images/BottieLogo.png";
@@ -13,12 +13,27 @@ import plantIcon from "./images/plant_icon.png";
 //import icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 import "./Header.css";
 
-interface _HeaderProps {}
+//import COffcanvas
+import { COffcanvas } from '@coreui/react';
+import { COffcanvasBody } from '@coreui/react'
+import { COffcanvasHeader } from '@coreui/react'
+import { COffcanvasTitle } from '@coreui/react'
+import { CCloseButton } from "@coreui/react";
+import { Account } from "./_Account";
+import { Register } from "./Register";
 
-export const Header: React.FC<_HeaderProps> = () => {
+interface _HeaderProps {
+  user?: any;
+  updateStorage: any;
+  clearStorage: any;
+}
+
+
+export const Header: React.FC<_HeaderProps> = (props) => {
   const className = "scroll";
   const scrollTrigger = 60;
 
@@ -34,7 +49,20 @@ export const Header: React.FC<_HeaderProps> = () => {
     }
   };
 
+  const LOGIN = "LOGIN";
+  const REGISTER = "REGISTER";
+  const ACCOUNT = "ACCOUNT";
+
+  const { mode, transition, back } = useVisualMode(LOGIN)
+
+  const [visible, setVisible] = useState(false)
+  
+  const openSide = useCallback(() => setVisible(true), [])
+  const closeSide = useCallback(() => setVisible(false), [])
+  const toggleSide = useCallback(() => setVisible(!visible), [visible])
+
   return (
+    
     <header>
       <div className="nav-container">
         <a href="/">
@@ -50,11 +78,44 @@ export const Header: React.FC<_HeaderProps> = () => {
             <img src={plantIcon} alt="Plant Icon" className="nav-icon" />
           </a>
         </nav>
-        <div className="user-icons">
-          <User/>
-          <FontAwesomeIcon className="icon" icon={faCartShopping} />
-        </div>
-        
+        <div className="nav user-icons">
+          {props.user === null &&
+            <div className="nav">
+                    <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
+                    <COffcanvas placement="end" visible={visible} onHide={closeSide}>
+                      <COffcanvasHeader>
+                        <COffcanvasTitle className="title"></COffcanvasTitle>
+                        <CCloseButton className="text-reset" onClick={closeSide} />
+                      </COffcanvasHeader>
+                      <COffcanvasBody>
+                        {mode === LOGIN && (
+                          <Login closeSide={closeSide} onChange={() =>transition(REGISTER)} updateStorage={props.updateStorage}/>
+                        )}   
+                        {mode === REGISTER && (
+                          <Register onChange={() => transition(LOGIN)} />
+                        )}    
+                      </COffcanvasBody>
+                    </COffcanvas>
+            </div>
+          } 
+          {props.user !== null &&
+            <div className="nav">
+                <p className="userName">Hello {props.user.first_name} </p>
+                <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
+                <FontAwesomeIcon className="icon" icon={faCartShopping} />
+                    <COffcanvas placement="end" visible={visible} onHide={closeSide}>
+                      <COffcanvasHeader>
+                        <COffcanvasTitle className="title"></COffcanvasTitle>
+                        <CCloseButton className="text-reset" onClick={closeSide} />
+                      </COffcanvasHeader>
+                      <COffcanvasBody>
+                          <Account closeSide={closeSide} updateStorage={props.updateStorage} clearStorage={props.clearStorage} user={props.user} />
+                      </COffcanvasBody>
+                    </COffcanvas>
+
+            </div>
+          }
+        </div> 
       </div>
     </header>
   );

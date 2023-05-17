@@ -32,7 +32,7 @@ export const FormCheckBoxes: React.FC<FormCheckBoxesProps> = ({
   });
 
   return (
-    <div>
+    <div className="checkbox-div">
       <h4> {groupText}</h4>
       <ul className="checkbox-list">{mappedOptions}</ul>
     </div>

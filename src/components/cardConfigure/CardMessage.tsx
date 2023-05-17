@@ -1,12 +1,12 @@
 import React from "react";
 
 interface CardMessageProps{
-  recipiant: string;
+  recipient: string;
   message: string;
   from: string;
 }
 
-export const CardMessage: React.FC<CardMessageProps> = ({recipiant, message, from}) => {
+export const CardMessage: React.FC<CardMessageProps> = ({recipient, message, from}) => {
   // first break each paragraph into an item in an array
   const verseArray = message.split(/\n\n/g);
   let pnum = 0;
@@ -26,8 +26,8 @@ export const CardMessage: React.FC<CardMessageProps> = ({recipiant, message, fro
   });
 
   return (
-    <div>
-      <h4>Dear {recipiant},</h4>
+    <div className="card-message-para">
+      <h4>Dear {recipient},</h4>
       {finalMessage}
       <h4>From {from} </h4>
     </div>

@@ -13,6 +13,7 @@ dotenv.config()
 app.use(cors());
 app.use(express.json());
 
+// Products API
 app.get('/products', (req, res) => {
   db.query('SELECT * FROM products', (error, results) => {
     if (error) {
@@ -20,36 +21,6 @@ app.get('/products', (req, res) => {
     }
     res.status(200).send(results.rows);
   })
-});
-
-app.get('/cart/:id', (req, res) => {
-  userId = req.params.id;
-  db.query(
-    `SELECT cart_items.cart_item_id AS cart_item, 
-    products.name AS product_name,
-    products.drawing_url AS product_drawing, 
-    products.price_in_cents AS product_price,
-    CONCAT (users.first_name, ' ', users.last_name) AS user_name,
-    CONCAT (recipients.first_name, ' ', recipients.last_name) AS rName,
-    recipients.address AS rAddress,
-    recipients.city AS rCity,
-    recipients.state AS rState,
-    recipients.postal_code AS rPostal_code
-    FROM cart_items 
-    JOIN carts on cart_items.cart_id = carts.cart_id
-    JOIN orders on carts.order_id = orders.order_id
-    JOIN users on orders.user_id = users.user_id
-    JOIN products on cart_items.product_id = products.product_id
-    JOIN recipients on cart_items.recipient_id = recipients.recipient_id
-    WHERE users.user_id = ${userId} AND orders.completed = FALSE
-    GROUP BY user_name, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price, product_drawing 
-    ORDER BY cart_item;`
-    , (error, results) => {
-      if (error) {
-        throw error;
-      }
-      res.status(200).send(results.rows);
-    })
 });
 
 app.post('/chatGPT', (req, res) => {

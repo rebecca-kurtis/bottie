@@ -1,0 +1,52 @@
+@import '../Variables.scss';
+
+.card-preview-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // height: 700px;
+  justify-content: center;
+}
+
+.card-image {
+  padding-bottom: 20px;
+}
+
+.card-image-portion {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: $lightYellow;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  justify-content: center;
+}
+
+.card-image-portion h3 {
+  line-height: 35px;
+  padding-left: 15px;
+}
+
+.card-message {
+  display: flex;
+  flex-direction: column;
+  width:50%;
+  padding-left: 30px;
+  padding-top: 30px;
+  background-color: $lightBlue;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.card-message-para h4 {
+  line-height: 60px;
+}
+
+.card-logo{
+  display: flex;
+  height: 60px;
+  width:fit-content;
+  margin-top: 0px;
+}
