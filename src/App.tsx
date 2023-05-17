@@ -66,14 +66,14 @@ function App() {
 
   }, []);
 
-  function updateStorage(currentUser: React.SetStateAction<null>) {
+  function updateUserStorage(currentUser: React.SetStateAction<null>) {
     setUser(currentUser);
     localStorage.clear();
     localStorage.setItem("user", JSON.stringify(currentUser));
   }
 
   // Remove current user state
-  function clearStorage() {
+  function clearUserStorage() {
     localStorage.clear();
     setUser(null);
   }
@@ -81,7 +81,7 @@ function App() {
   return (
     <>
      <BrowserRouter>
-    <Header user={user} updateStorage={updateStorage} clearStorage={clearStorage} products={products}/>
+    <Header user={user} updateStorage={updateUserStorage} clearStorage={clearUserStorage} products={products}/>
     <Routes>
       <Route path="/" element={<Home products={products}/>} />
       <Route path="/products" element={<Plants products={products} />} /> 

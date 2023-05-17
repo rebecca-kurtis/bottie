@@ -57,13 +57,18 @@ export const Header: React.FC<_HeaderProps> = ({user, updateStorage, clearStorag
   const ACCOUNT = "ACCOUNT";
   const CART = "CART";
 
-  const { mode, transition, back } = useVisualMode(LOGIN)
+  const { mode, transition, back } = useVisualMode(user? ACCOUNT : LOGIN)
 
   const [visible, setVisible] = useState(false)
   
   const openSide = useCallback(() => setVisible(true), [])
   const closeSide = useCallback(() => setVisible(false), [])
   const toggleSide = useCallback(() => setVisible(!visible), [visible])
+
+  const toggleLogin = () => {
+    transition(LOGIN);
+    setVisible(true);
+  }
 
   const toggleAccount = () => {
     transition(ACCOUNT);
@@ -95,7 +100,7 @@ export const Header: React.FC<_HeaderProps> = ({user, updateStorage, clearStorag
         <div className="nav user-icons">
           {user === null &&
             <div className="nav">
-                    <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
+                    <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleLogin} />
                     <COffcanvas placement="end" visible={visible} onHide={closeSide}>
                       <COffcanvasHeader>
                         <COffcanvasTitle className="title"></COffcanvasTitle>
@@ -103,7 +108,7 @@ export const Header: React.FC<_HeaderProps> = ({user, updateStorage, clearStorag
                       </COffcanvasHeader>
                       <COffcanvasBody>
                         {mode === LOGIN && (
-                          <Login closeSide={closeSide} onChange={() =>transition(REGISTER)} updateStorage={updateStorage}/>
+                          <Login toggleAccount={toggleAccount} onChange={() =>transition(REGISTER)} updateStorage={updateStorage}/>
                         )}   
                         {mode === REGISTER && (
                           <Register onChange={() => transition(LOGIN)} />

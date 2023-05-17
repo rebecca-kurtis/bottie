@@ -8,12 +8,12 @@ import "./User.css";
 
 interface _LoginProps {
   onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  closeSide: () => void;
+  toggleAccount: () => void;
   updateStorage: any;
 }
 
 
-export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage}) => {
+export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateStorage}) => {
 
   const [user, setUser] = useState({
     first_name: "",
@@ -32,23 +32,6 @@ export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage
     setUser({...user, [key]: value})
   }
 
-
-  // const canva = useLoginToggle()
-
-  // let navigate = useNavigate();
-
-  // const routeChange = () => {
-  // let path = `/profile`;
-  // navigate(path);
-  // window.scrollTo(0, 0);
-  // };
-
-  // function getCurrentUser() {
-  //   const userStr = localStorage.getItem("user");
-  //   if (userStr) return JSON.parse(userStr)
-  //   return null;
-  // }
-
   const usersRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/login"
 
   const handleUserSubmit = (e: { preventDefault: () => void; }) => {
@@ -61,11 +44,7 @@ export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage
   
       updateStorage(data[0]);
       setUser(data[0]);
-
-      setTimeout(() => {
-          // closeSide();
-          // navigate('/');
-      }, 500);
+      toggleAccount();
 
       return response.data
     })
