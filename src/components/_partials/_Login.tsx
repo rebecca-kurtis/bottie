@@ -35,19 +35,19 @@ export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage
 
   // const canva = useLoginToggle()
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
-  const routeChange = () => {
-  let path = `/profile`;
-  navigate(path);
-  window.scrollTo(0, 0);
-  };
+  // const routeChange = () => {
+  // let path = `/profile`;
+  // navigate(path);
+  // window.scrollTo(0, 0);
+  // };
 
-  function getCurrentUser() {
-    const userStr = localStorage.getItem("user");
-    if (userStr) return JSON.parse(userStr)
-    return null;
-  }
+  // function getCurrentUser() {
+  //   const userStr = localStorage.getItem("user");
+  //   if (userStr) return JSON.parse(userStr)
+  //   return null;
+  // }
 
   const usersRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/login"
 
@@ -63,8 +63,8 @@ export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage
       setUser(data[0]);
 
       setTimeout(() => {
-          closeSide();
-          navigate('/');
+          // closeSide();
+          // navigate('/');
       }, 500);
 
       return response.data

@@ -80,7 +80,7 @@ export const Header: React.FC<_HeaderProps> = (props) => {
         </nav>
         <div className="nav user-icons">
           {props.user === null &&
-            <div>
+            <div className="nav">
                     <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
                     <COffcanvas placement="end" visible={visible} onHide={closeSide}>
                       <COffcanvasHeader>
@@ -99,12 +99,10 @@ export const Header: React.FC<_HeaderProps> = (props) => {
             </div>
           } 
           {props.user !== null &&
-            <div>
-              <div className="nav-link">
+            <div className="nav">
                 <p className="userName">Hello {props.user.first_name} </p>
                 <FontAwesomeIcon className="icon" icon={faUser} onClick={toggleSide} />
                 <FontAwesomeIcon className="icon" icon={faCartShopping} />
-              </div>
                     <COffcanvas placement="end" visible={visible} onHide={closeSide}>
                       <COffcanvasHeader>
                         <COffcanvasTitle className="title"></COffcanvasTitle>
@@ -117,8 +115,7 @@ export const Header: React.FC<_HeaderProps> = (props) => {
 
             </div>
           }
-        </div>
-         
+        </div> 
       </div>
     </header>
   );

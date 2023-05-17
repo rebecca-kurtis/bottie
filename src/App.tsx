@@ -11,6 +11,7 @@ import { Plants } from './pages/Plants';
 import { PlantDetail } from './pages/PlantDetail';
 import { CardIndex } from './pages/CardIndex';
 import { Profile } from './pages/Profile';
+import { CartConfirm } from './pages/CartConfirm';
 
 
 // type productsType = [{
@@ -86,6 +87,7 @@ function App() {
       <Route path="/products/:name" element={<PlantDetail products={products} />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/card" element={<CardIndex products={products} user={user}/>} />
+      <Route path="/confirmation" element={<CartConfirm/>} />
       {/* <Route path="/card/configure" element={<CardConfigure />} /> */}
     </Routes>
   </BrowserRouter>
