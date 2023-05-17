@@ -21,6 +21,7 @@ Header {
   min-height: 10vh;
   justify-content: space-between;
   padding-top: 20px;
+  
 }
 
 .nav {
@@ -29,6 +30,7 @@ Header {
   font-family: $pageHeaderFont;
   font-size: 20px;
   padding: 1.5em;
+  
 }
 .nav-link{
   display: flex;
@@ -37,6 +39,7 @@ Header {
   padding-right: 25px;
   text-decoration: none;
   color: $navTextColour;
+  
 }
 
 .nav-link:hover{
@@ -55,7 +58,7 @@ Header {
   flex-direction: row;
   align-items: center;
   padding: 1.5em 55px;
-  margin-top: 20px;
+  // margin-top: 20px;
 }
 
 .icon {
