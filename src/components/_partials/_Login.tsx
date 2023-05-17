@@ -15,7 +15,7 @@ interface _LoginProps {
 
 export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage}) => {
 
-  const [user, setUser] = useState({
+  const [form, setForm] = useState({
     first_name: "",
     last_name: "",
     email: "",
@@ -29,7 +29,7 @@ export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage
 
   // Set the value of a single element of the object
   const setValue = (key: any, value: any) => {
-    setUser({...user, [key]: value})
+    setForm({...form, [key]: value})
   }
 
 
@@ -53,14 +53,15 @@ export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage
 
   const handleUserSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    setUser(user)
+    setForm(form)
 
-    axios.post(usersRoute, user)
+    axios.post(usersRoute, form)
     .then((response) => {
       const data = response.data;
   
       updateStorage(data[0]);
-      setUser(data[0]);
+      console.log('login-user', data[0])
+      setForm(data[0]);
 
       setTimeout(() => {
           // closeSide();
@@ -90,7 +91,7 @@ export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage
         <input className="input-text"
             type="text"
             name="email"
-            value={user.email}
+            value={form.email}
             placeholder="Enter your email"
             onChange={e => setValue("email", e.target.value)}
             required>
@@ -100,7 +101,7 @@ export const Login: React.FC<_LoginProps> = ({onChange, closeSide, updateStorage
         <input className="input-text"
             type="password"
             name="password"
-            value={user.password}
+            value={form.password}
             placeholder="Enter your password"
             onChange={e => setValue("password", e.target.value)}
             required>
