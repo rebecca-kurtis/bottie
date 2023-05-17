@@ -23,6 +23,102 @@ app.get('/products', (req, res) => {
   })
 });
 
+app.get('/cart/:id', (req, res) => {
+  userId = req.params.id;
+  db.query(
+    `SELECT cart_items.cart_item_id AS cart_item, 
+    products.name AS product_name,
+    products.drawing_url AS product_drawing, 
+    products.price_in_cents AS product_price,
+    CONCAT (users.first_name, ' ', users.last_name) AS user_name,
+    CONCAT (recipients.first_name, ' ', recipients.last_name) AS rName,
+    recipients.address AS rAddress,
+    recipients.city AS rCity,
+    recipients.state AS rState,
+    recipients.postal_code AS rPostal_code
+    FROM cart_items 
+    JOIN carts on cart_items.cart_id = carts.cart_id
+    JOIN orders on carts.order_id = orders.order_id
+    JOIN users on orders.user_id = users.user_id
+    JOIN products on cart_items.product_id = products.product_id
+    JOIN recipients on cart_items.recipient_id = recipients.recipient_id
+    WHERE users.user_id = ${userId} AND orders.completed = FALSE
+    GROUP BY user_name, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price, product_drawing 
+    ORDER BY cart_item;`
+    , (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).send(results.rows);
+    })
+});
+//Users API
+app.get('/users', (req, res) => {
+  db.query('SELECT * FROM users;', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(200).send(results.rows);
+  })
+});
+
+// Login API
+app.post('/login', (req, res) => {
+  const email = req.body.email;
+  // console.log("request:",req);
+  // const password = req.body.password;
+
+  // if ((!email) || (!password)) {
+  //   //no name and/or email and/or password provided
+  //   return res.status(400).send(`<p>Please enter an email and password!</p>`);
+  // }
+  db.query('SELECT * FROM users WHERE email = $1', [email], (error, result) => {
+    if (error) {
+      throw error;
+    }
+    console.log("result:", result);
+    console.log("email:", email)
+    res.status(200).send(result.rows);
+    // res.cookie('user_id', result.user.id);
+    // res.cookie('first_name', result.user.first_name);
+  })
+});
+// router.post('/login', (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
+
+//   if ((!email) || (!password)) {
+//     //no name and/or email and/or password provided
+//     return res.status(400).send(`<p>Please enter an email and password!</p><button onclick="history.back()">Go Back</button>`);
+//   }
+
+//   db.getUser(email)
+//     .then(user => {
+//       console.log("returned user", user);
+//       if (user) {
+//         res.cookie('user_id', user.id);
+//         res.cookie('first_name', user.name);
+//       } else {
+//         console.log("user doesn't exist");
+//         // res.redirect('/users/login');
+//         return res.status(400).send(`<p>User does not exist!</p><button onclick="history.back()">Go Back</button>`);
+//       }
+//     })
+//     .catch(e => res.send(e));
+
+// //   //haven't checked password
+// });
+
+
+
+// Chat GPT API
+
+
+
+
+
+
+
 app.post('/chatGPT', (req, res) => {
   const relationship = req.body.relationship;
   const proseStyle = req.body.proseStyle;

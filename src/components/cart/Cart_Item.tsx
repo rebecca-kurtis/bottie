@@ -21,7 +21,7 @@ export const CartItem: React.FC<CartItemProps> = ({cartItem}) => {
   const price = (cartItem.product_price/100).toString();
   return (
     
-      <div key={cartItem.cart_item} className='row align-items-start'>
+      <div className='row align-items-start'>
               <hr />
       <div className='cart-image col'>
       <div className='row align-items-start'>
