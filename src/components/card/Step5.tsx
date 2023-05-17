@@ -8,15 +8,15 @@ import { CardMessage } from "../CardConfigure/CardMessage";
 interface Step5Props {
   chatGPTMessage: string;
   recipientFName: string;
-  from: string;
   plant: any;
+  user?: any;
 }
 
 export const Step5: React.FC<Step5Props> = ({
   chatGPTMessage,
   recipientFName,
-  from,
   plant,
+  user
 }) => {
   const plantName = plant.plant_name;
   const imageURL = plant.image_url;
@@ -33,14 +33,14 @@ export const Step5: React.FC<Step5Props> = ({
             <img src={logo} alt="Bottie Logo" className="card-logo" />
             <img className="card-image" src={imageURL} alt={plantName}></img>
             <h3>Here is a {plantName}</h3>
-            <h3>from {from}</h3>
+            <h3>from {user.first_name}</h3>
           </div>
 
           <div className="card-message">
             <CardMessage
               message={chatGPTMessage}
               recipient={recipientFName}
-              from={from}
+              from={user.first_name}
             />
           </div>
         </div>
