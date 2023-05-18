@@ -11,48 +11,51 @@ import { HeroBanner } from "../components/PlantsPage/HeroBanner";
 import { PageTitle } from "../components/_partials/_PageTitle";
 import { Summary } from "../components/cart/Summary";
 
-interface CartProps {}
+interface CartProps {
+}
 
 export const Cart: React.FC<CartProps> = () => { 
   const [userId, setUserId] = useState(3); //This needs to be taken from the props of user once set.
   const [cart, setCart] = useState([] as any[]);
-  const [total, setTotal] = useState (0);
-  const [tax, setTax] = useState (0);
+  const [total, setTotal] = useState(0);
+  const [totalandTax, setTotalandTax] = useState(0);
+  const [tax, setTax] = useState(0);
   const route = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart/" + userId;
 
-  //on page load check to see if the user has any unfinished orders
-  //if unfinished return the cart items
-  //else cart items
+
+  const sumArray = (arr: number[]) => {
+    const totalReduce = arr.reduce((a, b) => {
+      return (a+b);
+    });
+    return totalReduce;
+  }
+
+  //on page load check to see if the user has any unfinished orders and returns them
 
   useEffect(() => {
-    callData();
+    console.log(userId);
+    if (userId) {
+    axios.get(route)
+      .then(response => {
+        const cartData = response.data;
+        setCart(cartData);
+        const totalSum = cartData.map((cartItem:any) => cartItem.product_price);
+        const total = Math.round(sumArray(totalSum)) / 100;
+        setTotal(Math.round(total/100))
+        const tax = Math.round((total * .05) * 100) / 100;
+        setTax(tax);
+        const totalandTax = Math.round((total + tax) * 100) / 100;
+        setTotalandTax(totalandTax);
+      })
+      .catch (error => {
+        console.log(error);
+      });
+    }
   },[]);
 
-const callData = () =>
-  axios.get(route)
-  .then(response => {
-    const cartItems = [...response.data];
-    setCart(cartItems);
-    console.log(cart);
-    const totalSum = [];
-    for (let i in cart) {
-      totalSum.push(cart[i].product_price);
-    }
-    console.log(totalSum);
-    return totalSum
-  })
-  .then (totalSum => { 
-    // get the total
-    setTotal(totalSum.reduce((a, b) => {
-      return (a+b) / 100;
-    })) 
-    console.log(total);
-    //get the tax
-    setTax(Math.round((total * .05/100) * 100) / 100);
-    console.log(tax);
-  }).catch (error => {
-    console.log(error);
-  });
+
+
+ 
 
   return (
   
@@ -82,7 +85,7 @@ const callData = () =>
         </ul>
         <p><span>Taxes</span><span>${tax}</span></p>
         <hr />
-        <h5><span>Estimated Total $</span><span>{Math.round(total+tax) / 100}</span></h5>
+        <h5><span>Estimated Total $</span><span>{totalandTax}</span></h5>
         <div>STRIPE STUFF</div>
       </div>
       </div>
