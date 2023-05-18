@@ -93,10 +93,12 @@ a, a:hover, a:focus, a:active {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
+   -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
+  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -165,10 +167,12 @@ a, a:hover, a:focus, a:active {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
+   -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
+  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }

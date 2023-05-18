@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './Card.css';
 
 interface Step1CardProps {
+  id: number;
   name: string;
   description: string;
   price: string;
@@ -11,8 +12,7 @@ interface Step1CardProps {
   setPlant: any;
 }
 
-export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, imageSrc, plant, setPlant}) => {
-  
+export const Step1Card: React.FC<Step1CardProps> = ({id, name, description, price, imageSrc, plant, setPlant}) => {
   let navigate = useNavigate();
 
   const routeChange = () => {
@@ -39,6 +39,7 @@ export const Step1Card: React.FC<Step1CardProps> = ({name, description, price, i
             (event) => {
               setPlant({
               ...plant,
+              product_id: id,
               plant_name: (event.target as HTMLInputElement).value,
               image_url: imageSrc,
               description: description,
