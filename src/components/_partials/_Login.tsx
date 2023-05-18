@@ -43,7 +43,7 @@ export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateStor
       const data = response.data;
   
       updateStorage(data[0]);
-      setUser(data[0]);
+      setForm(data[0]);
       toggleAccount();
       console.log('login-user', data[0])
       setForm(data[0]);
