@@ -10,7 +10,8 @@ interface SummaryProps {
 
 export const Summary: React.FC<SummaryProps> = ({cartItem}) => {
   return(
+    <div></div>
 
-      <li className='cart-summary'><span>{cartItem.product_name} $</span><span>{cartItem.product_price / 100}</span></li>
+      // <p className='cart-summary'>{cartItem.product_name} ${cartItem.product_price / 100}</p>
   )
 };

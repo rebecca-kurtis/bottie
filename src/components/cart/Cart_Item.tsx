@@ -20,31 +20,28 @@ interface CartItemProps {
 export const CartItem: React.FC<CartItemProps> = ({cartItem}) => {
   const price = (cartItem.product_price/100).toString();
   return (
-    
-      <div className='row align-items-start'>
-              <hr />
-      <div className='cart-image col'>
-      <div className='row align-items-start'>
-          <div className='cart-image col'>
-          <img src={cartItem.product_drawing} />
-        </div>
-        </div>
-      </div>
+    <div>
+      <div className='cart-item'>
+   
+        <img className='cart-image' src={cartItem.product_drawing} />
+
         <div className='product_details col'>
-          <p className='cart-description'>{cartItem?.product_name}<br/>
-         ${price}</p>
+          <h4>{cartItem?.product_name}</h4>
+          <h5>${price}</h5>
         </div>
 
-        <div className='recipient_details col'>
-          <h5>Recipient</h5>
-          <p className='cart-description'><b>Name:</b><br/>
-          {cartItem?.rname}</p>
-          <p className='cart-description'><b>Address:</b><br />
-          {cartItem?.raddress}<br />
-          {cartItem?.rcity}, {cartItem?.rstate} <br />
-          {cartItem?.rpostal_code}
+        <div className='product_details col'>
+          <h4>Recipient</h4>
+          <p className='canva_body'><b>Name:</b><br/>{cartItem?.rname}</p>
+          <p className='canva_body'><b>Address:</b><br />
+            {cartItem?.raddress}<br />
+            {cartItem?.rcity}, {cartItem?.rstate} <br />
+            {cartItem?.rpostal_code}
           </p>
         </div>
+        
       </div>
+      <div className="divider"></div>
+    </div>
   )
 }

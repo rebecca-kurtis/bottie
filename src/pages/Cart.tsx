@@ -54,18 +54,49 @@ export const Cart: React.FC<CartProps> = () => {
   },[]);
 
 
-
- 
-
   return (
   
   <main className="cart-index">
-    <div className="spacer-tag cart" /> 
+    <div className="spacer-tag plants" /> 
     <section >
     <HeroBanner message="Complete Your Order"/>
-      <div className="cart row align-items-start">
-      <h5>My Cart</h5>
-        <div className="cart-items col">
+    <PageTitle message="Cart"/>
+      <br></br>
+      <br></br> 
+    <div className="container">
+      <div className="cart_items">
+        {cart?.map((cartItem) => (
+             <CartItem
+             cartItem ={cartItem}
+             />
+        ))}
+      </div>
+      <div className="summary">
+        <h4>Order Summary</h4>
+        <br></br>
+        {cart?.map((cartItem) => (
+          <div className="summary-row">
+            <p className="canva_body">{cartItem.product_name}</p>
+            <p className="canva_body">${cartItem.product_price / 100}</p>
+          </div>
+          
+          // <Summary cartItem ={cartItem} />
+              
+          ))}
+       
+          <p><span>Taxes</span><span>${tax}</span></p>
+          <div className="divider"></div>
+          <h5><span>Estimated Total $</span><span>{totalandTax}</span></h5>
+          <div>STRIPE STUFF</div>
+      </div>
+    </div>
+      {/* <div className="cart row align-items-start">
+      <h2>My Cart</h2>
+      <br></br>
+      <br></br> */}
+
+
+        {/* <div className="cart-items col">
         {cart?.map((cartItem) => (
              <CartItem
              cartItem ={cartItem}
@@ -76,11 +107,8 @@ export const Cart: React.FC<CartProps> = () => {
         <h5>Order Summary</h5>
         <ul>
       {cart?.map((cartItem) => (
-        
-             <Summary
-             cartItem ={cartItem}
-             />
-  
+        <Summary cartItem ={cartItem} />
+            
         ))}
         </ul>
         <p><span>Taxes</span><span>${tax}</span></p>
@@ -88,8 +116,23 @@ export const Cart: React.FC<CartProps> = () => {
         <h5><span>Estimated Total $</span><span>{totalandTax}</span></h5>
         <div>STRIPE STUFF</div>
       </div>
-      </div>
+      </div> */}
     </section>
   </main>
   )
 };
+
+<section>
+<HeroBanner message="Thank you for your order!" />
+<br></br>
+<br></br>
+<div className="container no-bg">
+  <div className="center_content">
+    <h4 className="center">You can follow your gift preparation and delivery in your account.</h4>
+    <h4 className="center">You will receive a notification once delivered.</h4>   
+    <br></br>
+    <br></br>
+    <a href="/" className="main_button">Back to homepage</a>
+  </div>
+</div>
+</section>

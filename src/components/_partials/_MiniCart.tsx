@@ -18,7 +18,7 @@ interface _MiniCartProps {
 export const MiniCart: React.FC<_MiniCartProps> = ({products, closeSide}) => {
 
 
-const [cart, setCart] = useState(null)  
+const [cart, setCart] = useState(1)  
 
 const product = products[0];
 
