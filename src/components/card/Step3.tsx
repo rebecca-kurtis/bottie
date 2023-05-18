@@ -36,7 +36,7 @@ export const Step3: React.FC<Step3Props> = ({
             <input
               type="text"
               name="first_name"
-              placeholder="Enter your first name"
+              placeholder="Enter their first name"
               className="input-text"
               value={recipient.first_name || ""}
               onChange={(event) => {
@@ -51,7 +51,7 @@ export const Step3: React.FC<Step3Props> = ({
             <input
               type="text"
               name="last_name"
-              placeholder="Enter your last name"
+              placeholder="Enter their last name"
               className="input-text"
               value={recipient.last_name || ""}
               onChange={(event) => {
@@ -62,13 +62,32 @@ export const Step3: React.FC<Step3Props> = ({
               }}
             ></input>
 
+            <label className="form-label">Phone Number</label>
+            <input
+              type="text"
+              name="phone"
+              placeholder="Enter their phone number"
+              className="input-text"
+              value={recipient.phone || ""}
+              onChange={(event) => {
+                setRecipient({
+                  ...recipient,
+                  phone: event.target.value,
+                });
+              }}
+            ></input>
+
             <FormSelection
               labelText="What is their relationship to you?"
               name="relationship"
               value={relationship}
-              onChange={(relationship) =>
-                setRelationship(relationship.target.value)
-              }
+              onChange={(relationship) => {
+                setRelationship(relationship.target.value);
+                setRecipient({
+                  ...recipient,
+                  relationship: relationship.target.value
+                })
+              }}
               selectOptions={relationshipOptions}
             />
           </div>
@@ -80,7 +99,7 @@ export const Step3: React.FC<Step3Props> = ({
             <input
               type="text"
               name="address"
-              placeholder="Enter your address"
+              placeholder="Enter their address"
               className="input-text"
               value={recipient.address || ""}
               onChange={(event) => {
@@ -95,7 +114,7 @@ export const Step3: React.FC<Step3Props> = ({
             <input
               type="text"
               name="city"
-              placeholder="Enter your city"
+              placeholder="Enter their city"
               className="input-text"
               value={recipient.city || ""}
               onChange={(event) => {
