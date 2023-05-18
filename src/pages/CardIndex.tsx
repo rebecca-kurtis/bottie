@@ -221,7 +221,7 @@ console.log('recipientID', recipientId);
 
 
   //handle recipient post to the database
-  const handleRecipientSubmit = () => {
+  const handleRecipientCardSubmit = () => {
     axios.post(recipientRoute, recipient)
     .then((response) => {
       const recipientIdSQL = response.data[0].recipient_id;
@@ -268,19 +268,19 @@ const cartCreation = () => {
 
   const productId = plant.product_id;
   const userId = user.user_id;
-  const recipient_id = recipientId;
+  const recipientIdNumber = recipientId;
   const order_id = orderId;
   const cart_id = cartId;
 
   const cartItem = {
     cart_id: cart_id,
     product_id: productId,
-    recipient_id: recipient_id,
+    recipient_id: recipientIdNumber,
   }
   
   const cartItemRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart-items"
 
-  console.log(productId, userId, recipient_id, order_id, cart_id);
+  console.log(productId, userId, recipientIdNumber, order_id, cart_id);
 
   axios.post(cartItemRoute, cartItem)
   .then((response) => {
@@ -359,7 +359,7 @@ const cartCreation = () => {
               />
               <div className="spacer"></div>
               <MainButton onChange={() => {
-                handleRecipientSubmit()
+                handleRecipientCardSubmit()
                 transition(STEP4)
                 }} name="Next step" />
             </div>
