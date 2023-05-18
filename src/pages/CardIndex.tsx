@@ -38,6 +38,7 @@ const LOADING = "LOADING";
 export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
   const { mode, transition } = useVisualMode(STEP1);
   const [plant, setPlant] = useState({
+    product_id: "",
     plant_name: "",
     image_url: "",
     description: "",
@@ -55,17 +56,16 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
     country: "",
     postal_code: "",
   });
-  // const [recipientFName, setRecipientFName] = useState("");
   const [relationship, setRelationship] = useState("Friend");
   const [occasion, setOccasion] = useState("Birthday");
   const [mood, setMood] = useState("Happy");
   const [proseStyle, setProseStyle] = useState("Ode");
   const [themes, setThemes] = useState([] as string[]);
-  // const [from, setFrom] = useState("buyer.first_name");
   const [chatGPTMessage, setChatGPTMessage] = useState("");
+  const [recipientId, setRecipientId] = useState("");
+  const [orderId, setOrderId] = useState('');
+  const [cartId, setCartId] = useState('');
 
-  // console.log('user', user);
-  // console.log('user.first_name', user.first_name);
 
 
   const relationshipOptions = [
@@ -210,6 +210,79 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
     }
   }
 
+  const recipientRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/recipients"
+
+
+  //handle recipient post to the database
+  const handleRecipientCardSubmit = () => {
+    axios.post(recipientRoute, recipient)
+    .then((response) => {
+      const recipientIdSQL = response.data[0].recipient_id;
+      setRecipientId(recipientIdSQL);
+  })
+  .catch((error) => {
+    if (error.response) {
+      alert(`Error! ${error.message}`);
+    } else if (error.request) {
+      console.log("network error");
+    } else {
+      console.log(error);
+    }
+  });
+};
+
+const handlePreValidationStep = () => {
+  const userId = user.user_id;
+  const validateRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/validate/" + userId
+
+  axios.get(validateRoute, userId)
+  .then((response) => {
+    const orderId = response.data[0].order_id;
+    setOrderId(orderId);
+    const cartId = response.data[0].cart_id;
+    setCartId(cartId);
+  })
+  .catch((error) => {
+    if (error.response) {
+      alert(`Error! ${error.message}`);
+    } else if (error.request) {
+      console.log("network error");
+    } else {
+      console.log(error);
+    }
+  });
+}
+
+
+const cartCreation = () => {
+
+  const productId = plant.product_id;
+  const recipientIdNumber = recipientId;
+  const cart_id = cartId;
+
+  const cartItem = {
+    cart_id: cart_id,
+    product_id: productId,
+    recipient_id: recipientIdNumber,
+  }
+  
+  const cartItemRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart-items"
+
+  axios.post(cartItemRoute, cartItem)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    if (error.response) {
+      alert(`Error! ${error.message}`);
+    } else if (error.request) {
+      console.log("network error");
+    } else {
+      console.log(error);
+    }
+  });
+}
+
   return (
     <main className="card-index">
       <div className="spacer-tag plants" />
@@ -268,7 +341,10 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
                 name="Previous"
               />
               <div className="spacer"></div>
-              <MainButton onChange={() => transition(STEP4)} name="Next step" />
+              <MainButton onChange={() => {
+                handleRecipientCardSubmit()
+                transition(STEP4)
+                }} name="Next step" />
             </div>
           </Fragment>
         )}
@@ -343,7 +419,10 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
               />
               <div className="spacer"></div>
               <MainButton
-                onChange={() => transition(STEP6)}
+                onChange={() => {
+                  handlePreValidationStep()
+                  transition(STEP6)
+                }}
                 name="Next Step"
               />
             </div>
@@ -363,7 +442,10 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
               />
               <div className="spacer"></div>
               <MainButton
-                onChange={() => transition(STEP7)}
+                onChange={() => {
+                  cartCreation()
+                  transition(STEP7)
+                }}
                 name="Add to cart"
               />
             </div>

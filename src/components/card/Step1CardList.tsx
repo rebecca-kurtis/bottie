@@ -11,10 +11,12 @@ interface Step1CardListProps {
 
 export const Step1CardList: React.FC<Step1CardListProps> = ({plant, setPlant, products}) => {
 
+
   const mappedProduct = products?.map((product) => {
     const price = (product.price_in_cents/100).toString();
     return <Step1Card
-      key={product.id} 
+      key={product.product_id}
+      id={product.product_id}
       name={product.name} 
       description={product.description} 
       price={price}
