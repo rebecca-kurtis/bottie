@@ -116,8 +116,6 @@ app.post("/recipients", (req, res) => {
     ),
     db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
   ]).then((queryResults) => {
-    //  console.log(queryResults[0]);
-    console.log("queryResults", queryResults[1]);
     res.status(200).send(queryResults[1].rows);
   });
 });
@@ -157,7 +155,6 @@ app.post("/chatGPT", (req, res) => {
 //get order info and cart info
 app.get("/validate/:id", (req, res) => {
   const userId = req.params.id;
-  console.log("req", req);
   db.query(
     `SELECT orders.order_id AS order_id,
     carts.cart_id AS cart_id
@@ -170,7 +167,6 @@ app.get("/validate/:id", (req, res) => {
       if (error) {
         throw error;
       }
-      console.log("result", results);
       res.status(200).send(results.rows);
     }
   );
@@ -178,7 +174,6 @@ app.get("/validate/:id", (req, res) => {
 
 //post a cart-item
 app.post("/cart-items", (req, res) => {
-  console.log("req.body", req.body);
   const cart_id = req.body.cart_id;
   const product_id = req.body.product_id;
   const recipient_id = req.body.recipient_id;
@@ -191,11 +186,9 @@ app.post("/cart-items", (req, res) => {
       if (error) {
         throw error;
       }
-      console.log("result", results);
       res.status(200).send(results.rows);
     }
   );
-
 });
 
 app.listen(8000, () => {
