@@ -11,7 +11,8 @@ import { HeroBanner } from "../components/PlantsPage/HeroBanner";
 import { PageTitle } from "../components/_partials/_PageTitle";
 import { Summary } from "../components/cart/Summary";
 
-interface CartProps {}
+interface CartProps {
+}
 
 export const Cart: React.FC<CartProps> = () => { 
   const [userId, setUserId] = useState(3); //This needs to be taken from the props of user once set.
@@ -32,6 +33,8 @@ export const Cart: React.FC<CartProps> = () => {
   //on page load check to see if the user has any unfinished orders and returns them
 
   useEffect(() => {
+    console.log(userId);
+    if (userId) {
     axios.get(route)
       .then(response => {
         const cartData = response.data;
@@ -47,7 +50,9 @@ export const Cart: React.FC<CartProps> = () => {
       .catch (error => {
         console.log(error);
       });
+    }
   },[]);
+
 
 
  

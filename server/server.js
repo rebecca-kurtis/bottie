@@ -65,7 +65,7 @@ app.get('/users', (req, res) => {
 // Login API
 app.post('/login', (req, res) => {
   const email = req.body.email;
-  // console.log("request:",req);
+  console.log("request:", req);
   // const password = req.body.password;
 
   // if ((!email) || (!password)) {
