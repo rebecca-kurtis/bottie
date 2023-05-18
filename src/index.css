@@ -2,13 +2,13 @@
 @import "normalize.css";
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital@0;1&family=Bellefair&family=Courgette&family=Montserrat:wght@600&display=swap");
 body {
-  background-color: #f4f1de;
+  background-color: #F4F1DE;
   display: flex;
   justify-content: center;
   align-content: center;
   height: 100%;
   width: 100%;
-  background-color: #f4f1de;
+  background-color: #F4F1DE;
 }
 
 .container::after {
@@ -22,9 +22,7 @@ body {
   margin: 0 auto;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -67,10 +65,7 @@ li {
   color: rgba(20, 19, 19, 0.6);
 }
 
-a,
-a:hover,
-a:focus,
-a:active {
+a, a:hover, a:focus, a:active {
   text-decoration: none !important;
   color: inherit;
 }
@@ -78,7 +73,7 @@ a:active {
 .main_button {
   align-items: center;
   background-clip: padding-box;
-  background-color: #d56d46;
+  background-color: #D56D46;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -98,7 +93,7 @@ a:active {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
-  user-select: none;
+       user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
@@ -108,7 +103,7 @@ a:active {
 
 .main_button:hover,
 .main_button:focus {
-  background-color: #d56d46;
+  background-color: #D56D46;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
@@ -119,7 +114,7 @@ a:active {
 }
 
 .main_button:active {
-  background-color: #d56d46;
+  background-color: #D56D46;
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }
@@ -142,10 +137,12 @@ a:active {
   color: inherit;
   transform: translateY(-1px);
 }
-.secondary-button:hover .spacer-tag {
+
+.spacer-tag {
   height: 130px;
 }
-.secondary-button:hover .secondary_button {
+
+.secondary_button {
   align-items: center;
   background-clip: padding-box;
   background-color: #000;
@@ -168,37 +165,47 @@ a:active {
   text-decoration: none;
   transition: all 250ms;
   -moz-user-select: none;
-  user-select: none;
+       user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
   width: -moz-fit-content;
   width: fit-content;
 }
-.secondary-button:hover .secondary_button:hover,
-.secondary-button:hover .secondary_button:focus {
+
+.secondary_button:hover,
+.secondary_button:focus {
   background-color: #000;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
-.secondary-button:hover .secondary_button:hover {
+
+.secondary_button:hover {
   transform: translateY(-1px);
   text-decoration: none !important;
   color: inherit;
 }
-.secondary-button:hover .secondary_button:active {
+
+.secondary_button:active {
   background-color: #000;
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }
-.secondary-button:hover .form-label {
+
+.form-label {
   font-size: 18px;
   line-height: 22px;
 }
-.secondary-button:hover .input-text {
+
+.input-text {
   height: 40px;
   margin-bottom: 22px;
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(20, 19, 19, 0.6);
+  font-family: "Archivo", sans-serif;
 }
-.secondary-button:hover .checkbox {
+
+.checkbox {
   font-weight: 400;
   font-size: 18px;
 }
@@ -217,14 +224,11 @@ a:active {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} /*# sourceMappingURL=index.css.map */
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}/*# sourceMappingURL=index.css.map */
