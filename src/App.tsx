@@ -82,6 +82,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [totalandTax, setTotalAndTax] = useLocalStorage("totalandTax", 0);
   const [tax, setTax] = useLocalStorage("tax", 0);
+  const [refresh, setRefresh] = useState(false);
 
   // function getUserOrderInfo(dataCall: any) {
   //       setCart(dataCall);
@@ -125,6 +126,7 @@ function App() {
   const [orderId, setOrderId] = useState("");
   // const [orderId, setOrderId] = useLocalStorage("orderId", "");
   const [cartId, setCartId] = useState('');
+  const [cartItemId, setCartItemId] = useState("");
   const [recipientId, setRecipientId] = useState("");
 
   const [plant, setPlant] = useState({
@@ -190,9 +192,21 @@ function App() {
       }
     });
   }
+  
+  function updateCartStorage(item: any) {
+    let currentCart = JSON.parse(localStorage.getItem("cart") as any);
+
+    if (currentCart === null) {
+      currentCart =[]
+    }
+    localStorage.setItem("cartItem", JSON.stringify(item));
+    currentCart.push(item);
+    localStorage.setItem("cart", JSON.stringify(currentCart));
+    setCart(currentCart);
+    // setRefresh(true);
+  }
 
   const cartCreation = () => {
-
     const productId = plant.product_id;
     const recipientIdNumber = recipientId;
     const cart_id = cartId;
@@ -202,12 +216,37 @@ function App() {
       product_id: productId,
       recipient_id: recipientIdNumber,
     }
+
+    const user_name_combined = user.first_name + user.last_name;
+    const recipient_name_combined = recipient.first_name + recipient.last_name;
+    const number = Number(plant.price_in_cents);
+    const rightPriceForPlant = (number/100).toString();
+
+
+    const cartStorageItem = {
+      cart_item: cartItemId,
+      product_name: plant.plant_name,
+      product_drawing: plant.image_url,
+      product_price: rightPriceForPlant,
+      user_name: user_name_combined,
+      rname: recipient_name_combined,
+      raddress: recipient.address,
+      rcity: recipient.city,
+      rstate: recipient.province,
+      rpostal_code: recipient.postal_code
+    }
+    
     
     const cartItemRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart-items"
   
     axios.post(cartItemRoute, cartItem)
     .then((response) => {
-      console.log(response);
+      console.log("response from cartItems", response);
+      const cartItemIdSQL = response.data[0].cart_item_id;
+      setCartItemId(cartItemIdSQL);
+      console.log("LocalStorage from cart creation",localStorage);
+
+      updateCartStorage(cartStorageItem);
     })
     .catch((error) => {
       if (error.response) {
