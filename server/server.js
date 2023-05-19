@@ -68,22 +68,58 @@ app.get("/users", (req, res) => {
 app.post("/login", (req, res) => {
   const email = req.body.email;
   console.log("request:", req);
+  const userId = req.params.id;
   // const password = req.body.password;
 
   // if ((!email) || (!password)) {
   //   //no name and/or email and/or password provided
   //   return res.status(400).send(`<p>Please enter an email and password!</p>`);
   // }
-  db.query("SELECT * FROM users WHERE email = $1", [email], (error, result) => {
-    if (error) {
-      throw error;
+  
+  // db.query("SELECT * FROM users WHERE email = $1", [email], (error, result) => {
+  //   if (error) {
+  //     throw error;
+  //   }
+  //   console.log("result:", result);
+  //   console.log("email:", email);
+  //   res.status(200).send(result.rows);
+  //   // res.cookie('user_id', result.user.id);
+  //   // res.cookie('first_name', result.user.first_name);
+  // });
+  Promise.all([
+    db.query(
+      "SELECT * FROM users WHERE email = $1;",
+      [email]
+    ),
+    db.query(`SELECT cart_items.cart_item_id AS cart_item, 
+    products.name AS product_name,
+    products.drawing_url AS product_drawing, 
+    products.price_in_cents AS product_price,
+    CONCAT (users.first_name, ' ', users.last_name) AS user_name,
+    CONCAT (recipients.first_name, ' ', recipients.last_name) AS rName,
+    recipients.address AS rAddress,
+    recipients.city AS rCity,
+    recipients.state AS rState,
+    recipients.postal_code AS rPostal_code
+    FROM cart_items 
+    JOIN carts on cart_items.cart_id = carts.cart_id
+    JOIN orders on carts.order_id = orders.order_id
+    JOIN users on orders.user_id = users.user_id
+    JOIN products on cart_items.product_id = products.product_id
+    JOIN recipients on cart_items.recipient_id = recipients.recipient_id
+    WHERE users.email = $1 AND orders.completed = FALSE
+    GROUP BY user_name, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price, product_drawing 
+    ORDER BY cart_item;`, [email]),
+  ]).then((queryResults) => {
+    console.log('queryResults', queryResults);
+    const queryObjectResults = {
+      loginKey:queryResults[0].rows,
+      cartKey: queryResults[1].rows
     }
-    console.log("result:", result);
-    console.log("email:", email);
-    res.status(200).send(result.rows);
-    // res.cookie('user_id', result.user.id);
-    // res.cookie('first_name', result.user.first_name);
+    res.status(200).send(queryObjectResults);
   });
+
+
 });
 
 //recipients post route

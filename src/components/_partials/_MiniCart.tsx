@@ -1,31 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import '@coreui/coreui/dist/css/coreui.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./User.css";
 import { MiniCartCard } from "./_MiniCartCard";
-import { SecondaryButton } from "../SecondaryButton";
 import { MainButton } from "../MainButton";
 import { useNavigate } from "react-router-dom";
 import potImage from "./images/pot.png";
 
 
 interface _MiniCartProps {
-  products: any;
   closeSide: () => void;
-
+  cart: any;
 }
 
-export const MiniCart: React.FC<_MiniCartProps> = ({products, closeSide}) => {
-
-
-const [cart, setCart] = useState(1)  
-
-const product = products[0];
+export const MiniCart: React.FC<_MiniCartProps> = ({closeSide, cart}) => {
 
 let navigate = useNavigate();
 
 const cartRouteChange = () => {
-let path = `/card`;
+let path = `/cart`;
 closeSide();
 navigate(path);
 window.scrollTo(0, 0);
@@ -43,7 +36,7 @@ const plantRouteChange = () => {
        <div className="canva-body">
           <h2>Cart</h2>
           <br></br>
-          {cart === null &&
+          {cart.length === 0 &&
             <div>
               <img src={potImage} alt="Empty pot" className="user-image"/> 
               <br></br>
@@ -53,10 +46,13 @@ const plantRouteChange = () => {
               <MainButton type="submit" name="View all products" onChange={plantRouteChange}/>
             </div>
           }
-          {cart !== null &&
+          {cart.length > 1 &&
             <div>
-              <MiniCartCard products={products} />
-              <MiniCartCard products={products} />
+              {cart?.map((cartItem: any) => (
+             <MiniCartCard
+             cartItem={cartItem}
+             />
+        ))}
               <br></br>
               <br></br>
               <MainButton type="submit" name="Go to my cart" onChange={cartRouteChange}/>
