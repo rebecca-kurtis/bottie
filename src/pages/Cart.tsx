@@ -83,8 +83,12 @@ export const Cart: React.FC<CartProps> = () => {
           // <Summary cartItem ={cartItem} />
               
           ))}
-       
-          <p><span>Taxes</span><span>${tax}</span></p>
+          <div className="divider"></div>
+          <div className="summary-row">
+            <p className="canva_body">Taxes</p>
+            <p className="canva_body">${tax}</p>
+          </div>
+          
           <div className="divider"></div>
           <h5><span>Estimated Total $</span><span>{totalandTax}</span></h5>
           <div>STRIPE STUFF</div>
