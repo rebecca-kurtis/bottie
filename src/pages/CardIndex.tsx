@@ -19,11 +19,19 @@ import { Step4 } from "../components/card/Step4";
 import { Step5 } from "../components/card/Step5";
 import { Step6 } from "../components/card/Step6";
 import { Step7 } from "../components/card/Step7";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 
 interface CardIndexProps {
   products?: any[];
   user?: any;
+  recipient?: any;
+  setRecipient: any;
+  plant?: any;
+  setPlant: any;
+  cartCreation: any;
+  handlePreValidationStep: any;
+  handleRecipientCardSubmit: any;
 }
 
 const STEP1 = "STEP1";
@@ -35,36 +43,37 @@ const STEP6 = "STEP6";
 const STEP7 = "STEP7";
 const LOADING = "LOADING";
 
-export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
+export const CardIndex: React.FC<CardIndexProps> = ({ plant, setPlant,recipient, setRecipient, products, user, cartCreation, handlePreValidationStep, handleRecipientCardSubmit }) => {
   const { mode, transition } = useVisualMode(STEP1);
-  const [plant, setPlant] = useState({
-    product_id: "",
-    plant_name: "",
-    image_url: "",
-    description: "",
-    price_in_cents: ""
-  });
+  // const [plant, setPlant] = useState({
+  //   product_id: "",
+  //   plant_name: "",
+  //   image_url: "",
+  //   description: "",
+  //   price_in_cents: ""
+  // });
 
-  const [recipient, setRecipient] = useState({
-    first_name: "",
-    last_name: "",
-    relationship: "",
-    phone: "",
-    address: "",
-    city: "",
-    province: "",
-    country: "",
-    postal_code: "",
-  });
+  // const [recipient, setRecipient] = useState({
+  //   first_name: "",
+  //   last_name: "",
+  //   relationship: "",
+  //   phone: "",
+  //   address: "",
+  //   city: "",
+  //   province: "",
+  //   country: "",
+  //   postal_code: "",
+  // });
   const [relationship, setRelationship] = useState("Friend");
   const [occasion, setOccasion] = useState("Birthday");
   const [mood, setMood] = useState("Happy");
   const [proseStyle, setProseStyle] = useState("Ode");
   const [themes, setThemes] = useState([] as string[]);
   const [chatGPTMessage, setChatGPTMessage] = useState("");
-  const [recipientId, setRecipientId] = useState("");
-  const [orderId, setOrderId] = useState('');
-  const [cartId, setCartId] = useState('');
+  // const [recipientId, setRecipientId] = useState("");
+  // const [orderId, setOrderId] = useLocalStorage("orderId", "");
+  // // const [orderId, setOrderId] = useState('');
+  // const [cartId, setCartId] = useState('');
 
 
 
@@ -210,78 +219,79 @@ export const CardIndex: React.FC<CardIndexProps> = ({ products, user}) => {
     }
   }
 
-  const recipientRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/recipients"
+//   const recipientRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/recipients"
 
 
-  //handle recipient post to the database
-  const handleRecipientCardSubmit = () => {
-    axios.post(recipientRoute, recipient)
-    .then((response) => {
-      const recipientIdSQL = response.data[0].recipient_id;
-      setRecipientId(recipientIdSQL);
-  })
-  .catch((error) => {
-    if (error.response) {
-      alert(`Error! ${error.message}`);
-    } else if (error.request) {
-      console.log("network error");
-    } else {
-      console.log(error);
-    }
-  });
-};
+//   //handle recipient post to the database
+//   const handleRecipientCardSubmit = () => {
+//     axios.post(recipientRoute, recipient)
+//     .then((response) => {
+//       const recipientIdSQL = response.data[0].recipient_id;
+//       setRecipientId(recipientIdSQL);
+//   })
+//   .catch((error) => {
+//     if (error.response) {
+//       alert(`Error! ${error.message}`);
+//     } else if (error.request) {
+//       console.log("network error");
+//     } else {
+//       console.log(error);
+//     }
+//   });
+// };
 
-const handlePreValidationStep = () => {
-  const userId = user.user_id;
-  const validateRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/validate/" + userId
+// const handlePreValidationStep = () => {
+//   const userId = user.user_id;
+//   const validateRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/validate/" + userId
 
-  axios.get(validateRoute, userId)
-  .then((response) => {
-    const orderId = response.data[0].order_id;
-    setOrderId(orderId);
-    const cartId = response.data[0].cart_id;
-    setCartId(cartId);
-  })
-  .catch((error) => {
-    if (error.response) {
-      alert(`Error! ${error.message}`);
-    } else if (error.request) {
-      console.log("network error");
-    } else {
-      console.log(error);
-    }
-  });
-}
+//   axios.get(validateRoute, userId)
+//   .then((response) => {
+//     const orderId = response.data[0].order_id;
+//     setOrderId(orderId);
+//     localStorage.setItem("orderId", JSON.stringify(orderId));
+//     const cartId = response.data[0].cart_id;
+//     setCartId(cartId);
+//   })
+//   .catch((error) => {
+//     if (error.response) {
+//       alert(`Error! ${error.message}`);
+//     } else if (error.request) {
+//       console.log("network error");
+//     } else {
+//       console.log(error);
+//     }
+//   });
+// }
 
 
-const cartCreation = () => {
+// const cartCreation = () => {
 
-  const productId = plant.product_id;
-  const recipientIdNumber = recipientId;
-  const cart_id = cartId;
+//   const productId = plant.product_id;
+//   const recipientIdNumber = recipientId;
+//   const cart_id = cartId;
 
-  const cartItem = {
-    cart_id: cart_id,
-    product_id: productId,
-    recipient_id: recipientIdNumber,
-  }
+//   const cartItem = {
+//     cart_id: cart_id,
+//     product_id: productId,
+//     recipient_id: recipientIdNumber,
+//   }
   
-  const cartItemRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart-items"
+//   const cartItemRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart-items"
 
-  axios.post(cartItemRoute, cartItem)
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((error) => {
-    if (error.response) {
-      alert(`Error! ${error.message}`);
-    } else if (error.request) {
-      console.log("network error");
-    } else {
-      console.log(error);
-    }
-  });
-}
+//   axios.post(cartItemRoute, cartItem)
+//   .then((response) => {
+//     console.log(response);
+//   })
+//   .catch((error) => {
+//     if (error.response) {
+//       alert(`Error! ${error.message}`);
+//     } else if (error.request) {
+//       console.log("network error");
+//     } else {
+//       console.log(error);
+//     }
+//   });
+// }
 
   return (
     <main className="card-index">

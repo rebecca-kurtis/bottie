@@ -35,10 +35,11 @@ interface _HeaderProps {
   products:any;
   getUserOrderInfo:any;
   cart: any;
+  orderId?: any;
 }
 
 
-export const Header: React.FC<_HeaderProps> = ({user, updateStorage, clearStorage, products, getUserOrderInfo, cart}) => {
+export const Header: React.FC<_HeaderProps> = ({user, orderId, updateStorage, clearStorage, products, getUserOrderInfo, cart}) => {
   const className = "scroll";
   const scrollTrigger = 60;
 
@@ -130,7 +131,7 @@ export const Header: React.FC<_HeaderProps> = ({user, updateStorage, clearStorag
                       </COffcanvasHeader>
                       <COffcanvasBody>
                         {mode === ACCOUNT && (
-                          <Account closeSide={closeSide} updateStorage={updateStorage} clearStorage={clearStorage} user={user} />
+                          <Account closeSide={closeSide} updateStorage={updateStorage} clearStorage={clearStorage} user={user} orderId={orderId}/>
                         )}
                         {mode === CART && (
                           <MiniCart closeSide={closeSide} cart={cart}/>

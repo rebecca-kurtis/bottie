@@ -12,10 +12,13 @@ interface _AccountProps {
   updateStorage: any;
   clearStorage: any;
   user?: any;
+  orderId?: any;
 }
 
-export const Account: React.FC<_AccountProps> = ({closeSide, updateStorage, clearStorage, user}) => {
-
+export const Account: React.FC<_AccountProps> = ({closeSide, updateStorage, clearStorage, user, orderId}) => {
+  
+  console.log("orderId from account", orderId)
+  console.log("localstorage from account", localStorage)
 
   let navigate = useNavigate();
 
@@ -43,11 +46,18 @@ export const Account: React.FC<_AccountProps> = ({closeSide, updateStorage, clea
           <br></br>
           <h4>Orders</h4>    
           <br></br>
+          {!orderId &&
           <div className="orders-container">
             <h5>You have no order yet.</h5>
-            {/* <br></br> */}
             <SecondaryButton type="submit" class="secondary-button" name="Let's get started!" onChange={routeChange}/>
           </div>
+          }
+          {orderId &&
+          <div className="orders-container">
+            <h5>Upcoming orders </h5>
+            <p>#{orderId}</p>
+          </div>
+          }
           <br></br>
           <br></br>
           <button className="main_button" type="submit" onClick={logout}>Logout</button> 

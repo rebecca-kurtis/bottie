@@ -79,7 +79,7 @@ function App() {
   // const [tax, setTax] = useState(0);
 
   const [cart, setCart] = useLocalStorage("cart", [] as any[]);
-  const [total, setTotal] = useLocalStorage("total", 0);
+  const [total, setTotal] = useState(0);
   const [totalandTax, setTotalAndTax] = useLocalStorage("totalandTax", 0);
   const [tax, setTax] = useLocalStorage("tax", 0);
 
@@ -118,18 +118,118 @@ function App() {
     localStorage.removeItem("tax");
     localStorage.removeItem("totalandTax");
     setCart([] as any[]);
+    setOrderId(Math.floor(Math.random()*90000) + 10000);
+  }
+
+  // Set order state
+
+  const [orderId, setOrderId] = useLocalStorage("orderId", "");
+  const [cartId, setCartId] = useState('');
+  const [recipientId, setRecipientId] = useState("");
+
+  const [plant, setPlant] = useState({
+    product_id: "",
+    plant_name: "",
+    image_url: "",
+    description: "",
+    price_in_cents: ""
+  });
+
+  const [recipient, setRecipient] = useState({
+    first_name: "",
+    last_name: "",
+    relationship: "",
+    phone: "",
+    address: "",
+    city: "",
+    province: "",
+    country: "",
+    postal_code: "",
+  });
+
+  const recipientRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/recipients"
+
+
+  //handle recipient post to the database
+  const handleRecipientCardSubmit = () => {
+    axios.post(recipientRoute, recipient)
+    .then((response) => {
+      const recipientIdSQL = response.data[0].recipient_id;
+      setRecipientId(recipientIdSQL);
+  })
+  .catch((error) => {
+    if (error.response) {
+      alert(`Error! ${error.message}`);
+    } else if (error.request) {
+      console.log("network error");
+    } else {
+      console.log(error);
+    }
+  });
+};
+
+  const handlePreValidationStep = () => {
+    const userId = user.user_id;
+    const validateRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/validate/" + userId
+  
+    axios.get(validateRoute, userId)
+    .then((response) => {
+      const orderId = response.data[0].order_id;
+      setOrderId(orderId);
+      localStorage.setItem("orderId", JSON.stringify(orderId));
+      const cartId = response.data[0].cart_id;
+      setCartId(cartId);
+    })
+    .catch((error) => {
+      if (error.response) {
+        alert(`Error! ${error.message}`);
+      } else if (error.request) {
+        console.log("network error");
+      } else {
+        console.log(error);
+      }
+    });
+  }
+
+  const cartCreation = () => {
+
+    const productId = plant.product_id;
+    const recipientIdNumber = recipientId;
+    const cart_id = cartId;
+  
+    const cartItem = {
+      cart_id: cart_id,
+      product_id: productId,
+      recipient_id: recipientIdNumber,
+    }
+    
+    const cartItemRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart-items"
+  
+    axios.post(cartItemRoute, cartItem)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      if (error.response) {
+        alert(`Error! ${error.message}`);
+      } else if (error.request) {
+        console.log("network error");
+      } else {
+        console.log(error);
+      }
+    });
   }
 
   return (
     <>
      <BrowserRouter>
-    <Header user={user} updateStorage={updateUserStorage} clearStorage={clearUserStorage} products={products} getUserOrderInfo={getUserOrderInfo} cart={cart}/>
+    <Header user={user} orderId={orderId} updateStorage={updateUserStorage} clearStorage={clearUserStorage} products={products} getUserOrderInfo={getUserOrderInfo} cart={cart}/>
     <Routes>
       <Route path="/" element={<Home products={products}/>} />
       <Route path="/products" element={<Plants products={products} />} /> 
       <Route path="/products/:name" element={<PlantDetail products={products} />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/card" element={<CardIndex products={products} user={user}/>} />
+      <Route path="/card" element={<CardIndex plant={plant} setPlant={setPlant} recipient={recipient} setRecipient={setRecipient} products={products} user={user} cartCreation={cartCreation} handlePreValidationStep={handlePreValidationStep} handleRecipientCardSubmit={handleRecipientCardSubmit} />} />
       <Route path="/confirmation" element={<CartConfirm/>} />
       <Route path="/cart" element = {<Cart user={user} cart={cart} tax={tax} totalandTax={totalandTax} clearCartStorage={clearCartStorage} />} />
       {/* <Route path="/card/configure" element={<CardConfigure />} /> */}
