@@ -18,10 +18,11 @@ interface CartProps {
   cart: any;
   tax: any;
   totalandTax: any;
+  clearCartStorage: any;
 
 }
 
-export const Cart: React.FC<CartProps> = ({ user, cart, tax, totalandTax }) => { 
+export const Cart: React.FC<CartProps> = ({ user, cart, tax, totalandTax, clearCartStorage }) => { 
   // const [userId, setUserId] = useState(3); //This needs to be taken from the props of user once set.
   // const [cart, setCart] = useState([] as any[]);
   // const [total, setTotal] = useState(0);
@@ -66,6 +67,12 @@ export const Cart: React.FC<CartProps> = ({ user, cart, tax, totalandTax }) => {
     navigate(path);
     window.scrollTo(0, 0);
   };
+  
+  const payment = () => {
+    routeChange()
+    clearCartStorage()
+  };
+  
 
   return (
   
@@ -104,7 +111,7 @@ export const Cart: React.FC<CartProps> = ({ user, cart, tax, totalandTax }) => {
               <h5>${totalandTax}</h5>
             </div>
             <br></br>
-            <MainButton type="submit" name="Proceed to payment" onChange={routeChange}/>
+            <MainButton type="submit" name="Proceed to payment" onChange={payment}/>
         </div>
       </div>
     </section>

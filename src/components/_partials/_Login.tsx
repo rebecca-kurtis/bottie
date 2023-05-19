@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SecondaryButton } from "../SecondaryButton";
 import "./User.css";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 
 interface _LoginProps {
@@ -45,17 +46,15 @@ export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateStor
       const data = response.data.loginKey;
   
       updateStorage(data[0]);
+
       setForm(data[0]);
       toggleAccount();
-      console.log('login-user', data[0])
-      setForm(data[0]);
-      console.log('cart-info', response.data.cartKey)
-      getUserOrderInfo(response.data.cartKey)
+      // console.log('login-user', data[0])
 
-      setTimeout(() => {
-          // closeSide();
-          // navigate('/');
-      }, 500);
+      setForm(data[0]);
+      // console.log('cart-info', response.data.cartKey)
+      getUserOrderInfo(response.data.cartKey)
+      console.log("local storage:", localStorage)
 
       return response.data
     })
