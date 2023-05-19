@@ -118,12 +118,12 @@ function App() {
     localStorage.removeItem("tax");
     localStorage.removeItem("totalandTax");
     setCart([] as any[]);
-    setOrderId(Math.floor(Math.random()*90000) + 10000);
+    // setOrderId(Math.floor(Math.random()*90000) + 10000);
   }
 
   // Set order state
-
-  const [orderId, setOrderId] = useLocalStorage("orderId", "");
+  const [orderId, setOrderId] = useState("");
+  // const [orderId, setOrderId] = useLocalStorage("orderId", "");
   const [cartId, setCartId] = useState('');
   const [recipientId, setRecipientId] = useState("");
 
@@ -176,7 +176,7 @@ function App() {
     .then((response) => {
       const orderId = response.data[0].order_id;
       setOrderId(orderId);
-      localStorage.setItem("orderId", JSON.stringify(orderId));
+      // localStorage.setItem("orderId", JSON.stringify(orderId));
       const cartId = response.data[0].cart_id;
       setCartId(cartId);
     })
