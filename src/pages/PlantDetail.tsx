@@ -11,15 +11,14 @@ interface PlantDetailProps {
 
 export const PlantDetail: React.FC<PlantDetailProps> = ({products}) => {
   const name = useParams().name;
-  console.log(name)
-  console.log("productDetails:", products);
+
   const product = products?.find(element => element.name === name);
-  console.log("productPDetail:", product);
+
   return (
 
     <Fragment>
       <div className="spacer-tag"></div>
-      <ProductInfo product={product} />
+      <ProductInfo products={products} product={product} />
     </Fragment>
   );
 };
