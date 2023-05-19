@@ -10,10 +10,11 @@ interface _LoginProps {
   onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
   toggleAccount: () => void;
   updateStorage: any;
+  getUserOrderInfo: any;
 }
 
 
-export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateStorage}) => {
+export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateStorage, getUserOrderInfo}) => {
 
   const [form, setForm] = useState({
     first_name: "",
@@ -39,14 +40,17 @@ export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateStor
     setForm(form)
 
     axios.post(usersRoute, form)
-    .then((response) => {
-      const data = response.data;
+    .then((response: any) => {
+      console.log('response', response);
+      const data = response.data.loginKey;
   
       updateStorage(data[0]);
       setForm(data[0]);
       toggleAccount();
       console.log('login-user', data[0])
       setForm(data[0]);
+      console.log('cart-info', response.data.cartKey)
+      getUserOrderInfo(response.data.cartKey)
 
       setTimeout(() => {
           // closeSide();
