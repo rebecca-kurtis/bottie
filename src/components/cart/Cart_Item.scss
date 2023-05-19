@@ -1,4 +1,27 @@
-.cart-image img {
-  width: 152px;
+.cart-item{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 
+.cart-image {
+  width: 25%;
+  height: 25%;
+  margin-top: -20px;
+
+}
+
+.divider{
+  height: 2px;
+  width: 100%;
+  background-color: black;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+.canva_body {
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(20, 19, 19, 0.6);
+  font-family: 'Archivo', sans-serif;
 }

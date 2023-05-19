@@ -10,6 +10,8 @@ import { CartItem } from "../components/cart/Cart_Item";
 import { HeroBanner } from "../components/PlantsPage/HeroBanner";
 import { PageTitle } from "../components/_partials/_PageTitle";
 import { Summary } from "../components/cart/Summary";
+import { MainButton } from "../components/MainButton";
+import { useNavigate } from "react-router-dom";
 
 interface CartProps {
   user?: any;
@@ -35,8 +37,8 @@ export const Cart: React.FC<CartProps> = ({ user, cart, tax, totalandTax }) => {
   //   return totalReduce;
   // }
 
-  //on page load check to see if the user has any unfinished orders and returns them
-
+  // on page load check to see if the user has any unfinished orders and returns them
+// 
   // useEffect(() => {
   //   console.log(userId);
   //   if (userId) {
@@ -57,44 +59,56 @@ export const Cart: React.FC<CartProps> = ({ user, cart, tax, totalandTax }) => {
   //     });
   //   }
   // },[]);
-
-
-
- 
+  let navigate = useNavigate();
+  
+  const routeChange = () => {
+    let path = `/confirmation`;
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
 
   return (
   
   <main className="cart-index">
-    <div className="spacer-tag cart" /> 
+    <div className="spacer-tag plants" /> 
     <section >
-    <HeroBanner message="Complete Your Order"/>
-      <div className="cart row align-items-start">
-      <h5>My Cart</h5>
-        <div className="cart-items col">
-        {cart?.map((cartItem: any) => (
-             <CartItem
-             cartItem ={cartItem}
-             />
-        ))}
-      </div>
-      <div className="Summary col">
-        <h5>Order Summary</h5>
-        <ul>
-      {cart?.map((cartItem: any) => (
-        
-             <Summary
-             cartItem ={cartItem}
-             />
-  
-        ))}
-        </ul>
-        <p><span>Taxes</span><span>${tax}</span></p>
-        <hr />
-        <h5><span>Estimated Total $</span><span>{totalandTax}</span></h5>
-        <div>STRIPE STUFF</div>
-      </div>
+      <HeroBanner message="Complete Your Order"/>
+      <PageTitle message="Cart"/>
+        <br></br>
+        <br></br> 
+      <div className="container">
+        <div className="cart_items">
+          {cart?.map((cartItem :any) => (
+              <CartItem
+              cartItem ={cartItem}
+              />
+          ))}
+        </div>
+        <div className="summary">
+          <h4>Order Summary</h4>
+          <br></br>
+          {cart?.map((cartItem: any) => (
+            <div className="summary-row">
+              <p className="canva_body">{cartItem.product_name}</p>
+              <p className="canva_body">${cartItem.product_price / 100}</p>
+            </div>           
+          ))}
+            <div className="divider"></div>
+            <div className="summary-row">
+              <p className="canva_body">Taxes</p>
+              <p className="canva_body">${tax}</p>
+            </div>
+            <div className="divider"></div>
+            <div className="summary-row">
+              <h5>Estimated Total</h5>
+              <h5>${totalandTax}</h5>
+            </div>
+            <br></br>
+            <MainButton type="submit" name="Proceed to payment" onChange={routeChange}/>
+        </div>
       </div>
     </section>
   </main>
   )
 };
+

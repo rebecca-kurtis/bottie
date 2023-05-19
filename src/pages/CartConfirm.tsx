@@ -3,14 +3,6 @@ import { HeroBanner } from "../components/PlantsPage/HeroBanner";
 import "./CartConfirm.css";
 
 
-
-//import hooks
-
-
-//import components
-
-
-
 interface CartConfirmProps {
 
 }
@@ -24,7 +16,7 @@ export const CartConfirm: React.FC<CartConfirmProps> = () => {
         <HeroBanner message="Thank you for your order!" />
         <br></br>
         <br></br>
-        <div className="container no-bg">
+        <div className="no-bg">
           <div className="center_content">
             <h4 className="center">You can follow your gift preparation and delivery in your account.</h4>
             <h4 className="center">You will receive a notification once delivered.</h4>   
