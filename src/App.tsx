@@ -19,6 +19,12 @@ function App() {
   // Product API call
 
   const [products, setProducts] = useState([] as any[]);
+  const [user, setUser] = useState(null);
+
+  const [cart, setCart] = useState([] as any[]);
+  const [total, setTotal] = useState(0);
+  const [totalandTax, setTotalAndTax] = useState(0);
+  const [tax, setTax] = useState(0);
 
   const productsRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/products"
   
@@ -40,8 +46,6 @@ function App() {
     return null;
   }
 
-  const [user, setUser] = useState(null);
-
   useEffect(() => {
     const currentUser = getCurrentUser()
     setUser(currentUser);
@@ -52,6 +56,7 @@ function App() {
     setUser(currentUser);
     localStorage.clear();
     localStorage.setItem("user", JSON.stringify(currentUser));
+    console.log('user', user);
   }
 
   // Remove current user state
@@ -60,10 +65,28 @@ function App() {
     setUser(null);
   }
 
+  function sumArray(arr: number[]) {
+    const totalReduce = arr.reduce((a, b) => {
+      return (a+b);
+    });
+    return totalReduce;
+  }
+
+  function getUserOrderInfo(dataCall: any) {
+        setCart(dataCall);
+        const totalSum = dataCall.map((cartItem:any) => cartItem.product_price);
+        const total = Math.round(sumArray(totalSum)) / 100;
+        setTotal(Math.round(total/100))
+        const tax = Math.round((total * .05) * 100) / 100;
+        setTax(tax);
+        const totalandTax = Math.round((total + tax) * 100) / 100;
+        setTotalAndTax(totalandTax)
+    }
+
   return (
     <>
      <BrowserRouter>
-    <Header user={user} updateStorage={updateUserStorage} clearStorage={clearUserStorage} products={products}/>
+    <Header user={user} updateStorage={updateUserStorage} clearStorage={clearUserStorage} products={products} getUserOrderInfo={getUserOrderInfo} cart={cart}/>
     <Routes>
       <Route path="/" element={<Home products={products}/>} />
       <Route path="/products" element={<Plants products={products} />} /> 
@@ -71,7 +94,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/card" element={<CardIndex products={products} user={user}/>} />
       <Route path="/confirmation" element={<CartConfirm/>} />
-      <Route path="/cart" element = {<Cart  />} />
+      <Route path="/cart" element = {<Cart user={user} cart={cart} tax={tax} totalandTax={totalandTax} />} />
       {/* <Route path="/card/configure" element={<CardConfigure />} /> */}
     </Routes>
   </BrowserRouter>
