@@ -18,7 +18,7 @@ interface _AccountProps {
 export const Account: React.FC<_AccountProps> = ({closeSide, updateStorage, clearStorage, user, orderId}) => {
   
   console.log("orderId from account", orderId)
-  console.log("localstorage from account", localStorage)
+  console.log("cart localstorage", localStorage.getItem("cart"))
 
   let navigate = useNavigate();
 

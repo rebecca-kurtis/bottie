@@ -22,9 +22,9 @@ export const Step6: React.FC<Step6Props> = ({user, plant}) => {
             <br></br>
             {user !== null &&
              <div>
-                 <p className="form-label">Name: {user.first_name} {user.last_name}</p>
-                 <p className="form-label">Email: {user.email}</p>
-                 <p className="form-label">Address:</p>
+                 <p className="form-label"><b>Name:</b> {user.first_name} {user.last_name}</p>
+                 <p className="form-label"><b>Email:</b> {user.email}</p>
+                 <p className="form-label"><b>Address:</b></p>
                  <p className="form-label">{user.address} ,</p>
                  <p className="form-label">{user.city} , {user.state}</p>
                  <p className="form-label">{user.state} , {user.country}</p>
@@ -46,10 +46,10 @@ export const Step6: React.FC<Step6Props> = ({user, plant}) => {
             <h3>The recipient</h3>
             <br></br>
             {/* ////////////This part to be updated with recipient info//////////// */}
-            <p className="form-label">Name: </p>
-            <p className="form-label">Email: </p>
-            <p className="form-label">Address:</p>
-            <p className="form-label">Relation:</p>
+            <p className="form-label"><b>Name:</b> </p>
+            <p className="form-label"><b>Email:</b> </p>
+            <p className="form-label"><b>Address:</b></p>
+            <p className="form-label"><b>Relation:</b></p>
 
           </div>
           

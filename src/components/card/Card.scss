@@ -10,6 +10,14 @@
   margin-bottom: 50px;
 }
 
+.container-center{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+
 .index-nav{
   display: flex;
   flex-direction: row;
@@ -78,11 +86,11 @@
 // Step 7
 
 .confirmation-image{
-  width: 30%;
-  height: 30%;
+  width: 25%;
+  height: 25%;
 }
 
-.no-bg {
-  background-color: $lightBeige;
-  padding: 0px;
-}
+// .no-bg {
+//   background-color: $lightBeige;
+//   padding: 0px;
+// }
