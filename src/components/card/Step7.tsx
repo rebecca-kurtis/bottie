@@ -13,7 +13,7 @@ export const Step7: React.FC<Step7Props> = () => {
         <PageTitle message ="Your order has been added to your cart!"/>
         <br></br>
         <br></br>
-        <div className="container no-bg">
+        <div className="container-center no-bg">
           <img src={confirmation} alt="Confirmation" className="confirmation-image" />       
         </div>
     </div>

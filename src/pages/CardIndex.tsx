@@ -20,6 +20,7 @@ import { Step5 } from "../components/card/Step5";
 import { Step6 } from "../components/card/Step6";
 import { Step7 } from "../components/card/Step7";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
 
 
 interface CardIndexProps {
@@ -293,6 +294,16 @@ export const CardIndex: React.FC<CardIndexProps> = ({ plant, setPlant,recipient,
 //   });
 // }
 
+
+
+let navigate = useNavigate();
+  
+const routeChange = () => {
+  let path = `/cart`;
+  navigate(path);
+  window.scrollTo(0, 0);
+};
+
   return (
     <main className="card-index">
       <div className="spacer-tag plants" />
@@ -476,7 +487,7 @@ export const CardIndex: React.FC<CardIndexProps> = ({ plant, setPlant,recipient,
               <div className="spacer"></div>
               {/* Will need to be updated with a link to the cart */}
               <MainButton
-                onChange={() => transition(STEP7)}
+                onChange={routeChange}
                 name="Go to my cart"
               />
             </div>

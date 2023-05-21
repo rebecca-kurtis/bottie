@@ -97,7 +97,7 @@ export const Cart: React.FC<CartProps> = ({ user, cart, tax, totalandTax, clearC
           {cart?.map((cartItem: any) => (
             <div className="summary-row">
               <p className="canva_body">{cartItem.product_name}</p>
-              <p className="canva_body">${cartItem.product_price / 100}</p>
+              <p className="canva_body">${cartItem.product_price/100}</p>
             </div>           
           ))}
             <div className="divider"></div>

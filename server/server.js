@@ -214,17 +214,16 @@ app.post("/cart-items", (req, res) => {
   const product_id = req.body.product_id;
   const recipient_id = req.body.recipient_id;
 
-  db.query(
-    `INSERT INTO cart_items (cart_id, product_id, recipient_id)
-    VALUES ($1, $2, $3);`,
-    [cart_id, product_id, recipient_id],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      res.status(200).send(results.rows);
-    }
-  );
+  Promise.all([
+    db.query(
+      "INSERT INTO cart_items (cart_id, product_id, recipient_id) VALUES ($1, $2, $3);",
+      [cart_id, product_id, recipient_id]
+    ),
+    db.query("SELECT cart_item_id FROM cart_items WHERE recipient_id = $1;", [recipient_id]),
+  ]).then((queryResults) => {
+    console.log("queryResults", queryResults);
+    res.status(200).send(queryResults[1].rows);
+  });
 });
 
 app.listen(8000, () => {

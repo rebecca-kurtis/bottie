@@ -7,7 +7,7 @@ interface LoadingProps {}
 export const Loading: React.FC<LoadingProps> = () => {
   return (
 
-     <div className="container no-bg">
+     <div className="container-center">
     <div className="loading-container">
       <h2>Loading your custom card...</h2>
       <Spinner animation="border" role="status" className="spinner">
