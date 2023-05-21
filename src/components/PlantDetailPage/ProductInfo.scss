@@ -26,3 +26,23 @@
   background-color: $white;
   padding-bottom: 70px;
 }
+
+.plant-nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+  width:50%;
+}
+
+.nav-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__image{
+  padding-left: 25px;
+}
+
+
