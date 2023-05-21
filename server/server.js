@@ -152,6 +152,7 @@ app.post("/recipients", (req, res) => {
     ),
     db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
   ]).then((queryResults) => {
+    console.log(queryResults)
     res.status(200).send(queryResults[1].rows);
   });
 });

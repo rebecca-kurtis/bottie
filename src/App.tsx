@@ -194,9 +194,10 @@ function App() {
   const cartCreation = () => {
 
     const productId = plant.product_id;
+
     const recipientIdNumber = recipientId;
     const cart_id = cartId;
-  
+    console.log(productId, recipientIdNumber, cart_id);
     const cartItem = {
       cart_id: cart_id,
       product_id: productId,
