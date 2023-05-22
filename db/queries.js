@@ -1,4 +1,4 @@
-const db = require('../connection');
+const db = require('../db/connection');
 
 const getUsers = () => {
   return db.query('SELECT * FROM users;')
@@ -34,7 +34,22 @@ const addUser = function(user) {
       return data.rows[0];
     });
 };
-module.exports = { getUsers, getUser, addUser };
+
+
+const checkRecipientExists = (phone) => {
+  return db
+    .query('SELECT * FROM recipients WHERE phone LIKE $1',[phone])
+    .then(data => {
+      console.log(data);
+      return data.rows[0];
+    });
+};
+
+
+
+
+
+module.exports = { getUsers, getUser, addUser, checkRecipientExists };
 
 
 // first_name VARCHAR(255) NOT NULL,

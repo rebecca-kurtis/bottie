@@ -33,6 +33,7 @@ interface CardIndexProps {
   cartCreation: any;
   handlePreValidationStep: any;
   handleRecipientCardSubmit: any;
+  getAllRecipients: any;
 }
 
 const STEP1 = "STEP1";
@@ -44,7 +45,7 @@ const STEP6 = "STEP6";
 const STEP7 = "STEP7";
 const LOADING = "LOADING";
 
-export const CardIndex: React.FC<CardIndexProps> = ({ plant, setPlant,recipient, setRecipient, products, user, cartCreation, handlePreValidationStep, handleRecipientCardSubmit }) => {
+export const CardIndex: React.FC<CardIndexProps> = ({ plant, setPlant,recipient, setRecipient, products, user, cartCreation, handlePreValidationStep, handleRecipientCardSubmit, getAllRecipients }) => {
   const { mode, transition } = useVisualMode(STEP1);
   // const [plant, setPlant] = useState({
   //   product_id: "",
@@ -322,6 +323,7 @@ const routeChange = () => {
                   alert("Please choose a plant!")
                   return
                 }
+                getAllRecipients()
                 transition(STEP3)}} name="Next step" />
             </div>
           </Fragment>
