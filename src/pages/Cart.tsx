@@ -12,10 +12,11 @@ import { PageTitle } from "../components/_partials/_PageTitle";
 import { Summary } from "../components/cart/Summary";
 
 interface CartProps {
+  user?: any;
 }
 
-export const Cart: React.FC<CartProps> = () => { 
-  const [userId, setUserId] = useState(3); //This needs to be taken from the props of user once set.
+export const Cart: React.FC<CartProps> = ({user}) => { 
+  const [userId, setUserId] = useState(user?.user_id); //This needs to be taken from the props of user once set.
   const [cart, setCart] = useState([] as any[]);
   const [total, setTotal] = useState(0);
   const [totalandTax, setTotalandTax] = useState(0);
@@ -51,7 +52,7 @@ export const Cart: React.FC<CartProps> = () => {
         console.log(error);
       });
     }
-  },[]);
+  },[userId]);
 
 
 
