@@ -35,23 +35,7 @@ function App() {
   }, []);
 
   // Set current user state
-
-  // const [user, setUser] = useState(null);
   const [user, setUser] = useLocalStorage("user", null);
-
-  // function getCurrentUser() {
-  //   const userStr = localStorage.getItem("user");
-  //   console.log(userStr)
-  //   if (userStr) return JSON.parse(userStr);
-
-  //   return null;
-  // }
-
-  // useEffect(() => {
-  //   const currentUser = getCurrentUser()
-  //   setUser(currentUser);
-
-  // }, []);
 
   function updateUserStorage(currentUser: React.SetStateAction<null>) {
     setUser(currentUser);
@@ -75,26 +59,10 @@ function App() {
 
   // Set current cart state
 
-  // const [cart, setCart] = useState([] as any[]);
-  // const [total, setTotal] = useState(0);
-  // const [totalandTax, setTotalAndTax] = useState(0);
-  // const [tax, setTax] = useState(0);
-
   const [cart, setCart] = useLocalStorage("cart", [] as any[]);
   const [total, setTotal] = useState(0);
   const [totalandTax, setTotalAndTax] = useLocalStorage("totalandTax", 0);
   const [tax, setTax] = useLocalStorage("tax", 0);
-
-  // function getUserOrderInfo(dataCall: any) {
-  //       setCart(dataCall);
-  //       const totalSum = dataCall.map((cartItem:any) => cartItem.product_price);
-  //       const total = Math.round(sumArray(totalSum)) / 100;
-  //       setTotal(Math.round(total/100))
-  //       const tax = Math.round((total * .05) * 100) / 100;
-  //       setTax(tax);
-  //       const totalandTax = Math.round((total + tax) * 100) / 100;
-  //       setTotalAndTax(totalandTax)
-  // }
 
   function getUserOrderInfo(dataCall: any) {
     setCart(dataCall);
@@ -120,12 +88,10 @@ function App() {
     localStorage.removeItem("tax");
     localStorage.removeItem("totalandTax");
     setCart([] as any[]);
-    // setOrderId(Math.floor(Math.random()*90000) + 10000);
   }
 
   // Set order state
   const [orderId, setOrderId] = useState("");
-  // const [orderId, setOrderId] = useLocalStorage("orderId", "");
   const [cartId, setCartId] = useState("");
   const [cartItemId, setCartItemId] = useState("");
   const [recipientId, setRecipientId] = useState("");
@@ -174,7 +140,6 @@ function App() {
     axios
       .get(recipientRoute)
       .then((response) => {
-        // console.log(response);
         const recipientList = [...response.data];
         console.log(recipientList);
         return setAllRecipients(recipientList);
@@ -262,7 +227,6 @@ function App() {
       .then((response) => {
         const orderId = response.data[0].order_id;
         setOrderId(orderId);
-        // localStorage.setItem("orderId", JSON.stringify(orderId));
         const cartId = response.data[0].cart_id;
         setCartId(cartId);
       })
@@ -287,7 +251,6 @@ function App() {
     currentCart.push(item);
     localStorage.setItem("cart", JSON.stringify(currentCart));
     setCart(currentCart);
-    // setRefresh(true);
   }
 
   const cartCreation = () => {
@@ -305,7 +268,7 @@ function App() {
     const user_name_combined = user.first_name + user.last_name;
     const recipient_name_combined = recipient.first_name + recipient.last_name;
     const number = Number(plant.price_in_cents);
-    const rightPriceForPlant = (number / 100).toString();
+    const rightPriceForPlant = (number * 100).toString();
 
     const cartStorageItem = {
       cart_item: cartItemId,

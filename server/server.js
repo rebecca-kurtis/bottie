@@ -1,15 +1,10 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const router = require("express").Router();
 const cors = require("cors");
 const { promptGPT } = require("./helpers/promptGPT");
-const { checkRecipientExists } = require("../db/queries");
-const { getAllRecipients} = require('./helpers/checkRecipientExists')
 const app = express();
 const axios = require("axios").default;
 const dotenv = require("dotenv");
 const db = require("../db/connection");
-const { resolve } = require("path");
 
 dotenv.config();
 
@@ -70,25 +65,7 @@ app.get("/users", (req, res) => {
 // Login API
 app.post("/login", (req, res) => {
   const email = req.body.email;
-  console.log("request:", req);
-  const userId = req.params.id;
-  // const password = req.body.password;
-
-  // if ((!email) || (!password)) {
-  //   //no name and/or email and/or password provided
-  //   return res.status(400).send(`<p>Please enter an email and password!</p>`);
-  // }
-  
-  // db.query("SELECT * FROM users WHERE email = $1", [email], (error, result) => {
-  //   if (error) {
-  //     throw error;
-  //   }
-  //   console.log("result:", result);
-  //   console.log("email:", email);
-  //   res.status(200).send(result.rows);
-  //   // res.cookie('user_id', result.user.id);
-  //   // res.cookie('first_name', result.user.first_name);
-  // });
+ 
   Promise.all([
     db.query(
       "SELECT * FROM users WHERE email = $1;",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import '@coreui/coreui/dist/css/coreui.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./User.css";
