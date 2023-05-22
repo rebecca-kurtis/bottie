@@ -1,61 +1,47 @@
-import React,{useEffect, useState} from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css';
+import "./App.css";
 
 //import components
-import { Header } from './components/_partials/_Header';
-import { Footer } from './components/_partials/_Footer';
-import { Home } from './pages/Home';
-import { Plants } from './pages/Plants';
-import { PlantDetail } from './pages/PlantDetail';
-import { CardIndex } from './pages/CardIndex';
-import { Profile } from './pages/Profile';
-import { CartConfirm } from './pages/CartConfirm';
-import { Cart } from './pages/Cart';
+import { Header } from "./components/_partials/_Header";
+import { Footer } from "./components/_partials/_Footer";
+import { Home } from "./pages/Home";
+import { Plants } from "./pages/Plants";
+import { PlantDetail } from "./pages/PlantDetail";
+import { CardIndex } from "./pages/CardIndex";
+import { Profile } from "./pages/Profile";
+import { CartConfirm } from "./pages/CartConfirm";
+import { Cart } from "./pages/Cart";
 
 //import hooks
-import { useLocalStorage } from './hooks/useLocalStorage';
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 function App() {
-
   // Product API call
 
   const [products, setProducts] = useState([] as any[]);
-  const productsRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/products"
-  
+  const productsRoute =
+    process.env.REACT_APP_SERVER +
+    ":" +
+    process.env.REACT_APP_SERVER_PORT +
+    "/products";
+
   useEffect(() => {
-      axios.get(productsRoute)
-     .then((response) => {
+    axios.get(productsRoute).then((response) => {
       const productList = [...response.data];
-    setProducts(productList);
-    })
-  },[]);
+      setProducts(productList);
+    });
+  }, []);
 
   // Set current user state
-
-  // const [user, setUser] = useState(null);
   const [user, setUser] = useLocalStorage("user", null);
-
-  // function getCurrentUser() {
-  //   const userStr = localStorage.getItem("user");
-  //   console.log(userStr)
-  //   if (userStr) return JSON.parse(userStr);
-
-  //   return null;
-  // }
-
-  // useEffect(() => {
-  //   const currentUser = getCurrentUser()
-  //   setUser(currentUser);
-
-  // }, []);
 
   function updateUserStorage(currentUser: React.SetStateAction<null>) {
     setUser(currentUser);
     localStorage.clear();
     localStorage.setItem("user", JSON.stringify(currentUser));
-    console.log('user', user);
+    console.log("user", user);
   }
 
   // Remove current user state
@@ -66,52 +52,35 @@ function App() {
 
   function sumArray(arr: number[]) {
     const totalReduce = arr.reduce((a, b) => {
-      return (a+b);
+      return a + b;
     });
     return totalReduce;
   }
 
   // Set current cart state
 
-  // const [cart, setCart] = useState([] as any[]);
-  // const [total, setTotal] = useState(0);
-  // const [totalandTax, setTotalAndTax] = useState(0);
-  // const [tax, setTax] = useState(0);
-
   const [cart, setCart] = useLocalStorage("cart", [] as any[]);
   const [total, setTotal] = useState(0);
   const [totalandTax, setTotalAndTax] = useLocalStorage("totalandTax", 0);
   const [tax, setTax] = useLocalStorage("tax", 0);
-  const [refresh, setRefresh] = useState(false);
-
-  // function getUserOrderInfo(dataCall: any) {
-  //       setCart(dataCall);
-  //       const totalSum = dataCall.map((cartItem:any) => cartItem.product_price);
-  //       const total = Math.round(sumArray(totalSum)) / 100;
-  //       setTotal(Math.round(total/100))
-  //       const tax = Math.round((total * .05) * 100) / 100;
-  //       setTax(tax);
-  //       const totalandTax = Math.round((total + tax) * 100) / 100;
-  //       setTotalAndTax(totalandTax)
-  // }
 
   function getUserOrderInfo(dataCall: any) {
     setCart(dataCall);
     localStorage.clear();
     localStorage.setItem("cart", JSON.stringify(dataCall));
 
-    const totalSum = dataCall.map((cartItem:any) => cartItem.product_price);
+    const totalSum = dataCall.map((cartItem: any) => cartItem.product_price);
     const total = Math.round(sumArray(totalSum)) / 100;
-    setTotal(Math.round(total/100))
+    setTotal(Math.round(total / 100));
 
-    const tax = Math.round((total * .05) * 100) / 100;
+    const tax = Math.round(total * 0.05 * 100) / 100;
     setTax(tax);
     localStorage.setItem("tax", JSON.stringify(tax));
 
     const totalandTax = Math.round((total + tax) * 100) / 100;
-    setTotalAndTax(totalandTax)
+    setTotalAndTax(totalandTax);
     localStorage.setItem("totalandTax", JSON.stringify(totalandTax));
-}
+  }
 
   // Remove current user state
   function clearCartStorage() {
@@ -119,13 +88,11 @@ function App() {
     localStorage.removeItem("tax");
     localStorage.removeItem("totalandTax");
     setCart([] as any[]);
-    // setOrderId(Math.floor(Math.random()*90000) + 10000);
   }
 
   // Set order state
   const [orderId, setOrderId] = useState("");
-  // const [orderId, setOrderId] = useLocalStorage("orderId", "");
-  const [cartId, setCartId] = useState('');
+  const [cartId, setCartId] = useState("");
   const [cartItemId, setCartItemId] = useState("");
   const [recipientId, setRecipientId] = useState("");
 
@@ -134,7 +101,7 @@ function App() {
     plant_name: "",
     image_url: "",
     description: "",
-    price_in_cents: ""
+    price_in_cents: "",
   });
 
   const [recipient, setRecipient] = useState({
@@ -149,79 +116,159 @@ function App() {
     postal_code: "",
   });
 
-  const recipientRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/recipients"
+  const [allRecipients, setAllRecipients] = useState([] as any[]);
 
+  const recipientRoute =
+    process.env.REACT_APP_SERVER +
+    ":" +
+    process.env.REACT_APP_SERVER_PORT +
+    "/recipients";
+  const recipientsRouteAdd =
+    process.env.REACT_APP_SERVER +
+    ":" +
+    process.env.REACT_APP_SERVER_PORT +
+    "/recipients/add";
+  const recipientsRouteUpdate =
+    process.env.REACT_APP_SERVER +
+    ":" +
+    process.env.REACT_APP_SERVER_PORT +
+    "/recipients/update";
+
+  console.log("allRecipients", allRecipients);
+
+  const getAllRecipients = () => {
+    axios
+      .get(recipientRoute)
+      .then((response) => {
+        const recipientList = [...response.data];
+        console.log(recipientList);
+        return setAllRecipients(recipientList);
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert(`Error! ${error.message}`);
+        } else if (error.request) {
+          console.log("network error");
+        } else {
+          console.log(error);
+        }
+      });
+  };
 
   //handle recipient post to the database
   const handleRecipientCardSubmit = () => {
-    axios.post(recipientRoute, recipient)
-    .then((response) => {
-      const recipientIdSQL = response.data[0].recipient_id;
-      setRecipientId(recipientIdSQL);
-  })
-  .catch((error) => {
-    if (error.response) {
-      alert(`Error! ${error.message}`);
-    } else if (error.request) {
-      console.log("network error");
-    } else {
-      console.log(error);
+    let result = "";
+    let counter = 0;
+
+    for (const obj of allRecipients) {
+      if (obj.phone === recipient.phone) {
+        result = "found";
+        counter++;
+      } else {
+        result = "not found";
+      }
+      console.log("result", result);
+      console.log("counter", counter);
     }
-  });
-};
+    console.log("result outside", result);
+    console.log("counter outside", counter);
+
+    if (counter > 0) {
+      console.log("recipient found");
+      axios
+        .post(recipientsRouteUpdate, recipient)
+        .then((response) => {
+          const recipientIdSQL = response.data[0].recipient_id;
+          setRecipientId(recipientIdSQL);
+        })
+        .catch((error) => {
+          if (error.response) {
+            alert(`Error! ${error.message}`);
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
+        });
+    }
+
+    if (counter === 0) {
+      console.log("not found");
+      axios
+        .post(recipientsRouteAdd, recipient)
+        .then((response) => {
+          console.log("response.data", response);
+          const recipientIdSQL = response.data[0].recipient_id;
+          setRecipientId(recipientIdSQL);
+        })
+        .catch((error) => {
+          if (error.response) {
+            alert(`Error! ${error.message}`);
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
+        });
+    }
+  };
 
   const handlePreValidationStep = () => {
     const userId = user.user_id;
-    const validateRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/validate/" + userId
-  
-    axios.get(validateRoute, userId)
-    .then((response) => {
-      const orderId = response.data[0].order_id;
-      setOrderId(orderId);
-      // localStorage.setItem("orderId", JSON.stringify(orderId));
-      const cartId = response.data[0].cart_id;
-      setCartId(cartId);
-    })
-    .catch((error) => {
-      if (error.response) {
-        alert(`Error! ${error.message}`);
-      } else if (error.request) {
-        console.log("network error");
-      } else {
-        console.log(error);
-      }
-    });
-  }
-  
+    const validateRoute =
+      process.env.REACT_APP_SERVER +
+      ":" +
+      process.env.REACT_APP_SERVER_PORT +
+      "/validate/" +
+      userId;
+
+    axios
+      .get(validateRoute, userId)
+      .then((response) => {
+        const orderId = response.data[0].order_id;
+        setOrderId(orderId);
+        const cartId = response.data[0].cart_id;
+        setCartId(cartId);
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert(`Error! ${error.message}`);
+        } else if (error.request) {
+          console.log("network error");
+        } else {
+          console.log(error);
+        }
+      });
+  };
+
   function updateCartStorage(item: any) {
     let currentCart = JSON.parse(localStorage.getItem("cart") as any);
 
     if (currentCart === null) {
-      currentCart =[]
+      currentCart = [];
     }
     localStorage.setItem("cartItem", JSON.stringify(item));
     currentCart.push(item);
     localStorage.setItem("cart", JSON.stringify(currentCart));
     setCart(currentCart);
-    // setRefresh(true);
   }
 
   const cartCreation = () => {
     const productId = plant.product_id;
+
     const recipientIdNumber = recipientId;
     const cart_id = cartId;
-  
+    console.log(productId, recipientIdNumber, cart_id);
     const cartItem = {
       cart_id: cart_id,
       product_id: productId,
       recipient_id: recipientIdNumber,
-    }
+    };
 
     const user_name_combined = user.first_name + user.last_name;
     const recipient_name_combined = recipient.first_name + recipient.last_name;
     const number = Number(plant.price_in_cents);
-    const rightPriceForPlant = (number/100).toString();
-
+    const rightPriceForPlant = (number * 100).toString();
 
     const cartStorageItem = {
       cart_item: cartItemId,
@@ -233,48 +280,90 @@ function App() {
       raddress: recipient.address,
       rcity: recipient.city,
       rstate: recipient.province,
-      rpostal_code: recipient.postal_code
-    }
-    
-    
-    const cartItemRoute = process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_SERVER_PORT + "/cart-items"
-  
-    axios.post(cartItemRoute, cartItem)
-    .then((response) => {
-      console.log("response from cartItems", response);
-      const cartItemIdSQL = response.data[0].cart_item_id;
-      setCartItemId(cartItemIdSQL);
-      console.log("LocalStorage from cart creation",localStorage);
+      rpostal_code: recipient.postal_code,
+    };
 
-      updateCartStorage(cartStorageItem);
-    })
-    .catch((error) => {
-      if (error.response) {
-        alert(`Error! ${error.message}`);
-      } else if (error.request) {
-        console.log("network error");
-      } else {
-        console.log(error);
-      }
-    });
-  }
+    const cartItemRoute =
+      process.env.REACT_APP_SERVER +
+      ":" +
+      process.env.REACT_APP_SERVER_PORT +
+      "/cart-items";
+
+    axios
+      .post(cartItemRoute, cartItem)
+      .then((response) => {
+        console.log("response from cartItems", response);
+        const cartItemIdSQL = response.data[0].cart_item_id;
+        setCartItemId(cartItemIdSQL);
+        console.log("LocalStorage from cart creation", localStorage);
+
+        updateCartStorage(cartStorageItem);
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert(`Error! ${error.message}`);
+        } else if (error.request) {
+          console.log("network error");
+        } else {
+          console.log(error);
+        }
+      });
+  };
 
   return (
     <>
-     <BrowserRouter>
-    <Header user={user} orderId={orderId} updateStorage={updateUserStorage} clearStorage={clearUserStorage} products={products} getUserOrderInfo={getUserOrderInfo} cart={cart}/>
-    <Routes>
-      <Route path="/" element={<Home products={products}/>} />
-      <Route path="/products" element={<Plants products={products} />} /> 
-      <Route path="/products/:name" element={<PlantDetail products={products} />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/card" element={<CardIndex plant={plant} setPlant={setPlant} recipient={recipient} setRecipient={setRecipient} products={products} user={user} cartCreation={cartCreation} handlePreValidationStep={handlePreValidationStep} handleRecipientCardSubmit={handleRecipientCardSubmit} />} />
-      <Route path="/confirmation" element={<CartConfirm/>} />
-      <Route path="/cart" element = {<Cart user={user} cart={cart} tax={tax} totalandTax={totalandTax} clearCartStorage={clearCartStorage} />} />
-      {/* <Route path="/card/configure" element={<CardConfigure />} /> */}
-    </Routes>
-  </BrowserRouter>
-  <Footer />
+      <BrowserRouter>
+        <Header
+          user={user}
+          orderId={orderId}
+          updateStorage={updateUserStorage}
+          clearStorage={clearUserStorage}
+          products={products}
+          getUserOrderInfo={getUserOrderInfo}
+          cart={cart}
+        />
+        <Routes>
+          <Route path="/" element={<Home products={products} />} />
+          <Route path="/products" element={<Plants products={products} />} />
+          <Route
+            path="/products/:name"
+            element={<PlantDetail products={products} />}
+          />
+          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/card"
+            element={
+              <CardIndex
+                plant={plant}
+                setPlant={setPlant}
+                recipient={recipient}
+                setRecipient={setRecipient}
+                products={products}
+                user={user}
+                cartCreation={cartCreation}
+                handlePreValidationStep={handlePreValidationStep}
+                handleRecipientCardSubmit={handleRecipientCardSubmit}
+                getAllRecipients={getAllRecipients}
+              />
+            }
+          />
+          <Route path="/confirmation" element={<CartConfirm />} />
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                user={user}
+                cart={cart}
+                tax={tax}
+                totalandTax={totalandTax}
+                clearCartStorage={clearCartStorage}
+              />
+            }
+          />
+          {/* <Route path="/card/configure" element={<CardConfigure />} /> */}
+        </Routes>
+      </BrowserRouter>
+      <Footer />
     </>
   );
 }

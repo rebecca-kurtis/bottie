@@ -1,6 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const router = require("express").Router();
 const cors = require("cors");
 const { promptGPT } = require("./helpers/promptGPT");
 const app = express();
@@ -67,25 +65,7 @@ app.get("/users", (req, res) => {
 // Login API
 app.post("/login", (req, res) => {
   const email = req.body.email;
-  console.log("request:", req);
-  const userId = req.params.id;
-  // const password = req.body.password;
-
-  // if ((!email) || (!password)) {
-  //   //no name and/or email and/or password provided
-  //   return res.status(400).send(`<p>Please enter an email and password!</p>`);
-  // }
-  
-  // db.query("SELECT * FROM users WHERE email = $1", [email], (error, result) => {
-  //   if (error) {
-  //     throw error;
-  //   }
-  //   console.log("result:", result);
-  //   console.log("email:", email);
-  //   res.status(200).send(result.rows);
-  //   // res.cookie('user_id', result.user.id);
-  //   // res.cookie('first_name', result.user.first_name);
-  // });
+ 
   Promise.all([
     db.query(
       "SELECT * FROM users WHERE email = $1;",
@@ -122,8 +102,18 @@ app.post("/login", (req, res) => {
 
 });
 
-//recipients post route
-app.post("/recipients", (req, res) => {
+//recipients get route
+app.get("/recipients", (req, res) => {
+  db.query("SELECT * FROM recipients;", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(200).send(results.rows);
+  });
+});
+
+//recipients post route for new recipients
+app.post("/recipients/add", (req, res) => {
   console.log("req.body", req.body);
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
@@ -135,25 +125,62 @@ app.post("/recipients", (req, res) => {
   const country = req.body.country;
   const postal_code = req.body.postal_code;
 
-  Promise.all([
-    db.query(
-      "INSERT INTO recipients (first_name, last_name, relationship, phone, address, city, state, country, postal_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);",
-      [
-        first_name,
-        last_name,
-        relationship,
-        phone,
-        address,
-        city,
-        state,
-        country,
-        postal_code,
-      ]
-    ),
-    db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
-  ]).then((queryResults) => {
-    res.status(200).send(queryResults[1].rows);
-  });
+    Promise.all([
+      db.query(
+        "INSERT INTO recipients (first_name, last_name, relationship, phone, address, city, state, country, postal_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);",
+        [
+          first_name,
+          last_name,
+          relationship,
+          phone,
+          address,
+          city,
+          state,
+          country,
+          postal_code,
+        ]
+      ),
+      db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
+    ]).then((queryResults) => {
+      console.log(queryResults)
+      res.status(200).send(queryResults[1].rows);
+    });
+});
+
+//recipients post route for existing recipients
+app.post("/recipients/update", (req, res) => {
+  console.log("req.body", req.body);
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
+  const relationship = req.body.relationship;
+  const phone = req.body.phone;
+  const address = req.body.address;
+  const city = req.body.city;
+  const state = req.body.province;
+  const country = req.body.country;
+  const postal_code = req.body.postal_code;
+
+    Promise.all([
+      db.query(
+        "UPDATE recipients SET first_name = $1, last_name = $2, relationship = $3, phone = $4, address = $5, city = $6, state = $7, country = $8, postal_code = $9 WHERE phone = $10;",
+        [
+          first_name,
+          last_name,
+          relationship,
+          phone,
+          address,
+          city,
+          state,
+          country,
+          postal_code,
+          phone
+        ]
+      ),
+      db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
+    ]).then((queryResults) => {
+      console.log(queryResults)
+      res.status(200).send(queryResults[1].rows);
+    });
 });
 
 // Chat GPT API
