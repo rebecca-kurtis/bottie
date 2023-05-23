@@ -46,7 +46,7 @@ export const Step4: React.FC<Step4Props> = ({
   
   return (
     <div>
-      <PageTitle message="4 / 5" />
+      <PageTitle message="3 / 5" />
       <PageTitle message="Let's configure your card" />
       <br></br>
       <br></br>

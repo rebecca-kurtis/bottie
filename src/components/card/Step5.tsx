@@ -23,7 +23,7 @@ export const Step5: React.FC<Step5Props> = ({
 
   return (
     <div>
-      <PageTitle message="5 / 6" />
+      <PageTitle message="4 / 5" />
       <PageTitle message="Preview your card" />
       <br></br>
       <br></br>

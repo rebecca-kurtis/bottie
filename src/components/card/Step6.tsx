@@ -12,7 +12,7 @@ export const Step6: React.FC<Step6Props> = ({user, plant}) => {
 
     return (
       <div>
-        <PageTitle message ="5 / 6" />
+        <PageTitle message ="5 / 5" />
         <PageTitle message ="Validate your order and add it to your cart" />
         <br></br>
         <br></br>

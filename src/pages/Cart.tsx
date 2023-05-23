@@ -83,7 +83,7 @@ export const Cart: React.FC<CartProps> = ({ user, cart, tax, totalandTax, clearC
       <PageTitle message="Cart"/>
         <br></br>
         <br></br> 
-      <div className="container">
+      <div className="container-cart">
         <div className="cart_items">
           {cart?.map((cartItem :any) => (
               <CartItem
