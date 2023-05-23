@@ -28,10 +28,15 @@ function App() {
     "/products";
 
   useEffect(() => {
-    axios.get(productsRoute).then((response) => {
+    axios.get(productsRoute)
+    .then((response) => {
       const productList = [...response.data];
       setProducts(productList);
-    });
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    ;
   }, []);
 
   // Set current user state
