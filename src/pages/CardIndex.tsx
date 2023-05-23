@@ -356,7 +356,7 @@ const routeChange = () => {
         {mode === STEP6 && (
           <Fragment>
             <div className="index-body">
-              <Step6 plant={plant} user={user}/>
+              <Step6 plant={plant} user={user} recipient={recipient}/>
             </div>
             <div className="index-nav">
               <SecondaryButton
