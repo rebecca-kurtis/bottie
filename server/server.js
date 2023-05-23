@@ -65,7 +65,7 @@ app.get("/users", (req, res) => {
 // Login API
 app.post("/login", (req, res) => {
   const email = req.body.email;
- 
+
   Promise.all([
     db.query(
       "SELECT * FROM users WHERE email = $1;",
@@ -93,7 +93,7 @@ app.post("/login", (req, res) => {
   ]).then((queryResults) => {
     console.log('queryResults', queryResults);
     const queryObjectResults = {
-      loginKey:queryResults[0].rows,
+      loginKey: queryResults[0].rows,
       cartKey: queryResults[1].rows
     }
     res.status(200).send(queryObjectResults);
@@ -125,26 +125,26 @@ app.post("/recipients/add", (req, res) => {
   const country = req.body.country;
   const postal_code = req.body.postal_code;
 
-    Promise.all([
-      db.query(
-        "INSERT INTO recipients (first_name, last_name, relationship, phone, address, city, state, country, postal_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);",
-        [
-          first_name,
-          last_name,
-          relationship,
-          phone,
-          address,
-          city,
-          state,
-          country,
-          postal_code,
-        ]
-      ),
-      db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
-    ]).then((queryResults) => {
-      console.log(queryResults)
-      res.status(200).send(queryResults[1].rows);
-    });
+  Promise.all([
+    db.query(
+      "INSERT INTO recipients (first_name, last_name, relationship, phone, address, city, state, country, postal_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);",
+      [
+        first_name,
+        last_name,
+        relationship,
+        phone,
+        address,
+        city,
+        state,
+        country,
+        postal_code,
+      ]
+    ),
+    db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
+  ]).then((queryResults) => {
+    console.log(queryResults)
+    res.status(200).send(queryResults[1].rows);
+  });
 });
 
 //recipients post route for existing recipients
@@ -160,27 +160,27 @@ app.post("/recipients/update", (req, res) => {
   const country = req.body.country;
   const postal_code = req.body.postal_code;
 
-    Promise.all([
-      db.query(
-        "UPDATE recipients SET first_name = $1, last_name = $2, relationship = $3, phone = $4, address = $5, city = $6, state = $7, country = $8, postal_code = $9 WHERE phone = $10;",
-        [
-          first_name,
-          last_name,
-          relationship,
-          phone,
-          address,
-          city,
-          state,
-          country,
-          postal_code,
-          phone
-        ]
-      ),
-      db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
-    ]).then((queryResults) => {
-      console.log(queryResults)
-      res.status(200).send(queryResults[1].rows);
-    });
+  Promise.all([
+    db.query(
+      "UPDATE recipients SET first_name = $1, last_name = $2, relationship = $3, phone = $4, address = $5, city = $6, state = $7, country = $8, postal_code = $9 WHERE phone = $10;",
+      [
+        first_name,
+        last_name,
+        relationship,
+        phone,
+        address,
+        city,
+        state,
+        country,
+        postal_code,
+        phone
+      ]
+    ),
+    db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
+  ]).then((queryResults) => {
+    console.log(queryResults)
+    res.status(200).send(queryResults[1].rows);
+  });
 });
 
 // Chat GPT API

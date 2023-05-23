@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# Aunt Bottie Gift Plant and Card App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aunt Bottie is an app for buying plants as gifts and creating a personal card via Open AI.
 
-## Available Scripts
+1. A user selects a gift.
+2. The user then fills out a form with the following info.
+   - The recipient of the gift
+   - The Senders info.
+   - The Card poetry style
+   - Themes of the card.
+   - The mood of the poem.
+3. A request is sent to OpenAI and the card is create.
+4. Users add the gift and card to their cart.
+5. They can make payment.
 
-In the project directory, you can run:
+## Current Stage:
 
-### `npm start`
+MVP verson 1.0 - Everthing works as a demo but it is not ready for production.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Final Product
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Homepage
 
-### `npm test`
+!["Homepage"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Homepage.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Flow Pages
 
-### `npm run build`
+!["Flow01"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Flow01.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+!["Flow02"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Flow02.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+!["Flow03"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Flow03.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+!["Card"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Card.png)
 
-### `npm run eject`
+!["Cart"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Cart.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Plant Details
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+!["Plant Details"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Plant-Details.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Getting Started
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Clone this github and in the app directory run npm install to get all the dependencies.
