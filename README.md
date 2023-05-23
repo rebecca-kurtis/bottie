@@ -19,19 +19,19 @@ MVP verson 1.0 - Everthing works as a demo but it is not ready for production.
 
 ## Final Product
 
-!["Homepage"]
+!["Homepage"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Homepage.png)
 
-!["Flow01"]
+!["Flow01"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Flow01.png)
 
-!["Flow02"]
+!["Flow02"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Flow02.png)
 
-!["Flow03"]
+!["Flow03"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Flow03.png)
 
-!["Card"]
+!["Card"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Card.png)
 
-!["Cart"]
+!["Cart"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Cart.png)
 
-!["Plant Details"]
+!["Plant Details"](https://github.com/rebecca-kurtis/bottie/blob/readme/docs/Plant-Details.png)
 
 ## Getting Started
 
