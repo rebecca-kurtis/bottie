@@ -22,7 +22,7 @@ export const Step3: React.FC<Step3Props> = ({
 }) => {
   return (
     <div>
-      <PageTitle message="3 / 5" />
+      <PageTitle message="2 / 5" />
       <PageTitle message="Tell me about you the person you want to offer a gift" />
       <br></br>
       <br></br>
@@ -32,7 +32,7 @@ export const Step3: React.FC<Step3Props> = ({
             <h3>Who is this person</h3>
             <br></br>
             <br></br>
-            <label className="form-label">First Name</label>
+            <label className="form-label"><h5>First Name</h5></label>
             <input
               type="text"
               name="first_name"
@@ -47,7 +47,7 @@ export const Step3: React.FC<Step3Props> = ({
               }}
             ></input>
 
-            <label className="form-label">Last Name</label>
+            <label className="form-label"><h5>Last Name</h5></label>
             <input
               type="text"
               name="last_name"
@@ -62,7 +62,7 @@ export const Step3: React.FC<Step3Props> = ({
               }}
             ></input>
 
-            <label className="form-label">Phone Number</label>
+            <label className="form-label"><h5>Phone Number</h5></label>
             <input
               type="text"
               name="phone"
@@ -95,7 +95,7 @@ export const Step3: React.FC<Step3Props> = ({
             <h3>Where do they live</h3>
             <br></br>
             <br></br>
-            <label className="form-label">Address</label>
+            <label className="form-label"><h5>Address</h5></label>
             <input
               type="text"
               name="address"
@@ -110,7 +110,7 @@ export const Step3: React.FC<Step3Props> = ({
               }}
             ></input>
 
-            <label className="form-label">City</label>
+            <label className="form-label"><h5>City</h5></label>
             <input
               type="text"
               name="city"
@@ -127,7 +127,7 @@ export const Step3: React.FC<Step3Props> = ({
 
             <div className="double">
               <div>
-                <label className="form-label">Province</label>
+                <label className="form-label"><h5>Province</h5></label>
                 <FormSelect className="input-text province" 
                  value={recipient.province || ""}
                 onChange={(event) => {
@@ -153,7 +153,7 @@ export const Step3: React.FC<Step3Props> = ({
                 </FormSelect>
               </div>
               <div className="postcode">
-                <label className="form-label">Postal Code</label>
+                <label className="form-label"><h5>Postal Code</h5></label>
                 <input
                   type="text"
                   name="post_code"

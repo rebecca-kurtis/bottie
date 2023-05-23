@@ -6,13 +6,14 @@ import { ProductCard } from '../PlantsPage/ProductCard';
 interface Step6Props {
   user?:any;
   plant?: any;
+  recipient?: any;
 }
 
-export const Step6: React.FC<Step6Props> = ({user, plant}) => {
+export const Step6: React.FC<Step6Props> = ({user, plant, recipient}) => {
 
     return (
       <div>
-        <PageTitle message ="5 / 6" />
+        <PageTitle message ="5 / 5" />
         <PageTitle message ="Validate your order and add it to your cart" />
         <br></br>
         <br></br>
@@ -25,10 +26,10 @@ export const Step6: React.FC<Step6Props> = ({user, plant}) => {
                  <p className="form-label"><b>Name:</b> {user.first_name} {user.last_name}</p>
                  <p className="form-label"><b>Email:</b> {user.email}</p>
                  <p className="form-label"><b>Address:</b></p>
-                 <p className="form-label">{user.address} ,</p>
-                 <p className="form-label">{user.city} , {user.state}</p>
-                 <p className="form-label">{user.state} , {user.country}</p>
+                 <p className="form-label">{user.address},</p>
+                 <p className="form-label">{user.city}, {user.state}</p>
                  <p className="form-label">{user.postal_code}</p>
+                 {/* <p className="form-label">{user.postal_code}</p> */}
             </div>
             }
 
@@ -46,10 +47,14 @@ export const Step6: React.FC<Step6Props> = ({user, plant}) => {
             <h3>The recipient</h3>
             <br></br>
             {/* ////////////This part to be updated with recipient info//////////// */}
-            <p className="form-label"><b>Name:</b> </p>
-            <p className="form-label"><b>Email:</b> </p>
-            <p className="form-label"><b>Address:</b></p>
-            <p className="form-label"><b>Relation:</b></p>
+            <p className="form-label"><b>Name: </b>{recipient.first_name +" " + recipient.last_name}</p>
+            <p className="form-label"><b>Phone: </b>{recipient.phone}</p>
+            <p className="form-label"><b>Address: </b> </p>
+            <p className="form-label">{recipient.address},</p>
+                 <p className="form-label">{recipient.city}, {recipient.state}</p>
+                 <p className="form-label">{recipient.province}, {recipient.postal_code}</p>
+                 {/* <p className="form-label">{recipient.postal_code}</p> */}
+            {/* <p className="form-label"><b>Relation:</b></p> */}
 
           </div>
           

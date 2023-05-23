@@ -16,6 +16,7 @@ import { Cart } from "./pages/Cart";
 
 //import hooks
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { error } from "console";
 
 function App() {
   // Product API call
@@ -35,8 +36,7 @@ function App() {
     })
     .catch(error => {
       console.log(error);
-    })
-    ;
+    });
   }, []);
 
   // Set current user state
