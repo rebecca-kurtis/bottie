@@ -16,6 +16,7 @@ import { Cart } from "./pages/Cart";
 
 //import hooks
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { error } from "console";
 
 function App() {
   // Product API call
@@ -28,9 +29,13 @@ function App() {
     "/products";
 
   useEffect(() => {
-    axios.get(productsRoute).then((response) => {
+    axios.get(productsRoute)
+    .then((response) => {
       const productList = [...response.data];
       setProducts(productList);
+    })
+    .catch(error => {
+      console.log(error);
     });
   }, []);
 
