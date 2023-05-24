@@ -342,9 +342,9 @@ function App() {
             element={
               <Cart
                 user={user}
-                cart={cart}
-                tax={tax}
-                totalandTax={totalandTax}
+                // cart={cart}
+                // tax={tax}
+                // totalandTax={totalandTax}
                 clearCartStorage={clearCartStorage}
               />
             }

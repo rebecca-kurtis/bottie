@@ -21,8 +21,8 @@ app.get("/products", (req, res) => {
   });
 });
 
-app.get("/cart/:id", (req, res) => {
-  const userId = req.params.id;
+app.get('/cart/:id', (req, res) => {
+  userId = req.params.id;
   db.query(
     `SELECT cart_items.cart_item_id AS cart_item, 
     products.name AS product_name,
@@ -40,18 +40,15 @@ app.get("/cart/:id", (req, res) => {
     JOIN users on orders.user_id = users.user_id
     JOIN products on cart_items.product_id = products.product_id
     JOIN recipients on cart_items.recipient_id = recipients.recipient_id
-    WHERE users.user_id = ${userId} AND orders.completed = FALSE
+    WHERE users.user_id = $1 AND orders.completed = FALSE
     GROUP BY user_name, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price, product_drawing 
-    ORDER BY cart_item;`,
-    (error, results) => {
+    ORDER BY cart_item;`, [userId]
+    , (error, results) => {
       if (error) {
         throw error;
       }
       res.status(200).send(results.rows);
-    }
-  ).catch(error => {
-    console.log(error);
-  });
+    })
 });
 
 //Users API
