@@ -344,7 +344,7 @@ const routeChange = () => {
               <div className="spacer"></div>
               <MainButton
                 onChange={() => {
-                  handlePreValidationStep()
+                  //handlePreValidationStep()
                   transition(STEP6)
                 }}
                 name="Next Step"

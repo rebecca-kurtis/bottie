@@ -18,16 +18,52 @@ import { Cart } from "./pages/Cart";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { error } from "console";
 
+const server = process.env.REACT_APP_SERVER + ':' + process.env.REACT_APP_SERVER_PORT;
+
 function App() {
-  // Product API call
-
+  //usestates are here
   const [products, setProducts] = useState([] as any[]);
-  const productsRoute =
-    process.env.REACT_APP_SERVER +
-    ":" +
-    process.env.REACT_APP_SERVER_PORT +
-    "/products";
+  const [total, setTotal] = useState(0);
+  
+  // Set order state
+  const [orderId, setOrderId] = useState("");
+  const [cartId, setCartId] = useState("");
+  const [cartItemId, setCartItemId] = useState("");
+  const [recipientId, setRecipientId] = useState("");
 
+  const [plant, setPlant] = useState({
+    product_id: "",
+    plant_name: "",
+    image_url: "",
+    description: "",
+    price_in_cents: "",
+  });
+
+  const [recipient, setRecipient] = useState({
+    first_name: "",
+    last_name: "",
+    relationship: "",
+    phone: "",
+    address: "",
+    city: "",
+    province: "",
+    country: "",
+    postal_code: "",
+  });
+
+  const [allRecipients, setAllRecipients] = useState([] as any[]);
+
+  // Set current cart state
+
+  const [cart, setCart] = useLocalStorage("cart", [] as any[]);
+  const [totalandTax, setTotalAndTax] = useLocalStorage("totalandTax", 0);
+  const [tax, setTax] = useLocalStorage("tax", 0);
+  
+   // Product API call //
+   //set the route
+  const productsRoute = server + "/products";
+  
+    //call all the products for the app.
   useEffect(() => {
     axios.get(productsRoute)
     .then((response) => {
@@ -62,13 +98,6 @@ function App() {
     return totalReduce;
   }
 
-  // Set current cart state
-
-  const [cart, setCart] = useLocalStorage("cart", [] as any[]);
-  const [total, setTotal] = useState(0);
-  const [totalandTax, setTotalAndTax] = useLocalStorage("totalandTax", 0);
-  const [tax, setTax] = useLocalStorage("tax", 0);
-
   function getUserOrderInfo(dataCall: any) {
     setCart(dataCall);
     localStorage.clear();
@@ -95,49 +124,10 @@ function App() {
     setCart([] as any[]);
   }
 
-  // Set order state
-  const [orderId, setOrderId] = useState("");
-  const [cartId, setCartId] = useState("");
-  const [cartItemId, setCartItemId] = useState("");
-  const [recipientId, setRecipientId] = useState("");
-
-  const [plant, setPlant] = useState({
-    product_id: "",
-    plant_name: "",
-    image_url: "",
-    description: "",
-    price_in_cents: "",
-  });
-
-  const [recipient, setRecipient] = useState({
-    first_name: "",
-    last_name: "",
-    relationship: "",
-    phone: "",
-    address: "",
-    city: "",
-    province: "",
-    country: "",
-    postal_code: "",
-  });
-
-  const [allRecipients, setAllRecipients] = useState([] as any[]);
-
-  const recipientRoute =
-    process.env.REACT_APP_SERVER +
-    ":" +
-    process.env.REACT_APP_SERVER_PORT +
-    "/recipients";
-  const recipientsRouteAdd =
-    process.env.REACT_APP_SERVER +
-    ":" +
-    process.env.REACT_APP_SERVER_PORT +
-    "/recipients/add";
-  const recipientsRouteUpdate =
-    process.env.REACT_APP_SERVER +
-    ":" +
-    process.env.REACT_APP_SERVER_PORT +
-    "/recipients/update";
+  const recipientRoute = server + "/recipients";
+  
+  const recipientsRouteAdd = server + "/recipients/add";
+  const recipientsRouteUpdate = server + "/recipients/update";
 
   console.log("allRecipients", allRecipients);
 
@@ -202,8 +192,8 @@ function App() {
       axios
         .post(recipientsRouteAdd, recipient)
         .then((response) => {
-          console.log("response.data", response);
-          const recipientIdSQL = response.data[0].recipient_id;
+          console.log("response.data", response.data.rows[0].recipient_id);
+          const recipientIdSQL = response.data.rows[0].recipient_id;
           setRecipientId(recipientIdSQL);
         })
         .catch((error) => {
@@ -220,12 +210,7 @@ function App() {
 
   const handlePreValidationStep = () => {
     const userId = user.user_id;
-    const validateRoute =
-      process.env.REACT_APP_SERVER +
-      ":" +
-      process.env.REACT_APP_SERVER_PORT +
-      "/validate/" +
-      userId;
+    const validateRoute = server + "/validate/" + userId;
 
     axios
       .get(validateRoute, userId)
@@ -262,7 +247,9 @@ function App() {
     const productId = plant.product_id;
 
     const recipientIdNumber = recipientId;
-    const cart_id = cartId;
+    console.log(cart[0].cartid);
+    const cart_id = cart[0].cartid;
+    
     console.log(productId, recipientIdNumber, cart_id);
     const cartItem = {
       cart_id: cart_id,
@@ -288,11 +275,7 @@ function App() {
       rpostal_code: recipient.postal_code,
     };
 
-    const cartItemRoute =
-      process.env.REACT_APP_SERVER +
-      ":" +
-      process.env.REACT_APP_SERVER_PORT +
-      "/cart-items";
+    const cartItemRoute = server + "/cart-items";
 
     axios
       .post(cartItemRoute, cartItem)
@@ -317,11 +300,12 @@ function App() {
 
   return (
     <>
+     {console.log("cart", cart)}
       <BrowserRouter>
         <Header
           user={user}
           orderId={orderId}
-          updateStorage={updateUserStorage}
+          updateUserStorage={updateUserStorage}
           clearStorage={clearUserStorage}
           products={products}
           getUserOrderInfo={getUserOrderInfo}
@@ -358,9 +342,9 @@ function App() {
             element={
               <Cart
                 user={user}
-                cart={cart}
-                tax={tax}
-                totalandTax={totalandTax}
+                // cart={cart}
+                // tax={tax}
+                // totalandTax={totalandTax}
                 clearCartStorage={clearCartStorage}
               />
             }

@@ -21,8 +21,8 @@ app.get("/products", (req, res) => {
   });
 });
 
-app.get("/cart/:id", (req, res) => {
-  const userId = req.params.id;
+app.get('/cart/:id', (req, res) => {
+  userId = req.params.id;
   db.query(
     `SELECT cart_items.cart_item_id AS cart_item, 
     products.name AS product_name,
@@ -40,16 +40,15 @@ app.get("/cart/:id", (req, res) => {
     JOIN users on orders.user_id = users.user_id
     JOIN products on cart_items.product_id = products.product_id
     JOIN recipients on cart_items.recipient_id = recipients.recipient_id
-    WHERE users.user_id = ${userId} AND orders.completed = FALSE
+    WHERE users.user_id = $1 AND orders.completed = FALSE
     GROUP BY user_name, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price, product_drawing 
-    ORDER BY cart_item;`,
-    (error, results) => {
+    ORDER BY cart_item;`, [userId]
+    , (error, results) => {
       if (error) {
         throw error;
       }
       res.status(200).send(results.rows);
-    }
-  );
+    })
 });
 
 //Users API
@@ -68,13 +67,29 @@ app.post("/login", (req, res) => {
 
   Promise.all([
     db.query(
-      "SELECT * FROM users WHERE email = $1;",
+      `SELECT users.first_name,
+      users.last_name,
+      users.email,
+      users.password,
+      users.address,
+      users.city,
+      users.state,
+      users.country,
+      users.postal_code,
+      orders.order_id AS openOrderID
+      FROM users
+      JOIN orders on orders.user_id = users.user_id 
+      WHERE users.email = $1 AND orders.completed = FALSE
+      GROUP BY users.first_name, users.last_name, users.email, users.password, users.address, users.city, users.state, users.country, users.postal_code, openOrderID
+      ;`,
       [email]
     ),
     db.query(`SELECT cart_items.cart_item_id AS cart_item, 
+    orders.order_id AS orderID,
     products.name AS product_name,
     products.drawing_url AS product_drawing, 
     products.price_in_cents AS product_price,
+    carts.cart_id as cartid,
     CONCAT (users.first_name, ' ', users.last_name) AS user_name,
     CONCAT (recipients.first_name, ' ', recipients.last_name) AS rName,
     recipients.address AS rAddress,
@@ -88,15 +103,18 @@ app.post("/login", (req, res) => {
     JOIN products on cart_items.product_id = products.product_id
     JOIN recipients on cart_items.recipient_id = recipients.recipient_id
     WHERE users.email = $1 AND orders.completed = FALSE
-    GROUP BY user_name, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price, product_drawing 
+    GROUP BY user_name, orderid, cartid, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price, product_drawing 
     ORDER BY cart_item;`, [email]),
   ]).then((queryResults) => {
-    console.log('queryResults', queryResults);
+    console.log('queryResults[0]', queryResults[0].rows);
+    console.log('queryResults[1]', queryResults[1].rows);
     const queryObjectResults = {
       loginKey: queryResults[0].rows,
       cartKey: queryResults[1].rows
     }
     res.status(200).send(queryObjectResults);
+  }).catch(error => {
+    console.log(error);
   });
 
 
@@ -125,27 +143,31 @@ app.post("/recipients/add", (req, res) => {
   const country = req.body.country;
   const postal_code = req.body.postal_code;
 
-  Promise.all([
-    db.query(
-      "INSERT INTO recipients (first_name, last_name, relationship, phone, address, city, state, country, postal_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);",
-      [
-        first_name,
-        last_name,
-        relationship,
-        phone,
-        address,
-        city,
-        state,
-        country,
-        postal_code,
-      ]
-    ),
-    db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]),
-  ]).then((queryResults) => {
-    console.log(queryResults)
-    res.status(200).send(queryResults[1].rows);
+  db.query(
+    "INSERT INTO recipients (first_name, last_name, relationship, phone, address, city, state, country, postal_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);",
+    [
+      first_name,
+      last_name,
+      relationship,
+      phone,
+      address,
+      city,
+      state,
+      country,
+      postal_code,
+    ]
+  ).then(() => {
+    selectVal = db.query("SELECT recipient_id FROM recipients WHERE phone = $1;", [phone]);
+    return selectVal;
+  }
+  ).then((results) => {
+    console.log(results)
+    res.status(200).send(results);
+  }).catch(error => {
+    console.log(error);
   });
-});
+}
+);
 
 //recipients post route for existing recipients
 app.post("/recipients/update", (req, res) => {
@@ -180,6 +202,8 @@ app.post("/recipients/update", (req, res) => {
   ]).then((queryResults) => {
     console.log(queryResults)
     res.status(200).send(queryResults[1].rows);
+  }).catch(error => {
+    console.log(error);
   });
 });
 
@@ -212,6 +236,8 @@ app.post("/chatGPT", (req, res) => {
     const message = response.data.choices[0].message.content;
     console.log("generated:", message);
     res.status(200).json({ message });
+  }).catch(error => {
+    console.log(error);
   });
 });
 
@@ -230,6 +256,7 @@ app.get("/validate/:id", (req, res) => {
       if (error) {
         throw error;
       }
+      console.log('validate', results.rows);
       res.status(200).send(results.rows);
     }
   );
@@ -240,17 +267,20 @@ app.post("/cart-items", (req, res) => {
   const cart_id = req.body.cart_id;
   const product_id = req.body.product_id;
   const recipient_id = req.body.recipient_id;
-
-  Promise.all([
-    db.query(
-      "INSERT INTO cart_items (cart_id, product_id, recipient_id) VALUES ($1, $2, $3);",
-      [cart_id, product_id, recipient_id]
-    ),
-    db.query("SELECT cart_item_id FROM cart_items WHERE recipient_id = $1;", [recipient_id]),
-  ]).then((queryResults) => {
-    console.log("queryResults", queryResults);
-    res.status(200).send(queryResults[1].rows);
-  });
+  console.log(req.body);
+  db.query(
+    "INSERT INTO cart_items (cart_id, product_id, recipient_id) VALUES ($1, $2, $3);",
+    [cart_id, product_id, recipient_id]
+  ).then(() => {
+    getCartItem = db.query("SELECT cart_item_id FROM cart_items WHERE recipient_id = $1;", [recipient_id]);
+    return getCartItem;
+  })
+    .then((queryResults) => {
+      console.log("queryResults", queryResults);
+      res.status(200).send(queryResults.rows);
+    }).catch(error => {
+      console.log(error);
+    });
 });
 
 app.listen(8000, () => {
