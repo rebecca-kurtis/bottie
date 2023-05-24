@@ -192,8 +192,8 @@ function App() {
       axios
         .post(recipientsRouteAdd, recipient)
         .then((response) => {
-          console.log("response.data", response);
-          const recipientIdSQL = response.data[0].recipient_id;
+          console.log("response.data", response.data.rows[0].recipient_id);
+          const recipientIdSQL = response.data.rows[0].recipient_id;
           setRecipientId(recipientIdSQL);
         })
         .catch((error) => {
@@ -247,7 +247,9 @@ function App() {
     const productId = plant.product_id;
 
     const recipientIdNumber = recipientId;
-    const cart_id = cartId;
+    console.log(cart[0].cartid);
+    const cart_id = cart[0].cartid;
+    
     console.log(productId, recipientIdNumber, cart_id);
     const cartItem = {
       cart_id: cart_id,
@@ -298,6 +300,7 @@ function App() {
 
   return (
     <>
+     {console.log("cart", cart)}
       <BrowserRouter>
         <Header
           user={user}
