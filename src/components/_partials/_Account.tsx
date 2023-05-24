@@ -9,13 +9,13 @@ import { SecondaryButton } from "../SecondaryButton";
 
 interface _AccountProps {
   closeSide: () => void;
-  updateStorage: any;
+  updateUserStorage: any;
   clearStorage: any;
   user?: any;
   orderId?: any;
 }
 
-export const Account: React.FC<_AccountProps> = ({closeSide, updateStorage, clearStorage, user, orderId}) => {
+export const Account: React.FC<_AccountProps> = ({closeSide, updateUserStorage, clearStorage, user, orderId}) => {
   
   console.log("orderId from account", orderId)
   console.log("cart localstorage", localStorage.getItem("cart"))
@@ -34,6 +34,7 @@ export const Account: React.FC<_AccountProps> = ({closeSide, updateStorage, clea
     // navigate('/');
     closeSide();
 }
+  console.log('Accountpageuser:', user);
 
   return (
     <div className="user">
@@ -44,18 +45,18 @@ export const Account: React.FC<_AccountProps> = ({closeSide, updateStorage, clea
           <br></br>
           <p className="canva_body">You can track your orders and access Bottie's promotions with your personal account.</p>
           <br></br>
-          <h4>Orders</h4>    
+          <h4>Open Orders</h4>    
           <br></br>
-          {!orderId &&
+          {!user.openorderid &&
           <div className="orders-container">
             <h5>You have no order yet.</h5>
             <SecondaryButton type="submit" class="secondary-button" name="Let's get started!" onChange={routeChange}/>
           </div>
           }
-          {orderId &&
+          {user.openorderid &&
           <div className="orders-container">
-            <h5>Upcoming orders </h5>
-            <p>#{orderId}</p>
+            <h5>Open orders </h5>
+            <p>#{user.openorderid}</p>
           </div>
           }
           <br></br>

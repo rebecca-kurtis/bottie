@@ -68,10 +68,25 @@ app.post("/login", (req, res) => {
 
   Promise.all([
     db.query(
-      "SELECT * FROM users WHERE email = $1;",
+      `SELECT users.first_name,
+      users.last_name,
+      users.email,
+      users.password,
+      users.address,
+      users.city,
+      users.state,
+      users.country,
+      users.postal_code,
+      orders.order_id AS openOrderID
+      FROM users
+      JOIN orders on orders.user_id = users.user_id 
+      WHERE users.email = $1 AND orders.completed = FALSE
+      GROUP BY users.first_name, users.last_name, users.email, users.password, users.address, users.city, users.state, users.country, users.postal_code, openOrderID
+      ;`,
       [email]
     ),
     db.query(`SELECT cart_items.cart_item_id AS cart_item, 
+    orders.order_id AS orderID,
     products.name AS product_name,
     products.drawing_url AS product_drawing, 
     products.price_in_cents AS product_price,
@@ -88,10 +103,11 @@ app.post("/login", (req, res) => {
     JOIN products on cart_items.product_id = products.product_id
     JOIN recipients on cart_items.recipient_id = recipients.recipient_id
     WHERE users.email = $1 AND orders.completed = FALSE
-    GROUP BY user_name, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price, product_drawing 
+    GROUP BY user_name, orderid, rName, rAddress, rCity, rState, rPostal_code, cart_item, product_name, product_price, product_drawing 
     ORDER BY cart_item;`, [email]),
   ]).then((queryResults) => {
-    console.log('queryResults', queryResults);
+    console.log('queryResults[0]', queryResults[0].rows);
+    console.log('queryResults[1]', queryResults[1].rows);
     const queryObjectResults = {
       loginKey: queryResults[0].rows,
       cartKey: queryResults[1].rows
@@ -230,6 +246,7 @@ app.get("/validate/:id", (req, res) => {
       if (error) {
         throw error;
       }
+      console.log('validate', results.rows);
       res.status(200).send(results.rows);
     }
   );

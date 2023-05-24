@@ -30,7 +30,7 @@ import { CCloseButton } from "@coreui/react";
 
 interface _HeaderProps {
   user?: any;
-  updateStorage: any;
+  updateUserStorage: any;
   clearStorage: any;
   products:any;
   getUserOrderInfo:any;
@@ -39,7 +39,7 @@ interface _HeaderProps {
 }
 
 
-export const Header: React.FC<_HeaderProps> = ({user, orderId, updateStorage, clearStorage, products, getUserOrderInfo, cart}) => {
+export const Header: React.FC<_HeaderProps> = ({user, orderId, updateUserStorage, clearStorage, products, getUserOrderInfo, cart}) => {
   const className = "scroll";
   const scrollTrigger = 60;
 
@@ -111,7 +111,7 @@ export const Header: React.FC<_HeaderProps> = ({user, orderId, updateStorage, cl
                       </COffcanvasHeader>
                       <COffcanvasBody>
                         {mode === LOGIN && (
-                          <Login toggleAccount={toggleAccount} onChange={() =>transition(REGISTER)} updateStorage={updateStorage} getUserOrderInfo={getUserOrderInfo}/>
+                          <Login toggleAccount={toggleAccount} onChange={() =>transition(REGISTER)} updateUserStorage={updateUserStorage} getUserOrderInfo={getUserOrderInfo}/>
                         )}   
                         {mode === REGISTER && (
                           <Register onChange={() => transition(LOGIN)} />
@@ -131,7 +131,7 @@ export const Header: React.FC<_HeaderProps> = ({user, orderId, updateStorage, cl
                       </COffcanvasHeader>
                       <COffcanvasBody>
                         {mode === ACCOUNT && (
-                          <Account closeSide={closeSide} updateStorage={updateStorage} clearStorage={clearStorage} user={user} orderId={orderId}/>
+                          <Account closeSide={closeSide} updateUserStorage={updateUserStorage} clearStorage={clearStorage} user={user} orderId={orderId}/>
                         )}
                         {mode === CART && (
                           <MiniCart closeSide={closeSide} cart={cart}/>

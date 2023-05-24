@@ -8,12 +8,12 @@ import "./User.css";
 interface _LoginProps {
   onChange: React.MouseEventHandler<HTMLButtonElement> | undefined;
   toggleAccount: () => void;
-  updateStorage: any;
+  updateUserStorage: any;
   getUserOrderInfo: any;
 }
 
 
-export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateStorage, getUserOrderInfo}) => {
+export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateUserStorage, getUserOrderInfo}) => {
 
   const [form, setForm] = useState({
     first_name: "",
@@ -26,6 +26,8 @@ export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateStor
     country: "",
     postal_code: ""
   });
+
+  const [orderId, setOrderId] = useState(0);
 
   // Set the value of a single element of the object
   const setValue = (key: any, value: any) => {
@@ -43,12 +45,11 @@ export const Login: React.FC<_LoginProps> = ({onChange,toggleAccount, updateStor
       console.log('response', response);
       const data = response.data.loginKey;
   
-      updateStorage(data[0]);
+      updateUserStorage(data[0]);
 
       setForm(data[0]);
       toggleAccount();
       setForm(data[0]);
-
       getUserOrderInfo(response.data.cartKey)
       console.log("local storage:", localStorage)
 
