@@ -1,6 +1,6 @@
 # Aunt Bottie Gift Plant and Card App
 
-Aunt Bottie is an app for buying plants as gifts and creating a personal card via Open AI.
+Aunt Bottie is an app for buying plants as gifts and creating a personal card via Open AI. It is a React TypeScript app supported by an Express server, PostgreSQL database, SASS processor and ChatGPT api.
 
 1. A user selects a gift.
 2. The user then fills out a form with the following info.
